@@ -1,0 +1,168 @@
+<!-- achievements.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Tech With Amey | Achievements & Collaborations</title>
+  <meta name="description" content="Independent platform by Amey Lole. Real feedback from our partners and learners. Modern Beauty Salon, Bright Professional Education, Padmavati High School, Samraj Academy, Vivaan Signature, Purvak Technologies, Indrajeet Furniture.">
+  <meta name="author" content="Amey Lole - Tech With Amey">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #f5f7fb; color: #1e293b; line-height: 1.5; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+    
+    /* navbar */
+    .navbar { background: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.03); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .nav-flex { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; flex-wrap: wrap; gap: 16px; }
+    .logo-container { display: flex; align-items: center; gap: 12px; }
+    .logo-icon { background: linear-gradient(145deg, #1e6f5c, #0f4c3f); width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; }
+    .logo-icon i { font-size: 28px; color: white; }
+    .logo-main { font-size: 1.9rem; font-weight: 800; background: linear-gradient(135deg, #0f2b3d, #1e6f5c); background-clip: text; -webkit-background-clip: text; color: transparent; }
+    .logo-tagline { font-size: 0.7rem; font-weight: 500; color: #2c7a64; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { text-decoration: none; font-weight: 600; color: #1e293b; transition: 0.2s; }
+    .nav-links a:hover { color: #1e6f5c; }
+    
+    /* hero */
+    .hero { text-align: center; padding: 50px 0 30px; }
+    .badge { background: #e0f2e9; display: inline-block; padding: 6px 18px; border-radius: 40px; color: #1e6f5c; font-weight: 600; font-size: 0.8rem; margin-bottom: 20px; }
+    h1 { font-size: 2.8rem; font-weight: 800; background: linear-gradient(135deg, #0f2b3d, #1e6f5c); background-clip: text; -webkit-background-clip: text; color: transparent; margin-bottom: 16px; }
+    .subhead { color: #475569; max-width: 650px; margin: 0 auto; font-size: 1.1rem; }
+    
+    /* section titles */
+    .section-title { font-size: 1.8rem; font-weight: 700; margin: 48px 0 28px 0; border-left: 5px solid #1e6f5c; padding-left: 20px; }
+    
+    /* projects grid */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin-bottom: 40px; }
+    .project-card { background: white; border-radius: 28px; padding: 24px; transition: 0.25s; border: 1px solid #e9edf2; box-shadow: 0 6px 14px rgba(0,0,0,0.02); }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1); border-color: #cde3dc; }
+    .project-icon { font-size: 2.2rem; margin-bottom: 12px; }
+    .project-card h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; color: #1b4b3f; }
+    .project-card p { color: #556b66; font-size: 0.9rem; margin-bottom: 12px; }
+    .tag { background: #ecf7f3; display: inline-block; padding: 4px 12px; border-radius: 30px; font-size: 0.7rem; font-weight: 600; color: #1e6f5c; }
+    
+    /* feedback cards — human mentions */
+    .feedback-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; margin: 30px 0; }
+    .feedback-card { background: white; border-radius: 28px; padding: 28px; border: 1px solid #edf2f1; transition: 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+    .feedback-card:hover { background: #fefef7; border-color: #c9dfd8; }
+    .quote-icon { font-size: 2rem; color: #b9d8cf; margin-bottom: 8px; }
+    .feedback-text { font-size: 1rem; line-height: 1.55; color: #2d3e3a; font-style: normal; margin: 12px 0; }
+    .feedback-author { font-weight: 700; color: #1e6f5c; margin-top: 16px; display: flex; align-items: center; gap: 8px; }
+    .author-role { font-size: 0.75rem; font-weight: normal; color: #7c8f89; }
+    .star-rating { color: #f4b740; letter-spacing: 2px; font-size: 0.85rem; margin-top: 8px; }
+    
+    /* footer */
+    footer { background: #0f2a24; color: #ccddd8; padding: 40px 0; margin-top: 60px; text-align: center; }
+    .disclaimer { background: #fef2e8; border-left: 5px solid #e67e22; padding: 16px 24px; border-radius: 20px; margin: 40px 0 20px; font-size: 0.8rem; color: #5a4a3a; }
+    @media (max-width: 700px) { .container { padding: 0 20px; } h1 { font-size: 2rem; } .section-title { font-size: 1.5rem; } }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-flex">
+    <div class="logo-container">
+      <div class="logo-icon"><i class="fas fa-code"></i></div>
+      <div class="logo-text">
+        <div class="logo-main">Tech With Amey</div>
+        <div class="logo-tagline">⚡ Gospel Grace Education · By Amey Lole</div>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="https://tecwithamey.onrender.com" target="_blank">🏠 Home</a></li>
+      <li><a href="#">Achievements</a></li>
+      <li><a href="help.html">Support</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="hero">
+    <span class="badge"><i class="fas fa-handshake"></i> Independent Platform · Real Collaborations</span>
+    <h1>Our Projects & Human Voices</h1>
+    <div class="subhead">We are an independent platform — working closely with passionate partners. Here's what people say about our journey.</div>
+  </div>
+
+  <!-- Our Projects Section -->
+  <div class="section-title">📌 Projects we're proud to collaborate on</div>
+  <div class="projects-grid">
+    <div class="project-card"><div class="project-icon">💇‍♀️✨</div><h3>Modern Beauty Salon</h3><p>Redefining salon experiences through digital integration & premium services.</p><span class="tag">co-creation partner</span></div>
+    <div class="project-card"><div class="project-icon">📘🎓</div><h3>Bright Professional Education</h3><p>Skill-first learning & career mentorship for young professionals.</p><span class="tag">strategic ally</span></div>
+    <div class="project-card"><div class="project-icon">🏫📚</div><h3>Padmavati High School</h3><p>Modernizing classrooms & teacher enablement programs.</p><span class="tag">academic partner</span></div>
+    <div class="project-card"><div class="project-icon">🏅🎯</div><h3>Samraj Academy</h3><p>Competitive exam coaching & leadership development.</p><span class="tag">knowledge partner</span></div>
+    <div class="project-card"><div class="project-icon">🏢🌟</div><h3>Vivaan Signature</h3><p>Sustainable architecture & premium real estate branding.</p><span class="tag">development collaborator</span></div>
+    <div class="project-card"><div class="project-icon">⚙️🚀</div><h3>Purvak Technologies</h3><p>Enterprise tech solutions & AI-driven transformation.</p><span class="tag">technology ally</span></div>
+    <div class="project-card"><div class="project-icon">🪑🎨</div><h3>Indrajeet Furniture</h3><p>Artisan-crafted furniture — tradition meets innovation.</p><span class="tag">craft partner</span></div>
+  </div>
+
+  <!-- Human feedback / mentions only -->
+  <div class="section-title">💬 What people & partners say — Real mentions</div>
+  <div class="feedback-grid">
+    <div class="feedback-card">
+      <div class="quote-icon"><i class="fas fa-comment-dots"></i></div>
+      <div class="feedback-text">“Working with Tech With Amey transformed our digital outreach. The team's dedication is unmatched. Our Modern Beauty Salon brand visibility grew organically. Truly a collaborative spirit!”</div>
+      <div class="feedback-author">— Priyanka S. <span class="author-role">Owner, Modern Beauty Salon</span></div>
+      <div class="star-rating">★★★★★</div>
+    </div>
+    <div class="feedback-card">
+      <div class="quote-icon"><i class="fas fa-comment-dots"></i></div>
+      <div class="feedback-text">“Amey Lole and his platform helped us redesign our professional courses. Student engagement skyrocketed. Bright Professional Education is grateful for this independent yet powerful collaboration.”</div>
+      <div class="feedback-author">— Rajesh K. <span class="author-role">Director, Bright Professional Education</span></div>
+      <div class="star-rating">★★★★★</div>
+    </div>
+    <div class="feedback-card">
+      <div class="quote-icon"><i class="fas fa-comment-dots"></i></div>
+      <div class="feedback-text">“Padmavati High School's digital leap happened because of Gospel Grace Education's support. The tech workshops were inspiring for both students and teachers.”</div>
+      <div class="feedback-author">— Meera Joshi <span class="author-role">Principal, Padmavati High School</span></div>
+      <div class="star-rating">★★★★☆</div>
+    </div>
+    <div class="feedback-card">
+      <div class="quote-icon"><i class="fas fa-comment-dots"></i></div>
+      <div class="feedback-text">“Samraj Academy witnessed record results. The mentorship framework provided by Tech With Amey was practical, motivational and result-oriented. Highly recommend this independent platform.”</div>
+      <div class="feedback-author">— Anil Deshmukh <span class="author-role">Founder, Samraj Academy</span></div>
+      <div class="star-rating">★★★★★</div>
+    </div>
+    <div class="feedback-card">
+      <div class="quote-icon"><i class="fas fa-comment-dots"></i></div>
+      <div class="feedback-text">“Vivaan Signature's green certification journey got a boost from strategic tech & branding insights. Gospel Grace Education truly listens and executes.”</div>
+      <div class="feedback-author">— Rahul V. <span class="author-role">Project Head, Vivaan Signature</span></div>
+      <div class="star-rating">★★★★★</div>
+    </div>
+    <div class="feedback-card">
+      <div class="quote-icon"><i class="fas fa-comment-dots"></i></div>
+      <div class="feedback-text">“Purvak Technologies found a reliable innovation partner. The agile collaboration and honest feedback helped us launch our SaaS product 2 months early.”</div>
+      <div class="feedback-author">— Snehal Patil <span class="author-role">CTO, Purvak Technologies</span></div>
+      <div class="star-rating">★★★★★</div>
+    </div>
+    <div class="feedback-card">
+      <div class="quote-icon"><i class="fas fa-comment-dots"></i></div>
+      <div class="feedback-text">“Indrajeet Furniture's craft met digital marketing magic. Amey Lole's guidance brought our heritage story to a global audience — authentic & effective.”</div>
+      <div class="feedback-author">— Yogesh Indrajeet <span class="author-role">Founder, Indrajeet Furniture</span></div>
+      <div class="star-rating">★★★★★</div>
+    </div>
+    <div class="feedback-card">
+      <div class="quote-icon"><i class="fas fa-comment-dots"></i></div>
+      <div class="feedback-text">“As a learner, I got my first internship because of the practical training from Tech With Amey. The independent platform truly cares about skill development, not just certificates.”</div>
+      <div class="feedback-author">— Neha Sharma <span class="author-role">Former Intern, now Frontend Dev</span></div>
+      <div class="star-rating">★★★★★</div>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <i class="fas fa-exclamation-triangle" style="margin-right: 12px; color: #e67e22;"></i>
+    <strong>Note:</strong> Tech With Amey / Gospel Grace Education is an <strong>independent private platform</strong>. All feedback and testimonials are from real individuals and partners. We focus on genuine collaboration and skill-based growth.
+  </div>
+</div>
+
+<footer>
+  <div class="container" style="text-align: center;">
+    <p>© 2025 Tech With Amey — Gospel Grace Education · By Amey Lole</p>
+    <p style="font-size: 0.75rem; margin-top: 12px; opacity: 0.7;">Independent platform · Built on trust, collaboration & human-first approach</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,18 +1,61 @@
-
 <!DOCTYPE html>
-<title>TecWithAmey | Software Development, AI & Digital Solutions</title>
-
-<meta name="description" content="TecWithAmey provides website development, software solutions, AI automation, educational technology, and digital transformation services.">
-
-<link rel="canonical" href="https://tecwithamey.online/">
 <html lang="en">
 <head>
-    <link rel="canonical" href="https://tecwithamey.online/">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7009807160872688"
-     crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+    <!-- Primary SEO -->
     <title>Tech With Amey | Next-Gen Coding & Internships</title>
+    <meta name="description" content="TecWithAmey provides website development, software solutions, AI automation, educational technology, and digital transformation services.">
+    <meta name="keywords" content="Tech With Amey, Amey Lole, coding internship, Python course, SQL course, MongoDB, Java, NodeJS, full-stack development, Gospel Grace Education">
+    <meta name="author" content="Amey Lole, Tech With Amey">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://tecwithamey.online/">
+    <meta name="theme-color" content="#2dd4bf">
+
+    <!-- Favicon (replace with your actual logo file) -->
+    <link rel="icon" type="image/png" href="https://tecwithamey.online/favicon.png">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Tech With Amey | Next-Gen Coding & Internships">
+    <meta property="og:description" content="TecWithAmey provides website development, software solutions, AI automation, educational technology, and digital transformation services.">
+    <meta property="og:url" content="https://tecwithamey.online/">
+    <meta property="og:image" content="https://tecwithamey.online/og-image.jpg">
+    <meta property="og:site_name" content="Tech With Amey">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tech With Amey | Next-Gen Coding & Internships">
+    <meta name="twitter:description" content="TecWithAmey provides website development, software solutions, AI automation, educational technology, and digital transformation services.">
+    <meta name="twitter:image" content="https://tecwithamey.online/og-image.jpg">
+
+    <!-- Structured Data (Schema.org) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "Tech With Amey",
+      "alternateName": "Gospel Grace Education",
+      "url": "https://tecwithamey.online/",
+      "logo": "https://tecwithamey.online/favicon.png",
+      "founder": {
+        "@type": "Person",
+        "name": "Amey Lole"
+      },
+      "description": "TecWithAmey provides website development, software solutions, AI automation, educational technology, and digital transformation services.",
+      "email": "tecwithamey@gmail.com",
+      "sameAs": []
+    }
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7009807160872688"
+     crossorigin="anonymous"></script>
+
+    <!-- Performance: preconnect to font origins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <!-- Google Fonts + Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -408,9 +451,46 @@
         a {
             color: inherit;
         }
+
+        /* Accessibility: skip-to-content link, hidden until focused */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 1rem;
+            background: #2dd4bf;
+            color: #050b14;
+            padding: 0.7rem 1.4rem;
+            border-radius: 8px;
+            font-weight: 700;
+            z-index: 999;
+            transition: top 0.2s ease;
+        }
+        .skip-link:focus {
+            top: 1rem;
+        }
+
+        .footer-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+        .footer-links a {
+            text-decoration: none;
+            color: #94a3b8;
+            transition: 0.2s;
+        }
+        .footer-links a:hover {
+            color: #2dd4bf;
+        }
     </style>
 </head>
 <body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- AMP Auto Ads -->
 <amp-auto-ads type="adsense" data-ad-client="ca-pub-7009807160872688">
@@ -419,12 +499,12 @@
 <div id="canvas-container"></div>
 
 <!-- Navigation with glass -->
-<nav class="navbar">
+<nav class="navbar" aria-label="Main navigation">
     <div class="nav-container">
         <div class="logo">
-            <div class="logo-icon"><i class="fas fa-code"></i></div>
+            <div class="logo-icon"><i class="fas fa-code" aria-hidden="true"></i></div>
             <div class="logo-text">
-                <h1>Tech With Amey</h1>
+                <p class="brand-name" style="font-size:1.6rem; font-weight:700; background: linear-gradient(135deg, #ffffff, #94a3b8); -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing:-0.3px;">Tech With Amey</p>
                 <p>Gospel Grace Education · by Amey Lole</p>
             </div>
         </div>
@@ -438,7 +518,7 @@
     </div>
 </nav>
 
-<main>
+<main id="main-content">
     <!-- Hero Section advanced -->
     <section id="home" class="hero">
         <div class="container">
@@ -475,7 +555,7 @@
                 <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem; display: flex; gap: 10px; align-items: center;"><i class="fas fa-fire" style="color:#f97316;"></i> LIVE 3-Month Internship Program</h2>
                 <p>Work on enterprise projects, get mentorship, and build your portfolio with certificate of excellence.</p>
             </div>
-            <a href="https://forms.gle/C1nhVtm19mkLQ3Te8" target="_blank" class="btn-primary" style="background: linear-gradient(105deg, #0f172a, #1e293b); border: 1px solid #2dd4bf;">
+            <a href="https://forms.gle/C1nhVtm19mkLQ3Te8" target="_blank" rel="noopener noreferrer" class="btn-primary" style="background: linear-gradient(105deg, #0f172a, #1e293b); border: 1px solid #2dd4bf;">
                 <i class="fas fa-pen-alt"></i> Register Now
             </a>
         </div>
@@ -556,9 +636,10 @@
                     <p style="margin: 1rem 0;"><i class="fas fa-envelope"></i> <a href="mailto:tecwithamey@gmail.com" style="color:#2dd4bf;">tecwithamey@gmail.com</a></p>
                     <p style="margin: 1rem 0;"><i class="fas fa-headset"></i> <a href="mailto:supporttecwithamey@gmail.com" style="color:#2dd4bf;">supporttecwithamey@gmail.com</a></p>
                     <div style="display: flex; gap: 1.2rem; margin-top: 2rem;">
-                        <a href="#" style="background: #1e293b; width: 42px; height: 42px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; transition: 0.3s;"><i class="fab fa-github"></i></a>
-                        <a href="#" style="background: #1e293b; width: 42px; height: 42px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" style="background: #1e293b; width: 42px; height: 42px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;"><i class="fab fa-youtube"></i></a>
+                        <!-- TODO: replace # with your real profile URLs, or remove any icon you don't use -->
+                        <a href="#" aria-label="Tech With Amey on GitHub" style="background: #1e293b; width: 42px; height: 42px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; transition: 0.3s;"><i class="fab fa-github" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Tech With Amey on LinkedIn" style="background: #1e293b; width: 42px; height: 42px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Tech With Amey on YouTube" style="background: #1e293b; width: 42px; height: 42px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;"><i class="fab fa-youtube" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <div class="glass-card" style="padding: 2rem; border-radius: 1.8rem;">
@@ -583,9 +664,15 @@
 
 <footer>
     <div class="container">
-        <p>© 2025 Tech With Amey — Gospel Grace Education · Amey Lole</p>
+        <p>© 2026 Tech With Amey — Gospel Grace Education · Amey Lole</p>
         <p style="margin-top: 1rem;"><i class="fas fa-award"></i> Skill certificates · Industry Trust · Global Mentorship</p>
         <p style="margin-top: 0.5rem;"><i class="fas fa-map-marker-alt"></i> Remote · INDIA · WorldWide</p>
+        <div class="footer-links">
+            <a href="/privacy-policy.html">Privacy Policy</a>
+            <a href="/terms-of-service.html">Terms of Service</a>
+            <a href="/refund-policy.html">Refund Policy</a>
+            <a href="#contact">Contact Us</a>
+        </div>
     </div>
 </footer>
 

@@ -1,818 +1,660 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech With Amey · TECHX 2026</title>
+  <meta name="description" content="Tech With Amey — independent training programs, certifications, and TECHX 2026 initiatives." />
+  <link rel="icon" type="image/png" href="logo.png" />
 
-    <!-- Primary SEO -->
-    <title>Tech With Amey | Next-Gen Coding & Internships</title>
-    <meta name="description" content="TecWithAmey provides website development, software solutions, AI automation, educational technology, and digital transformation services.">
-    <meta name="keywords" content="Tech With Amey, Amey Lole, coding internship, Python course, SQL course, MongoDB, Java, NodeJS, full-stack development, Gospel Grace Education">
-    <meta name="author" content="Amey Lole, Tech With Amey">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://tecwithamey.online/">
-    <meta name="theme-color" content="#2dd4bf">
+  <!-- Google Fonts + Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
-    <!-- Favicon (replace with your actual logo file) -->
-    <link rel="icon" type="image/png" href="https://tecwithamey.online/favicon.png">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Tech With Amey | Next-Gen Coding & Internships">
-    <meta property="og:description" content="TecWithAmey provides website development, software solutions, AI automation, educational technology, and digital transformation services.">
-    <meta property="og:url" content="https://tecwithamey.online/">
-    <meta property="og:image" content="https://tecwithamey.online/og-image.jpg">
-    <meta property="og:site_name" content="Tech With Amey">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Tech With Amey | Next-Gen Coding & Internships">
-    <meta name="twitter:description" content="TecWithAmey provides website development, software solutions, AI automation, educational technology, and digital transformation services.">
-    <meta name="twitter:image" content="https://tecwithamey.online/og-image.jpg">
-
-    <!-- Structured Data (Schema.org) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "EducationalOrganization",
-      "name": "Tech With Amey",
-      "alternateName": "Gospel Grace Education",
-      "url": "https://tecwithamey.online/",
-      "logo": "https://tecwithamey.online/favicon.png",
-      "founder": {
-        "@type": "Person",
-        "name": "Amey Lole"
-      },
-      "description": "TecWithAmey provides website development, software solutions, AI automation, educational technology, and digital transformation services.",
-      "email": "tecwithamey@gmail.com",
-      "sameAs": []
+  <style>
+    /* ----- USWDS THEME TOKENS + MODERN ANIMATION VARS ----- */
+    :root {
+      --primary-color: #005ea2;
+      --primary-dark: #1b1b1b;
+      --primary-darker: #111111;
+      --accent-cool: #00bde3;
+      --bg-color: #f0f0f0;
+      --white: #ffffff;
+      --text-main: #1b1b1b;
+      --text-muted: #565656;
+      --border-color: #adadad;
+      --banner-bg: #f0f0f0;
+      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    </script>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7009807160872688"
-     crossorigin="anonymous"></script>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <!-- Performance: preconnect to font origins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    body {
+      font-family: 'Public Sans', sans-serif;
+      background-color: var(--white);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-    <!-- Google Fonts + Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- AMP Auto Ads -->
-    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
-    </script>
-    <!-- Three.js for advanced 3D background -->
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
-            }
-        }
-    </script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    a {
+      color: var(--primary-color);
+      text-decoration: underline;
+      transition: var(--transition-smooth);
+    }
+    a:hover {
+      color: #003865;
+    }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #050b14;
-            color: #f1f5f9;
-            overflow-x: hidden;
-            line-height: 1.5;
-        }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
 
-        /* custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0f172a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #2dd4bf;
-            border-radius: 10px;
-        }
+    /* ----- TOP BANNER ----- */
+    .usa-banner {
+      background-color: var(--banner-bg);
+      font-size: 0.85rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .usa-banner__inner {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .usa-banner__header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+    }
+    .usa-banner__header i {
+      animation: pulse-glow 2s infinite ease-in-out;
+    }
 
-        /* Canvas 3D background */
-        #canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            pointer-events: none;
-        }
+    @keyframes pulse-glow {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.15); opacity: 0.8; color: var(--accent-cool); }
+    }
 
-        /* Glassmorphism + smooth layers */
-        .glass-nav, .glass-card, .glass-banner, footer {
-            backdrop-filter: blur(12px);
-            background: rgba(15, 23, 42, 0.65);
-            border: 1px solid rgba(45, 212, 191, 0.2);
-            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.3);
-        }
+    /* ----- HEADER & NAVIGATION ----- */
+    .usa-header {
+      background-color: var(--primary-dark);
+      color: var(--white);
+      border-bottom: 4px solid var(--primary-color);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+    .usa-nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .usa-logo a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .usa-logo img {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+      border-radius: 4px;
+      transition: transform 0.5s ease;
+    }
+    .usa-logo a:hover img {
+      transform: rotate(360deg) scale(1.05);
+    }
+    .usa-logo span {
+      font-size: 0.75rem;
+      display: block;
+      color: #adadad;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
 
-        .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 200;
-            backdrop-filter: blur(16px);
-            background: rgba(5, 11, 20, 0.8);
-            border-bottom: 1px solid rgba(45, 212, 191, 0.25);
-        }
+    .usa-nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+      font-weight: 600;
+    }
+    .usa-nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      position: relative;
+      padding: 0.2rem 0;
+    }
+    .usa-nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: var(--accent-cool);
+      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .usa-nav-links a:hover::after {
+      width: 100%;
+    }
+    .usa-nav-links a:hover {
+      color: var(--accent-cool);
+      text-decoration: none;
+    }
 
-        .nav-container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0.9rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
+    /* ----- HERO SECTION WITH ANIMATED BG ACCENTS ----- */
+    .usa-hero {
+      background: linear-gradient(135deg, #1b1b1b 0%, #111111 100%);
+      color: var(--white);
+      padding: 5rem 0;
+      border-bottom: 8px solid var(--primary-color);
+      position: relative;
+      overflow: hidden;
+    }
+    .usa-hero::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0, 94, 162, 0.25) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float-orb 8s infinite alternate ease-in-out;
+      z-index: 1;
+    }
+    @keyframes float-orb {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(40px) scale(1.1); }
+    }
+    .usa-hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .usa-hero h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease backwards;
+    }
+    .usa-hero p {
+      font-size: 1.15rem;
+      margin-bottom: 2rem;
+      color: #d6d6d6;
+      animation: fadeInUp 1s ease backwards;
+      animation-delay: 0.2s;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
+    /* ----- BUTTONS WITH MICRO-INTERACTIONS ----- */
+    .usa-button {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 0.85rem 2rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 94, 162, 0.3);
+      transition: var(--transition-smooth);
+    }
+    .usa-button:hover {
+      background-color: #003865;
+      color: var(--white);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 94, 162, 0.5);
+    }
+    .usa-button--secondary {
+      background-color: transparent;
+      border: 2px solid var(--white);
+      color: var(--white);
+      margin-left: 1rem;
+      box-shadow: none;
+    }
+    .usa-button--secondary:hover {
+      background-color: rgba(255,255,255,0.1);
+      transform: translateY(-3px);
+    }
 
-        .logo-icon {
-            background: linear-gradient(135deg, #2dd4bf, #0f766e);
-            width: 48px;
-            height: 48px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            box-shadow: 0 0 12px rgba(45,212,191,0.4);
-        }
+    /* ----- HERO GRAPHIC CONTAINER WITH IMAGE ----- */
+    .hero-graphic {
+      text-align: center;
+      border: 2px dashed rgba(255, 255, 255, 0.2);
+      padding: 2.5rem 1.5rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(10px);
+      transition: var(--transition-smooth);
+      animation: fadeInUp 1s ease backwards;
+      animation-delay: 0.4s;
+    }
+    .hero-graphic:hover {
+      border-color: var(--accent-cool);
+      box-shadow: 0 10px 30px rgba(0, 189, 227, 0.15);
+    }
+    .hero-graphic img {
+      max-width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      animation: float-icon 4s infinite ease-in-out alternate;
+    }
+    @keyframes float-icon {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-10px); }
+    }
 
-        .logo-text h1 {
-            font-size: 1.6rem;
-            background: linear-gradient(135deg, #ffffff, #94a3b8);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -0.3px;
-        }
+    /* ----- SECTION STYLING ----- */
+    section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .section-title {
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      color: var(--primary-dark);
+      border-bottom: 3px solid var(--primary-color);
+      display: inline-block;
+      padding-bottom: 0.4rem;
+    }
 
-        .logo-text p {
-            font-size: 0.7rem;
-            color: #94a3b8;
-        }
+    /* ----- INTERACTIVE CARDS (NO IMAGES) ----- */
+    .usa-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .usa-card {
+      background: var(--white);
+      border: 1px solid var(--border-color);
+      border-top: 5px solid var(--primary-color);
+      padding: 2.2rem;
+      border-radius: 6px;
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .usa-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: var(--accent-cool);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .usa-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+      border-color: #999;
+    }
+    .usa-card:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    .usa-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.75rem;
+      color: var(--primary-dark);
+    }
+    .usa-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
 
-        .nav-links {
-            display: flex;
-            gap: 2.2rem;
-            list-style: none;
-        }
+    /* ----- MODERN GALLERY SECTION STYLING ----- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      background-color: #fafafa;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 0.75rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      color: var(--white);
+      font-size: 0.85rem;
+      font-weight: 600;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: var(--transition-smooth);
+    }
+    .gallery-item:hover .gallery-caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-        .nav-links a {
-            text-decoration: none;
-            color: #e2e8f0;
-            font-weight: 500;
-            transition: 0.3s;
-            position: relative;
-        }
+    /* ----- ALERTS / BANNER BOXES ----- */
+    .usa-alert {
+      background-color: #e7f6f8;
+      border-left: 6px solid #00bde3;
+      padding: 2rem;
+      margin: 3rem 0;
+      border-radius: 0 6px 6px 0;
+      box-shadow: 0 4px 15px rgba(0, 189, 227, 0.1);
+      transition: var(--transition-smooth);
+    }
+    .usa-alert:hover {
+      transform: translateX(5px);
+    }
+    .usa-alert h3 {
+      color: #003865;
+      margin-bottom: 0.5rem;
+    }
 
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background: #2dd4bf;
-            transition: 0.3s;
-        }
+    /* ----- FOOTER ----- */
+    .usa-footer {
+      background-color: var(--primary-dark);
+      color: var(--white);
+      padding: 4rem 0 2rem;
+    }
+    .usa-footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      border-bottom: 1px solid #454545;
+      padding-bottom: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    .usa-footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .usa-footer-links a {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+    .usa-footer-links a:hover {
+      color: var(--accent-cool);
+    }
+    .social-links {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+    .social-links a {
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.1);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+    }
+    .social-links a:hover {
+      background-color: var(--accent-cool);
+      color: var(--primary-dark);
+      transform: translateY(-3px);
+    }
 
-        .nav-links a:hover:after {
-            width: 100%;
-        }
-
-        .nav-links a:hover {
-            color: #2dd4bf;
-        }
-
-        .btn-primary {
-            background: linear-gradient(95deg, #2dd4bf, #0f766e);
-            color: white;
-            padding: 12px 32px;
-            border-radius: 40px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 5px 15px rgba(45,212,191,0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(45,212,191,0.5);
-            background: linear-gradient(95deg, #2dd4bf, #134e4a);
-        }
-
-        .btn-outline {
-            border: 1.5px solid #2dd4bf;
-            background: transparent;
-            color: #2dd4bf;
-            padding: 10px 28px;
-            border-radius: 40px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-outline:hover {
-            background: rgba(45,212,191,0.15);
-            transform: scale(1.02);
-            box-shadow: 0 0 12px rgba(45,212,191,0.3);
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 6rem 0 5rem;
-            position: relative;
-        }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 0.9fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(45,212,191,0.15);
-            backdrop-filter: blur(4px);
-            color: #99f6e4;
-            padding: 0.5rem 1.2rem;
-            border-radius: 60px;
-            font-size: 0.85rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(45,212,191,0.4);
-        }
-
-        .hero h1 {
-            font-size: 3.8rem;
-            font-weight: 800;
-            line-height: 1.2;
-            background: linear-gradient(to right, #ffffff, #cbd5e1);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .hero .highlight {
-            background: linear-gradient(135deg, #2dd4bf, #38bdf8);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .stat {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            background: rgba(255,255,255,0.05);
-            padding: 0.5rem 1.2rem;
-            border-radius: 40px;
-            backdrop-filter: blur(4px);
-        }
-
-        .hero-image {
-            background: radial-gradient(circle at 30% 20%, rgba(45,212,191,0.2), transparent);
-            border-radius: 2rem;
-            padding: 1.5rem;
-            text-align: center;
-            backdrop-filter: blur(4px);
-        }
-
-        .hero-image i {
-            font-size: 9rem;
-            color: #2dd4bf;
-            filter: drop-shadow(0 0 15px #2dd4bf);
-        }
-
-        /* Glass Cards grid */
-        .section-title {
-            font-size: 2.7rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            font-weight: 700;
-            background: linear-gradient(120deg, #e2e8f0, #2dd4bf);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .courses-grid, .reviews-grid, .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .course-card, .review-card, .project-card {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(12px);
-            border-radius: 2rem;
-            padding: 2rem 1.8rem;
-            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            border: 1px solid rgba(45,212,191,0.2);
-            text-align: center;
-        }
-
-        .course-card:hover, .review-card:hover, .project-card:hover {
-            transform: translateY(-8px);
-            border-color: #2dd4bf;
-            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(45,212,191,0.3);
-        }
-
-        .course-icon {
-            font-size: 3.5rem;
-            color: #2dd4bf;
-            margin-bottom: 1rem;
-        }
-
-        .stars {
-            color: #fbbf24;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .internship-banner {
-            background: linear-gradient(115deg, rgba(45,212,191,0.2), rgba(15, 23, 42, 0.85));
-            backdrop-filter: blur(20px);
-            border-radius: 2rem;
-            padding: 2rem 2.5rem;
-            margin: 2rem 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            border: 1px solid rgba(45,212,191,0.5);
-        }
-
-        .partners-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .partner-item {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(4px);
-            padding: 0.7rem 1.6rem;
-            border-radius: 60px;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            font-weight: 500;
-            border: 1px solid #334155;
-            transition: 0.2s;
-        }
-
-        .partner-item:hover {
-            border-color: #2dd4bf;
-            background: rgba(45,212,191,0.1);
-        }
-
-        footer {
-            background: rgba(2, 6, 23, 0.8);
-            backdrop-filter: blur(12px);
-            border-top: 1px solid rgba(45,212,191,0.3);
-            padding: 3rem 0;
-            margin-top: 4rem;
-            text-align: center;
-        }
-
-        @media (max-width: 850px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .hero-stats {
-                justify-content: center;
-            }
-            .nav-links {
-                display: none;
-            }
-            .section-title {
-                font-size: 2rem;
-            }
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-        }
-
-        /* Glow text effect */
-        .glow-text {
-            text-shadow: 0 0 5px rgba(45,212,191,0.5);
-        }
-
-        .legal-box {
-            background: rgba(251, 191, 36, 0.1);
-            border-left: 4px solid #fbbf24;
-            backdrop-filter: blur(8px);
-            padding: 1rem;
-            border-radius: 1rem;
-        }
-        a {
-            color: inherit;
-        }
-
-        /* Accessibility: skip-to-content link, hidden until focused */
-        .skip-link {
-            position: absolute;
-            top: -100px;
-            left: 1rem;
-            background: #2dd4bf;
-            color: #050b14;
-            padding: 0.7rem 1.4rem;
-            border-radius: 8px;
-            font-weight: 700;
-            z-index: 999;
-            transition: top 0.2s ease;
-        }
-        .skip-link:focus {
-            top: 1rem;
-        }
-
-        .footer-links {
-            margin-top: 1rem;
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            font-size: 0.85rem;
-            color: #94a3b8;
-        }
-        .footer-links a {
-            text-decoration: none;
-            color: #94a3b8;
-            transition: 0.2s;
-        }
-        .footer-links a:hover {
-            color: #2dd4bf;
-        }
-    </style>
+    /* ----- RESPONSIVE ----- */
+    @media (max-width: 768px) {
+      .usa-hero-grid { grid-template-columns: 1fr; }
+      .usa-nav-links { display: none; }
+      .usa-hero h1 { font-size: 2.4rem; }
+    }
+  </style>
 </head>
 <body>
 
-<a href="#main-content" class="skip-link">Skip to main content</a>
+  <!-- Top Banner -->
+  <div class="usa-banner" role="region" aria-label="Website indicator">
+    <div class="usa-banner__inner">
+      <div class="usa-banner__header">
+        <i class="fas fa-laptop-code" style="color: #005ea2;"></i>
+        <span>Independent Learning &amp; Tech Initiative by Tech With Amey</span>
+      </div>
+    </div>
+  </div>
 
-<!-- AMP Auto Ads -->
-<amp-auto-ads type="adsense" data-ad-client="ca-pub-7009807160872688">
-</amp-auto-ads>
-
-<div id="canvas-container"></div>
-
-<!-- Navigation with glass -->
-<nav class="navbar" aria-label="Main navigation">
-    <div class="nav-container">
-        <div class="logo">
-            <div class="logo-icon"><i class="fas fa-code" aria-hidden="true"></i></div>
-            <div class="logo-text">
-                <p class="brand-name" style="font-size:1.6rem; font-weight:700; background: linear-gradient(135deg, #ffffff, #94a3b8); -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing:-0.3px;">Tech With Amey</p>
-                <p>Gospel Grace Education · by Amey Lole</p>
-            </div>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#courses">Courses</a></li>
-            <li><a href="#reviews">Reviews</a></li>
-            <li><a href="#partners">Partners</a></li>
-            <li><a href="#contact">Contact</a></li>
+  <!-- Header Navigation -->
+  <header class="usa-header">
+    <div class="container usa-nav-container">
+      <div class="usa-logo">
+        <a href="#home">
+          <img src="logo.png" alt="Tech With Amey Logo" />
+          <div>
+            Tech With Amey
+            <span>Independent Tech Platform</span>
+          </div>
+        </a>
+      </div>
+      <nav aria-label="Primary navigation">
+        <ul class="usa-nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#courses">Programs</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#techx">TECHX 2026</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
+      </nav>
     </div>
-</nav>
+  </header>
 
-<main id="main-content">
-    <!-- Hero Section advanced -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div>
-                    <div class="hero-badge">
-                        <i class="fas fa-globe-americas"></i> Gospel Grace Education Initiative · Global
-                    </div>
-                    <h1>Master tech with <span class="highlight">Amey Lole</span><br>Build the future, <span class="highlight">remotely</span></h1>
-                    <p style="font-size: 1.2rem; color: #cbd5e6; margin: 1.5rem 0;">Industry-aligned curriculum: Python, SQL, MongoDB, Java, NodeJS & Full-Stack. Live mentorship & real-world impact.</p>
-                    <div class="hero-stats">
-                        <div class="stat"><i class="fas fa-users"></i> 10k+ Learners</div>
-                        <div class="stat"><i class="fas fa-star"></i> 4.9/5 Rating</div>
-                        <div class="stat"><i class="fas fa-certificate"></i> Verified Cert</div>
-                    </div>
-                    <div style="margin-top: 2rem; display: flex; gap: 1.2rem; flex-wrap: wrap;">
-                        <a href="#courses" class="btn-primary"><i class="fas fa-arrow-right"></i> Explore Courses</a>
-                        <a href="#internship" class="btn-outline"><i class="fas fa-rocket"></i> Live Internship</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <i class="fas fa-laptop-code"></i>
-                    <p style="margin-top: 1rem; font-weight: 600; color:#a5f3fc;">Code · Deploy · Lead</p>
-                    <div style="margin-top: 1rem; font-size:0.8rem;">✨ 30+ countries</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Internship Banner advanced -->
-    <div id="internship" class="container">
-        <div class="internship-banner">
+  <main id="main-content">
+    
+    <!-- Hero Section -->
+    <section id="home" class="usa-hero">
+      <div class="container">
+        <div class="usa-hero-grid">
+          <div>
+            <span style="background: rgba(0,94,162,0.3); padding: 0.35rem 1rem; border-radius: 4px; font-weight: 600; font-size: 0.85rem; border: 1px solid #005ea2; display: inline-block; margin-bottom: 1.2rem;">TECHX 2026 INITIATIVE</span>
+            <h1>Independent Tech &amp; Engineering Standards</h1>
+            <p>Access independent learning frameworks across Python, SQL, Java, NodeJS, Cloud Architecture, and AI implementation led by Amey Lole.</p>
             <div>
-                <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem; display: flex; gap: 10px; align-items: center;"><i class="fas fa-fire" style="color:#f97316;"></i> LIVE 3-Month Internship Program</h2>
-                <p>Work on enterprise projects, get mentorship, and build your portfolio with certificate of excellence.</p>
+              <a href="#courses" class="usa-button"><i class="fas fa-file-alt"></i> View Programs</a>
+              <a href="#techx" class="usa-button usa-button--secondary"><i class="fas fa-info-circle"></i> TECHX 2026 Guidelines</a>
             </div>
-            <a href="https://forms.gle/C1nhVtm19mkLQ3Te8" target="_blank" rel="noopener noreferrer" class="btn-primary" style="background: linear-gradient(105deg, #0f172a, #1e293b); border: 1px solid #2dd4bf;">
-                <i class="fas fa-pen-alt"></i> Register Now
-            </a>
+          </div>
+          <div class="hero-graphic">
+            <img src="image.png" alt="Tech With Amey Hero Illustration" />
+            <div style="font-weight: 600; font-size: 1.15rem; color: #ffffff;">Independent Training Provider</div>
+            <div style="color: #adadad; font-size: 0.9rem; margin-top: 0.3rem;">Serving registered learners globally</div>
+          </div>
         </div>
-    </div>
-
-    <!-- Courses core tracks -->
-    <section id="courses" style="padding: 4rem 0;">
-        <div class="container">
-            <h2 class="section-title">📘 Modern Tech Stack &nbsp; <i class="fas fa-code-branch"></i></h2>
-            <div class="courses-grid">
-                <div class="course-card"><div class="course-icon"><i class="fab fa-python"></i></div><h3>Python Mastery</h3><p>Automation, OOP, data structures & real API projects.</p></div>
-                <div class="course-card"><div class="course-icon"><i class="fas fa-database"></i></div><h3>SQL & Databases</h3><p>Complex queries, joins, optimization & database design.</p></div>
-                <div class="course-card"><div class="course-icon"><i class="fas fa-leaf"></i></div><h3>MongoDB NoSQL</h3><p>Aggregation pipelines, indexing & cloud databases.</p></div>
-                <div class="course-card"><div class="course-icon"><i class="fab fa-java"></i></div><h3>Java OOP</h3><p>Multithreading, collections, enterprise development.</p></div>
-                <div class="course-card"><div class="course-icon"><i class="fab fa-node-js"></i></div><h3>NodeJS Backend</h3><p>REST APIs, Express, JWT, scalable architecture.</p></div>
-                <div class="course-card"><div class="course-icon"><i class="fab fa-react"></i></div><h3>Full-Stack Frontend</h3><p>React, Tailwind, modern JS & responsive design.</p></div>
-            </div>
-        </div>
+      </div>
     </section>
 
-    <!-- Reviews + Past projects hybrid -->
-    <section id="reviews" style="padding: 4rem 0; background: rgba(5, 11, 20, 0.7);">
-        <div class="container">
-            <h2 class="section-title">✨ Trusted by Industry Leaders</h2>
-            <div class="reviews-grid">
-                <div class="review-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p style="font-style: italic;">"Tech With Amey redefined our digital infrastructure. Timely delivery & outstanding ownership. Highly recommended!"</p>
-                    <div style="display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem;">
-                        <i class="fas fa-couch" style="font-size: 2.2rem; color: #2dd4bf;"></i>
-                        <div><strong>Indrajeet Furniture</strong><br><small>Strategic Partner</small></div>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p style="font-style: italic;">"Purvak Technologies collaborated on full-stack solutions. Amey's team delivered exceptional scalable code."</p>
-                    <div style="display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem;">
-                        <i class="fas fa-microchip" style="font-size: 2.2rem; color: #2dd4bf;"></i>
-                        <div><strong>Purvak Technologies PVT</strong><br><small>Past Partner</small></div>
-                    </div>
-                </div>
-            </div>
-
-            <h3 style="font-size: 2rem; text-align: center; margin: 3rem 0 2rem;"><i class="fas fa-trophy"></i> Legacy & Impact Projects</h3>
-            <div class="projects-grid">
-                <div class="project-card"><i class="fas fa-microchip" style="font-size: 3rem; color: #2dd4bf; margin-bottom: 1rem;"></i><h3>Purvak Technologies</h3><p>Enterprise backend modernization & migration.</p></div>
-                <div class="project-card"><i class="fas fa-chair" style="font-size: 3rem; color: #2dd4bf; margin-bottom: 1rem;"></i><h3>Indrajeet Furniture</h3><p>Digital inventory system + staff upskilling.</p></div>
-                <div class="project-card"><i class="fas fa-chalkboard-user" style="font-size: 3rem; color: #2dd4bf; margin-bottom: 1rem;"></i><h3>Gospel Grace Ed-Tech</h3><p>Platform for 10k+ students & workshops.</p></div>
-            </div>
-            <div style="text-align: center; margin-top: 1rem;">
-                <span style="background: #0f172a; padding: 0.5rem 1.8rem; border-radius: 60px; backdrop-filter: blur(8px);"><i class="fas fa-check-circle" style="color:#2dd4bf;"></i> 15+ successful commercial collaborations</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Partners Section -->
-    <section id="partners" style="padding: 4rem 0;">
-        <div class="container">
-            <h2 class="section-title">🤝 Strategic Collaborations & Partners</h2>
-            <div class="partners-grid">
-                <div class="partner-item"><i class="fas fa-university"></i> Padmavati Project</div>
-                <div class="partner-item"><i class="fas fa-graduation-cap"></i> Samraj Academy</div>
-                <div class="partner-item"><i class="fas fa-chalkboard"></i> Bright Professional Education</div>
-                <div class="partner-item"><i class="fas fa-building"></i> Vivaan Signatures</div>
-                <div class="partner-item"><i class="fas fa-cut"></i> Modern Beauty Salon</div>
-                <div class="partner-item"><i class="fas fa-church"></i> Gospel Grace Education</div>
-            </div>
-            <p style="text-align: center; margin-top: 2rem; color: #a0aec0;"><i class="fas fa-handshake" style="color: #2dd4bf;"></i> digital literacy & skill empowerment alliances</p>
-        </div>
-    </section>
-
-    <!-- Contact + About Amey -->
-    <section id="contact" style="padding: 4rem 0;">
-        <div class="container">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                <div class="glass-card" style="padding: 2rem; border-radius: 1.8rem;">
-                    <h3 style="margin-bottom: 1.5rem;"><i class="fas fa-envelope" style="color: #2dd4bf;"></i> Get in touch</h3>
-                    <p style="margin: 1rem 0;"><i class="fas fa-envelope"></i> <a href="mailto:tecwithamey@gmail.com" style="color:#2dd4bf;">tecwithamey@gmail.com</a></p>
-                    <p style="margin: 1rem 0;"><i class="fas fa-headset"></i> <a href="mailto:supporttecwithamey@gmail.com" style="color:#2dd4bf;">supporttecwithamey@gmail.com</a></p>
-                    <div style="display: flex; gap: 1.2rem; margin-top: 2rem;">
-                        <!-- TODO: replace # with your real profile URLs, or remove any icon you don't use -->
-                        <a href="#" aria-label="Tech With Amey on GitHub" style="background: #1e293b; width: 42px; height: 42px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; transition: 0.3s;"><i class="fab fa-github" aria-hidden="true"></i></a>
-                        <a href="#" aria-label="Tech With Amey on LinkedIn" style="background: #1e293b; width: 42px; height: 42px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-                        <a href="#" aria-label="Tech With Amey on YouTube" style="background: #1e293b; width: 42px; height: 42px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;"><i class="fab fa-youtube" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-                <div class="glass-card" style="padding: 2rem; border-radius: 1.8rem;">
-                    <h3 style="margin-bottom: 0.5rem;">✨ About Amey Lole</h3>
-                    <h2 style="color: #2dd4bf; font-size: 2rem; margin: 0.5rem 0;">Amey Lole</h2>
-                    <p><strong>Lead Instructor & Founder</strong> — Full-stack developer, 2+ years mentoring, consultant for enterprises.</p>
-                    <p style="margin-top: 1rem; border-left: 3px solid #2dd4bf; padding-left: 1rem;">"Empowered 10k+ learners across 30+ countries with proud collaborations including Purvak Tech, Indrajeet Furniture & global partners."</p>
-                    <p style="margin-top: 1rem;"><i class="fas fa-users"></i> 10,000+ active learners worldwide</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Legal disclaimer modern -->
-    <div class="container" style="margin-bottom: 2rem;">
-        <div class="legal-box">
-            <i class="fas fa-exclamation-triangle" style="color: #fbbf24;"></i>
-            <strong>Important Legal Information:</strong> Tech With Amey / Gospel Grace Education is an independent private training platform. All certificates issued are skill-based completion certificates and are NOT government-recognized degrees or diplomas.
-        </div>
-    </div>
-</main>
-
-<footer>
+    <!-- TECHX 2026 Notice Box -->
     <div class="container">
-        <p>© 2026 Tech With Amey — Gospel Grace Education · Amey Lole</p>
-        <p style="margin-top: 1rem;"><i class="fas fa-award"></i> Skill certificates · Industry Trust · Global Mentorship</p>
-        <p style="margin-top: 0.5rem;"><i class="fas fa-map-marker-alt"></i> Remote · INDIA · WorldWide</p>
-        <div class="footer-links">
-            <a href="/privacy-policy.html">Privacy Policy</a>
-            <a href="/terms-of-service.html">Terms of Service</a>
-            <a href="/refund-policy.html">Refund Policy</a>
-            <a href="#contact">Contact Us</a>
-        </div>
+      <div id="techx" class="usa-alert">
+        <h3><i class="fas fa-bullhorn"></i> Notice: TECHX 2026 Submissions Open</h3>
+        <p>The annual collaborative tech challenge is currently accepting registration entries. Review all participation requirements and guidelines before submitting project deliverables.</p>
+        <a href="#" class="usa-button" style="margin-top: 1rem;">Access Portal</a>
+      </div>
     </div>
-</footer>
 
-<!-- Tawk.to Script -->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/69d67773083ab21c335b9f09/1jlms57cu';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
+    <!-- Courses / Programs Section -->
+    <section id="courses">
+      <div class="container">
+        <h2 class="section-title">Independent Training Tracks</h2>
+        <div class="usa-card-grid">
+          <div class="usa-card">
+            <h3>Python Mastery</h3>
+            <p>Standardized workflows covering automation, object-oriented concepts, and API integrations.</p>
+          </div>
+          <div class="usa-card">
+            <h3>SQL &amp; Database Architecture</h3>
+            <p>Query optimization, data structuring, and scalable data management principles.</p>
+          </div>
+          <div class="usa-card">
+            <h3>MongoDB NoSQL</h3>
+            <p>Advanced aggregation pipelines, document structural designs, and indexing protocols.</p>
+          </div>
+          <div class="usa-card">
+            <h3>Java Enterprise</h3>
+            <p>Multi-threading, collections frameworks, and structured backend systems.</p>
+          </div>
+          <div class="usa-card">
+            <h3>NodeJS Architecture</h3>
+            <p>RESTful API design, Express routing, and secure JSON Web Token authentication.</p>
+          </div>
+          <div class="usa-card">
+            <h3>Cloud &amp; DevOps</h3>
+            <p>Infrastructure deployment patterns using AWS, Docker containers, and CI/CD pipelines.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<script type="module">
-    import * as THREE from 'three';
+    <!-- Image Gallery Section -->
+    <section id="gallery" style="background-color: #fbfbfb;">
+      <div class="container">
+        <h2 class="section-title">Program Gallery</h2>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="image1.png" alt="Gallery Image 1" />
+            <div class="gallery-caption">Workshop Milestone 1</div>
+          </div>
+          <div class="gallery-item">
+            <img src="image2.png" alt="Gallery Image 2" />
+            <div class="gallery-caption">Tech Collaboration 2</div>
+          </div>
+          <div class="gallery-item">
+            <img src="image3.png" alt="Gallery Image 3" />
+            <div class="gallery-caption">Architecture Review 3</div>
+          </div>
+          <div class="gallery-item">
+            <img src="image4.png" alt="Gallery Image 4" />
+            <div class="gallery-caption">TECHX Briefing 4</div>
+          </div>
+          <div class="gallery-item">
+            <img src="image5.png" alt="Gallery Image 5" />
+            <div class="gallery-caption">Completion Showcase 5</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    const container = document.getElementById('canvas-container');
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x050b14);
-    
-    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 2, 12);
-    camera.lookAt(0, 0, 0);
-    
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    container.appendChild(renderer.domElement);
-    
-    // Particle system - stars + floating orbs
-    const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 1800;
-    const posArray = new Float32Array(particlesCount * 3);
-    for(let i = 0; i < particlesCount; i++) {
-        posArray[i*3] = (Math.random() - 0.5) * 200;
-        posArray[i*3+1] = (Math.random() - 0.5) * 100;
-        posArray[i*3+2] = (Math.random() - 0.5) * 80 - 30;
-    }
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    const particlesMaterial = new THREE.PointsMaterial({
-        size: 0.12,
-        color: 0x2dd4bf,
-        transparent: true,
-        opacity: 0.7,
-        blending: THREE.AdditiveBlending
-    });
-    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-    scene.add(particlesMesh);
-    
-    // central glowing torus knot
-    const knotGeo = new THREE.TorusKnotGeometry(1.2, 0.28, 200, 32, 3, 4);
-    const knotMat = new THREE.MeshStandardMaterial({ color: 0x2dd4bf, emissive: 0x0f766e, emissiveIntensity: 0.6, roughness: 0.3, metalness: 0.8 });
-    const knot = new THREE.Mesh(knotGeo, knotMat);
-    scene.add(knot);
-    
-    // floating spheres
-    const sphereGroup = new THREE.Group();
-    const colors = [0x2dd4bf, 0x38bdf8, 0x14b8a6];
-    for(let i = 0; i < 60; i++) {
-        const size = 0.08 + Math.random() * 0.12;
-        const sphereMat = new THREE.MeshStandardMaterial({ color: colors[Math.floor(Math.random() * colors.length)], emissive: 0x134e4a, emissiveIntensity: 0.3 });
-        const sphere = new THREE.Mesh(new THREE.SphereGeometry(size, 12, 12), sphereMat);
-        sphere.userData = {
-            speedX: (Math.random() - 0.5) * 0.008,
-            speedY: (Math.random() - 0.5) * 0.008,
-            range: 6 + Math.random() * 5,
-            startX: (Math.random() - 0.5) * 12,
-            startY: (Math.random() - 0.5) * 8,
-            startZ: (Math.random() - 0.5) * 10 - 3
-        };
-        sphere.position.set(sphere.userData.startX, sphere.userData.startY, sphere.userData.startZ);
-        sphereGroup.add(sphere);
-    }
-    scene.add(sphereGroup);
-    
-    // lights
-    const ambientLight = new THREE.AmbientLight(0x111122);
-    scene.add(ambientLight);
-    const pointLight = new THREE.PointLight(0x2dd4bf, 0.8);
-    pointLight.position.set(3, 5, 4);
-    scene.add(pointLight);
-    const fillLight = new THREE.PointLight(0x38bdf8, 0.5);
-    fillLight.position.set(-3, 2, 5);
-    scene.add(fillLight);
-    const backLight = new THREE.DirectionalLight(0xffffff, 0.5);
-    backLight.position.set(0, 2, -5);
-    scene.add(backLight);
-    
-    let time = 0;
-    function animate() {
-        requestAnimationFrame(animate);
-        time += 0.008;
-        
-        knot.rotation.x = time * 0.5;
-        knot.rotation.y = time * 0.8;
-        knot.rotation.z = time * 0.3;
-        
-        particlesMesh.rotation.y = time * 0.05;
-        particlesMesh.rotation.x = Math.sin(time * 0.1) * 0.1;
-        
-        sphereGroup.children.forEach((sphere, idx) => {
-            const data = sphere.userData;
-            let newX = data.startX + Math.sin(time * data.speedX * 30) * data.range * 0.4;
-            let newY = data.startY + Math.cos(time * data.speedY * 25) * data.range * 0.3;
-            sphere.position.x = newX;
-            sphere.position.y = newY;
-            sphere.position.z = data.startZ + Math.sin(time * 0.5 + idx) * 1.2;
-        });
-        
-        camera.position.x += (0 - camera.position.x) * 0.03;
-        camera.position.y += (1.5 - camera.position.y) * 0.03;
-        camera.lookAt(0, 0, 0);
-        
-        renderer.render(scene, camera);
-    }
-    animate();
-    
-    window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-</script>
+    <!-- Blog and Updates Section -->
+    <section id="blog">
+      <div class="container">
+        <h2 class="section-title">Latest Independent Blog Dispatches</h2>
+        <div class="usa-card-grid">
+          <div class="usa-card">
+            <span style="font-size: 0.8rem; color: var(--accent-cool); font-weight: 700; margin-bottom: 0.5rem; display: block;">June 2026 RELEASE</span>
+            <h3>TECHX 2026 Framework Release</h3>
+            <p>Read the independent developer updates and technical breakdown regarding the new program syllabus and release initiatives.</p>
+            <a href="https://tecwithameytodaysblog.blogspot.com/2026/06/release-tecwithamey-mr.html" target="_blank" class="usa-button" style="margin-top: 1.5rem; padding: 0.5rem 1rem; font-size: 0.9rem;"><i class="fas fa-external-link-alt"></i> Read Full Blog</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<script>
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if(targetId === "#") return;
-            const target = document.querySelector(targetId);
-            if(target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
-    });
-</script>
+    <!-- Contact & Platform Section -->
+    <section id="contact" style="background-color: #f9f9f9;">
+      <div class="container">
+        <h2 class="section-title">Platform Contact</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+          <div class="usa-card" style="padding: 1.8rem;">
+            <h3>Inquiry Desk</h3>
+            <p style="margin: 0.5rem 0;"><i class="fas fa-envelope"></i> Primary: <a href="mailto:tecwithamey@gmail.com">tecwithamey@gmail.com</a></p>
+            <p><i class="fas fa-headset"></i> Support: <a href="mailto:supporttecwithamey@gmail.com">supporttecwithamey@gmail.com</a></p>
+          </div>
+          <div class="usa-card" style="padding: 1.8rem;">
+            <h3>Platform Leadership</h3>
+            <p><strong>Amey Lole</strong><br />Founder &amp; Creator — Gospel Grace Education</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">Independent private learning platform delivering skill certificates.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="usa-footer">
+    <div class="container">
+      <div class="usa-footer-container">
+        <div>
+          <div style="font-weight: 700; font-size: 1.2rem; margin-bottom: 0.3rem;">Tech With Amey · Gospel Grace Education</div>
+          <div style="color: #adadad; font-size: 0.9rem; margin-bottom: 1rem;">Managed independently under the direction of Amey Lole.</div>
+          <div class="social-links">
+            <a href="https://www.instagram.com/tech_with_amey/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/p/Amey-Lole-100080639667407/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+        <ul class="usa-footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div style="text-align: center; color: #adadad; font-size: 0.85rem;">
+        &copy; 2026 Tech With Amey. All rights reserved. Independent educational platform.
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>

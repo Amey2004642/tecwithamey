@@ -68,6 +68,8 @@
     .usa-banner__inner {
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
       gap: 0.5rem;
       max-width: 1200px;
       margin: 0 auto;
@@ -81,6 +83,21 @@
     }
     .usa-banner__header i {
       animation: pulse-glow 2s infinite ease-in-out;
+    }
+    .usa-banner__views {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      background: rgba(0, 94, 162, 0.1);
+      padding: 0.25rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 94, 162, 0.25);
+      font-size: 0.8rem;
+    }
+    .usa-banner__views i {
+      color: var(--accent-cool);
     }
 
     @keyframes pulse-glow {
@@ -344,6 +361,24 @@
       font-size: 0.95rem;
     }
 
+    /* ----- VIEWS BADGE ----- */
+    .views-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(0, 189, 227, 0.12);
+      color: #0076a3;
+      border: 1px solid rgba(0, 189, 227, 0.4);
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+    .views-badge i {
+      color: var(--accent-cool);
+    }
+
     /* ----- MODERN GALLERY SECTION STYLING ----- */
     .gallery-grid {
       display: grid;
@@ -461,6 +496,7 @@
       .usa-hero-grid { grid-template-columns: 1fr; }
       .usa-nav-links { display: none; }
       .usa-hero h1 { font-size: 2.4rem; }
+      .usa-banner__inner { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -472,6 +508,9 @@
       <div class="usa-banner__header">
         <i class="fas fa-laptop-code" style="color: #005ea2;"></i>
         <span>Independent Learning &amp; Tech Initiative by Tech With Amey</span>
+      </div>
+      <div class="usa-banner__views">
+        <i class="fas fa-eye"></i> 158+ Views
       </div>
     </div>
   </div>
@@ -602,11 +641,49 @@
         <h2 class="section-title">Latest Independent Blog Dispatches</h2>
         <div class="usa-card-grid">
           <div class="usa-card">
+            <span style="font-size: 0.8rem; color: var(--accent-cool); font-weight: 700; margin-bottom: 0.5rem; display: block;">RECENT RELEASE</span>
+            <h3>X Mock Practice Practical Questions (IT)</h3>
+            <p>Practice practical examination questions for Class X IT — curated mock exercises to strengthen hands-on skills and exam readiness.</p>
+            <a href="https://10thpracticepracticalexamtecwithamey.blogspot.com/2026/09/x-practice-practical-examination.html" target="_blank" rel="noopener" class="usa-button" style="margin-top: 1.5rem; padding: 0.5rem 1rem; font-size: 0.9rem;"><i class="fas fa-external-link-alt"></i> Read Full Blog</a>
+          </div>
+          <div class="usa-card">
             <span style="font-size: 0.8rem; color: var(--accent-cool); font-weight: 700; margin-bottom: 0.5rem; display: block;">June 2026 RELEASE</span>
             <h3>TECHX 2026 Framework Release</h3>
             <p>Read the independent developer updates and technical breakdown regarding the new program syllabus and release initiatives.</p>
-            <a href="https://tecwithameytodaysblog.blogspot.com/2026/06/release-tecwithamey-mr.html" target="_blank" class="usa-button" style="margin-top: 1.5rem; padding: 0.5rem 1rem; font-size: 0.9rem;"><i class="fas fa-external-link-alt"></i> Read Full Blog</a>
+            <a href="https://tecwithameytodaysblog.blogspot.com/2026/06/release-tecwithamey-mr.html" target="_blank" rel="noopener" class="usa-button" style="margin-top: 1.5rem; padding: 0.5rem 1rem; font-size: 0.9rem;"><i class="fas fa-external-link-alt"></i> Read Full Blog</a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- External Portals & Platforms Section -->
+    <section id="portals" style="background-color: #fbfbfb;">
+      <div class="container">
+        <h2 class="section-title">Explore Our Platforms</h2>
+        <div class="usa-card-grid">
+
+          <!-- Visiting Founder Page -->
+          <div class="usa-card">
+            <h3><i class="fas fa-user-tie" style="color: var(--primary-color);"></i> Visiting Founder Page</h3>
+            <p>Meet the founder behind Tech With Amey and Gospel Grace Education. Explore the vision, mission, and journey of Amey Lole.</p>
+            <a href="https://ameylole-com.onrender.com/" target="_blank" rel="noopener" class="usa-button" style="margin-top: 1.5rem; padding: 0.5rem 1rem; font-size: 0.9rem;"><i class="fas fa-external-link-alt"></i> Visit Founder Page</a>
+          </div>
+
+          <!-- Campus Free English Mock -->
+          <div class="usa-card">
+            <h3><i class="fas fa-language" style="color: var(--primary-color);"></i> Campus Free English Mock</h3>
+            <p>Free English mock practice questions for campus preparation. Sharpen grammar, vocabulary, and comprehension skills.</p>
+            <a href="https://campus.tecwithamey.online/" target="_blank" rel="noopener" class="usa-button" style="margin-top: 1.5rem; padding: 0.5rem 1rem; font-size: 0.9rem;"><i class="fas fa-external-link-alt"></i> Start Practice</a>
+          </div>
+
+          <!-- Games Portal -->
+          <div class="usa-card">
+            <span class="views-badge"><i class="fas fa-eye"></i> 40+ Views</span>
+            <h3><i class="fas fa-gamepad" style="color: var(--primary-color);"></i> Games Portal</h3>
+            <p>Take a break and enjoy a curated collection of fun interactive browser games hosted on our Games Portal.</p>
+            <a href="https://worldgames.onrender.com" target="_blank" rel="noopener" class="usa-button" style="margin-top: 1.5rem; padding: 0.5rem 1rem; font-size: 0.9rem;"><i class="fas fa-external-link-alt"></i> Play Games</a>
+          </div>
+
         </div>
       </div>
     </section>
@@ -619,12 +696,18 @@
           <div class="usa-card" style="padding: 1.8rem;">
             <h3>Inquiry Desk</h3>
             <p style="margin: 0.5rem 0;"><i class="fas fa-envelope"></i> Primary: <a href="mailto:tecwithamey@gmail.com">tecwithamey@gmail.com</a></p>
-            <p><i class="fas fa-headset"></i> Support: <a href="mailto:supporttecwithamey@gmail.com">supporttecwithamey@gmail.com</a></p>
+            <p style="margin: 0.5rem 0;"><i class="fas fa-headset"></i> Support: <a href="mailto:supporttecwithamey@gmail.com">supporttecwithamey@gmail.com</a></p>
+            <p><i class="fas fa-user-tie"></i> Director: <a href="mailto:directortecwithamey@gmail.com">directortecwithamey@gmail.com</a></p>
+            <p style="margin-top: 0.8rem; font-size: 0.85rem; color: var(--text-muted); background: #fff8e1; border-left: 3px solid #f0b429; padding: 0.6rem 0.8rem; border-radius: 0 4px 4px 0;">
+              <i class="fas fa-exclamation-triangle" style="color: #f0b429;"></i>
+              <strong>Note:</strong> Please do not escalate small issues to the Director. Kindly report them to <a href="mailto:supporttecwithamey@gmail.com">supporttecwithamey@gmail.com</a> first.
+            </p>
           </div>
           <div class="usa-card" style="padding: 1.8rem;">
             <h3>Platform Leadership</h3>
             <p><strong>Amey Lole</strong><br />Founder &amp; Creator — Gospel Grace Education</p>
             <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">Independent private learning platform delivering skill certificates.</p>
+            <a href="https://ameylole-com.onrender.com/" target="_blank" rel="noopener" class="usa-button" style="margin-top: 1rem; padding: 0.5rem 1rem; font-size: 0.85rem;"><i class="fas fa-user-tie"></i> Visiting Founder Page</a>
           </div>
         </div>
       </div>
@@ -639,15 +722,18 @@
         <div>
           <div style="font-weight: 700; font-size: 1.2rem; margin-bottom: 0.3rem;">Tech With Amey · Gospel Grace Education</div>
           <div style="color: #adadad; font-size: 0.9rem; margin-bottom: 1rem;">Managed independently under the direction of Amey Lole.</div>
+          <div style="color: #adadad; font-size: 0.85rem; margin-bottom: 0.5rem;">
+            <i class="fas fa-eye"></i> Total Site Views: <strong style="color: var(--accent-cool);">158+</strong>
+          </div>
           <div class="social-links">
-            <a href="https://www.instagram.com/tech_with_amey/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/p/Amey-Lole-100080639667407/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/tech_with_amey/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/p/Amey-Lole-100080639667407/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
           </div>
         </div>
         <ul class="usa-footer-links">
           <li><a href="#">Privacy Policy</a></li>
           <li><a href="#">Terms of Service</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
       <div style="text-align: center; color: #adadad; font-size: 0.85rem;">

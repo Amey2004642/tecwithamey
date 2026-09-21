@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tec_With_Amey · Intern Verification</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #eef3f9 0%, #dde8f2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .main-card {
+            max-width: 1200px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 2.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 20, 40, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.02);
+            padding: 2.5rem 2.2rem;
+            transition: all 0.2s ease;
+        }
+
+        /* header */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.25rem;
+            flex-wrap: wrap;
+        }
+
+        .header i {
+            font-size: 2.4rem;
+            color: #0b2b5c;
+            background: #eaf2fd;
+            padding: 0.7rem;
+            border-radius: 1.3rem;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #0b2b5c;
+        }
+
+        .header h1 span {
+            font-weight: 400;
+            color: #2c5f9a;
+            font-size: 1.4rem;
+            margin-left: 0.4rem;
+        }
+
+        .org-tagline {
+            display: flex;
+            gap: 1.5rem;
+            margin: 0.4rem 0 1rem 0;
+            padding-left: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .org-tagline div {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.85rem;
+            color: #3d5e80;
+            background: #f0f6ff;
+            padding: 0.3rem 1rem 0.3rem 0.8rem;
+            border-radius: 30px;
+            border: 1px solid #d4e3f7;
+        }
+
+        .org-tagline i {
+            color: #1c4c7e;
+            font-size: 0.8rem;
+        }
+
+        .subhead {
+            font-size: 0.95rem;
+            color: #426280;
+            margin-bottom: 1.8rem;
+            border-left: 3px solid #2c5f9a;
+            padding: 0.75rem 1rem;
+            background: #f6faff;
+            border-radius: 0 12px 12px 0;
+            line-height: 1.5;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .subhead i {
+            color: #1f4a7a;
+            font-size: 1.2rem;
+        }
+
+        /* issuer info banner */
+        .issuer-info {
+            background: #f2f8ff;
+            border: 1px solid #d0e2f5;
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 2rem;
+            align-items: flex-start;
+        }
+
+        .issuer-info .issuer-icon {
+            font-size: 2rem;
+            color: #0b2b5c;
+            background: #e2efff;
+            padding: 0.6rem;
+            border-radius: 1.2rem;
+        }
+
+        .issuer-text {
+            flex: 1;
+            min-width: 240px;
+        }
+
+        .issuer-text h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0b2b5c;
+            margin-bottom: 0.3rem;
+        }
+
+        .issuer-text p {
+            font-size: 0.88rem;
+            color: #3f6082;
+            line-height: 1.5;
+            margin-bottom: 0.3rem;
+        }
+
+        .issuer-text .highlight {
+            background: #e8f1fe;
+            border-radius: 6px;
+            padding: 0.1rem 0.4rem;
+            font-weight: 600;
+            color: #1b4c7c;
+        }
+
+        .issuer-badge {
+            background: #ffffff;
+            border: 1px solid #c5daf0;
+            border-radius: 30px;
+            padding: 0.3rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #1f4a7a;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .issuer-badge i {
+            color: #2c7a4a;
+        }
+
+        /* search */
+        .search-section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+            background: #eef4fd;
+            padding: 1rem 1.5rem;
+            border-radius: 3rem;
+            margin-bottom: 2rem;
+            border: 1px solid #d0e2f5;
+        }
+
+        .search-section i {
+            color: #1e4a7a;
+            font-size: 1.3rem;
+            opacity: 0.8;
+        }
+
+        .search-section input {
+            flex: 1;
+            min-width: 240px;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 0.6rem 0.2rem;
+            color: #11263d;
+            letter-spacing: 0.5px;
+        }
+
+        .search-section input::placeholder {
+            color: #7f99b6;
+            font-weight: 400;
+            letter-spacing: normal;
+        }
+
+        .search-section button {
+            background: #0b2b5c;
+            border: none;
+            color: white;
+            padding: 0.9rem 2.2rem;
+            border-radius: 2.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 16px -6px rgba(11, 43, 92, 0.3);
+            border: 1px solid #264e7c;
+        }
+
+        .search-section button:hover {
+            background: #1a3d6e;
+            transform: scale(1.02);
+        }
+
+        .search-section button:active {
+            transform: scale(0.98);
+        }
+
+        /* reference list */
+        .ref-list-title {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #3b5f8a;
+            margin-bottom: 1rem;
+        }
+
+        .ref-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem 1.5rem;
+            justify-content: flex-start;
+            background: #f9fcff;
+            padding: 1.4rem 1.8rem;
+            border-radius: 2rem;
+            border: 1px solid #d4e3f5;
+            margin-bottom: 2.3rem;
+        }
+
+        .ref-item {
+            font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #1e3b5c;
+            background: #ffffff;
+            padding: 0.35rem 1rem;
+            border-radius: 30px;
+            border: 1px solid #cbd9eb;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+            letter-spacing: 0.2px;
+            transition: 0.1s ease;
+            cursor: default;
+        }
+
+        .ref-item i {
+            font-size: 0.7rem;
+            color: #4c7fb1;
+            margin-right: 8px;
+        }
+
+        .hidden-mask {
+            color: #8fa8c2;
+            font-style: italic;
+            background: #f2f7fe;
+            border-color: #d2e0f0;
+            user-select: none;
+        }
+
+        .hidden-mask i {
+            color: #a8bdd6;
+        }
+
+        /* result area */
+        .result-container {
+            margin-top: 0.8rem;
+            border-top: 2px dashed #cfe0f2;
+            padding-top: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .no-result {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: #fafdff;
+            border-radius: 2rem;
+            color: #627a96;
+            font-size: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            border: 1px solid #e0ecfb;
+        }
+
+        .no-result i {
+            font-size: 2rem;
+            color: #b0c7de;
+        }
+
+        .intern-details {
+            animation: fadeIn 0.35s ease;
+            background: #ffffff;
+            border-radius: 2rem;
+            border: 1px solid #d0e2f5;
+            padding: 1.8rem 2rem;
+            box-shadow: 0 12px 28px -12px rgba(0, 30, 60, 0.15);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .verification-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: #e2f3e9;
+            border: 1px solid #a8d5b8;
+            border-radius: 40px;
+            padding: 0.4rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #1d6f42;
+        }
+
+        .verification-badge i {
+            font-size: 1rem;
+        }
+
+        .sample-note {
+            font-size: 0.75rem;
+            color: #b45309;
+            background: #fef3c7;
+            border: 1px solid #fcd34d;
+            border-radius: 30px;
+            padding: 0.25rem 1rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            display: inline-block;
+        }
+
+        .details-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.6rem;
+            gap: 0.8rem;
+        }
+
+        .details-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0b2b5c;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .ref-badge {
+            background: #e9f2fe;
+            padding: 0.5rem 1.3rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1b4c7c;
+            border: 1px solid #b9d2ee;
+            font-family: monospace;
+            letter-spacing: 0.3px;
+        }
+
+        .ref-badge i {
+            margin-right: 6px;
+            color: #2c5f9a;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 1.2rem 2rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #e7f0fa;
+            padding-bottom: 0.7rem;
+        }
+
+        .info-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: #4f7193;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #122b44;
+            margin-top: 0.25rem;
+            line-height: 1.4;
+        }
+
+        .info-value small {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #5a7797;
+        }
+
+        .unpaid-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: #fef9e7;
+            border: 1px solid #f7d97e;
+            border-radius: 30px;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #92600a;
+            margin-top: 0.3rem;
+        }
+
+        .letter-section {
+            background: #f6fbff;
+            border-radius: 1.5rem;
+            padding: 1.5rem 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            border: 1px solid #cbe0f5;
+            margin-top: 0.8rem;
+        }
+
+        .letter-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .letter-info i {
+            font-size: 2.2rem;
+            color: #0b2b5c;
+            background: #e2efff;
+            padding: 0.5rem;
+            border-radius: 1rem;
+        }
+
+        .letter-info span {
+            font-weight: 600;
+            color: #1f3e5e;
+            font-size: 1rem;
+        }
+
+        .letter-info small {
+            display: block;
+            font-weight: 400;
+            color: #4d6f91;
+            font-size: 0.8rem;
+            margin-top: 0.15rem;
+        }
+
+        .letter-btn {
+            background: #0b2b5c;
+            color: white;
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: 0.2s ease;
+            cursor: pointer;
+            box-shadow: 0 8px 16px -6px rgba(11, 43, 92, 0.3);
+            border: 1px solid #264e7c;
+        }
+
+        .letter-btn i {
+            font-size: 0.9rem;
+        }
+
+        .letter-btn:hover {
+            background: #1a3d6e;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px -8px #0b2b5c;
+        }
+
+        /* founder signature strip */
+        .founder-strip {
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.8rem;
+            padding-top: 1.2rem;
+            border-top: 1px dashed #d0e2f5;
+        }
+
+        .founder-strip .sig {
+            text-align: right;
+        }
+
+        .founder-strip .sig .name {
+            font-weight: 700;
+            color: #0b2b5c;
+            font-size: 1rem;
+            letter-spacing: -0.2px;
+        }
+
+        .founder-strip .sig .role {
+            font-size: 0.78rem;
+            color: #4d6f91;
+            font-weight: 500;
+        }
+
+        .founder-strip .sig i {
+            color: #1c4c7e;
+            margin-right: 0.3rem;
+        }
+
+        .founder-strip .stamp {
+            background: #e8f1fe;
+            border: 1px solid #b9d2ee;
+            border-radius: 12px;
+            padding: 0.5rem 1rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #1b4c7c;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .founder-strip .stamp i {
+            font-size: 0.8rem;
+        }
+
+        /* disclaimer */
+        .disclaimer-box {
+            margin-top: 2.2rem;
+            padding: 1.5rem 1.8rem;
+            background: #fafcfe;
+            border-radius: 1.8rem;
+            border: 1px solid #dce8f5;
+            font-size: 0.82rem;
+            color: #4a6580;
+            line-height: 1.6;
+        }
+
+        .disclaimer-box strong {
+            color: #1f3e5e;
+            display: block;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        .disclaimer-box i {
+            color: #1f4a7a;
+            margin-right: 0.3rem;
+        }
+
+        .footer-note {
+            margin-top: 1.8rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f96b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-note i {
+            font-size: 0.7rem;
+        }
+
+        @media (max-width: 650px) {
+            .main-card { padding: 1.5rem 1.2rem; }
+            .header h1 { font-size: 1.5rem; }
+            .header h1 span { font-size: 1.1rem; display: block; margin-left: 0; }
+            .search-section { flex-direction: column; align-items: stretch; border-radius: 1.5rem; }
+            .search-section button { justify-content: center; }
+            .ref-grid { gap: 0.7rem; padding: 1rem; }
+            .details-header { flex-direction: column; align-items: flex-start; }
+            .letter-section { flex-direction: column; align-items: flex-start; }
+            .info-grid { grid-template-columns: 1fr; }
+            .issuer-info { flex-direction: column; }
+            .founder-strip { flex-direction: column; align-items: flex-end; }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-card">
+        <!-- header -->
+        <div class="header">
+            <i class="fas fa-building-columns"></i>
+            <h1>Tec_With_Amey <span>· Intern Verification</span></h1>
+        </div>
+
+        <!-- org tagline -->
+        <div class="org-tagline">
+            <div><i class="fas fa-code"></i> Independent Skill-Development Platform</div>
+            <div><i class="fas fa-users"></i> Internship Program</div>
+            <div><i class="fas fa-certificate"></i> Verified Records</div>
+        </div>
+
+        <!-- issuer information -->
+        <div class="issuer-info">
+            <div class="issuer-icon"><i class="fas fa-info-circle"></i></div>
+            <div class="issuer-text">
+                <h3><i class="fas fa-user-tie"></i> Issuer information</h3>
+                <p>
+                    <span class="highlight">Tec_With_Amey</span> is an independently operated skill-development platform.
+                    It is <strong>not a registered company</strong> or government-recognised institution.
+                </p>
+                <p style="font-size:0.82rem; color:#5a7797;">
+                    <i class="fas fa-shield-alt" style="margin-right:4px;"></i>
+                    Certificates and internship letters are privately issued based on platform records.
+                    Program Lead &amp; Founder: <strong>Amey Lole</strong>.
+                </p>
+            </div>
+            <div class="issuer-badge">
+                <i class="fas fa-check-circle"></i> Unregistered · Independent
+            </div>
+        </div>
+
+        <div class="subhead">
+            <i class="fas fa-shield-hal"></i>
+            <span>Verify the authenticity of a participation certificate or internship experience letter issued by <strong>Tec_With_Amey</strong>. Enter the unique reference number printed on the document.</span>
+        </div>
+
+        <!-- search -->
+        <div class="search-section">
+            <i class="fas fa-hashtag"></i>
+            <input type="text" id="refInput" placeholder="e.g. INTERN-2026-MAY-AUG-16598" autocomplete="off" spellcheck="false">
+            <button id="searchBtn"><i class="fas fa-search"></i> Verify Certificate</button>
+        </div>
+
+        <!-- reference list (only ref numbers, no view) -->
+        <div class="ref-list-title">
+            <i class="fas fa-list-ul"></i> Available intern references
+        </div>
+        <div class="ref-grid" id="refGrid">
+            <!-- populated by javascript -->
+        </div>
+
+        <!-- result area -->
+        <div class="result-container" id="resultContainer">
+            <div class="no-result" id="noResultPlaceholder">
+                <i class="fas fa-user-shield"></i>
+                <span>🔒 Enter a valid reference number to unlock intern details.</span>
+            </div>
+        </div>
+
+        <!-- disclaimer -->
+        <div class="disclaimer-box">
+            <strong><i class="fas fa-exclamation-triangle"></i> Disclaimer</strong>
+            Tec_With_Amey is an independent skill-development platform and is not a registered company or
+            government-recognised or accredited institution. Certificates and internship letters are privately
+            issued based on the activities and records maintained by the platform. Verification confirms only
+            whether a document matches the platform's records; it does not imply government recognition,
+            accreditation or guaranteed acceptance by employers or educational institutions.
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-lock"></i> Letters are only revealed after correct ID match · Tec_With_Amey Intern Verification Portal
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ---------- INTERN DATABASE ----------
+            const internDB = {
+                "INTERN-2026-MAY-AUG-16598": {
+                    name: "Kalpit Chaudhari",
+                    salutation: "Mr.",
+                    role: "Backend Development Intern",
+                    department: "Backend-Developer & Admin Support",
+                    function: "Skill Development",
+                    duration: "3 months — May to August 2026",
+                    startDate: "2026-05-01",
+                    endDate: "2026-08-31",
+                    mentor: "Amey Lole (Program Lead & Founder)",
+                    letterUrl: "https://ap.wps.com/cms/module/common/loadPlatform/?sid=cbCaegIKNFwkUJgB&v=v2",
+                    documentType: "Internship Experience Letter",
+                    issueDate: "2026-09-01",
+                    internshipStatus: "Completed",
+                    stipendStatus: "Unpaid — no stipend or monetary remuneration provided",
+                    workSummary: "Backend API development, database design, and administrative support for skill-development initiatives.",
+                    verificationStatus: "Record matched",
+                    issuer: "Tec_With_Amey — Independent Skill-Development Platform",
+                    internalRecordId: "TWA-16598"
+                },
+                "INTERN-2026-MAY-AUG-16599": {
+                    name: "Diya Sharma",
+                    salutation: "Ms.",
+                    role: "Data Analyst Intern",
+                    department: "Analytics & Reporting",
+                    function: "Data Science",
+                    duration: "3 months — May to August 2026",
+                    startDate: "2026-05-01",
+                    endDate: "2026-08-31",
+                    mentor: "Amey Lole (Program Lead & Founder)",
+                    letterUrl: "https://ap.wps.com/cms/module/common/loadPlatform/?sid=cbCaegIKNFwkUJgB&v=v2",
+                    documentType: "Internship Experience Letter",
+                    issueDate: "2026-09-01",
+                    internshipStatus: "Completed",
+                    stipendStatus: "Unpaid — no stipend or monetary remuneration provided",
+                    workSummary: "Data cleaning, visualization, and reporting for program analytics.",
+                    verificationStatus: "Record matched",
+                    issuer: "Tec_With_Amey — Independent Skill-Development Platform",
+                    internalRecordId: "TWA-16599"
+                },
+                "INTERN-2026-MAY-AUG-16600": {
+                    name: "Kabir Singh",
+                    salutation: "Mr.",
+                    role: "Frontend Developer Intern",
+                    department: "UI Engineering",
+                    function: "Web Development",
+                    duration: "3 months — May to August 2026",
+                    startDate: "2026-05-01",
+                    endDate: "2026-08-31",
+                    mentor: "Amey Lole (Program Lead & Founder)",
+                    letterUrl: "https://ap.wps.com/cms/module/common/loadPlatform/?sid=cbCaegIKNFwkUJgB&v=v2",
+                    documentType: "Internship Experience Letter",
+                    issueDate: "2026-09-01",
+                    internshipStatus: "Completed",
+                    stipendStatus: "Unpaid — no stipend or monetary remuneration provided",
+                    workSummary: "Responsive UI development, component library maintenance.",
+                    verificationStatus: "Record matched",
+                    issuer: "Tec_With_Amey — Independent Skill-Development Platform",
+                    internalRecordId: "TWA-16600"
+                },
+                "INTERN-2026-MAY-AUG-16601": {
+                    name: "Ananya Iyer",
+                    salutation: "Ms.",
+                    role: "Cloud Engineer Intern",
+                    department: "Infrastructure",
+                    function: "Cloud & DevOps",
+                    duration: "3 months — May to August 2026",
+                    startDate: "2026-05-01",
+                    endDate: "2026-08-31",
+                    mentor: "Amey Lole (Program Lead & Founder)",
+                    letterUrl: "https://ap.wps.com/cms/module/common/loadPlatform/?sid=cbCaegIKNFwkUJgB&v=v2",
+                    documentType: "Internship Experience Letter",
+                    issueDate: "2026-09-01",
+                    internshipStatus: "Completed",
+                    stipendStatus: "Unpaid — no stipend or monetary remuneration provided",
+                    workSummary: "Cloud infrastructure setup, CI/CD pipeline assistance.",
+                    verificationStatus: "Record matched",
+                    issuer: "Tec_With_Amey — Independent Skill-Development Platform",
+                    internalRecordId: "TWA-16601"
+                },
+                "INTERN-2026-MAY-AUG-16602": {
+                    name: "Vihaan Patel",
+                    salutation: "Mr.",
+                    role: "DevOps Intern",
+                    department: "Infrastructure",
+                    function: "Automation",
+                    duration: "3 months — May to August 2026",
+                    startDate: "2026-05-01",
+                    endDate: "2026-08-31",
+                    mentor: "Amey Lole (Program Lead & Founder)",
+                    letterUrl: "https://ap.wps.com/cms/module/common/loadPlatform/?sid=cbCaegIKNFwkUJgB&v=v2",
+                    documentType: "Internship Experience Letter",
+                    issueDate: "2026-09-01",
+                    internshipStatus: "Completed",
+                    stipendStatus: "Unpaid — no stipend or monetary remuneration provided",
+                    workSummary: "Automation scripts, deployment monitoring.",
+                    verificationStatus: "Record matched",
+                    issuer: "Tec_With_Amey — Independent Skill-Development Platform",
+                    internalRecordId: "TWA-16602"
+                },
+                "INTERN-2026-MAY-AUG-16603": {
+                    name: "Ishita Reddy",
+                    salutation: "Ms.",
+                    role: "UI/UX Design Intern",
+                    department: "Design Studio",
+                    function: "Product Design",
+                    duration: "3 months — May to August 2026",
+                    startDate: "2026-05-01",
+                    endDate: "2026-08-31",
+                    mentor: "Amey Lole (Program Lead & Founder)",
+                    letterUrl: "https://ap.wps.com/cms/module/common/loadPlatform/?sid=cbCaegIKNFwkUJgB&v=v2",
+                    documentType: "Internship Experience Letter",
+                    issueDate: "2026-09-01",
+                    internshipStatus: "Completed",
+                    stipendStatus: "Unpaid — no stipend or monetary remuneration provided",
+                    workSummary: "Wireframing, prototyping, and user research.",
+                    verificationStatus: "Record matched",
+                    issuer: "Tec_With_Amey — Independent Skill-Development Platform",
+                    internalRecordId: "TWA-16603"
+                },
+                "INTERN-2026-MAY-AUG-16604": {
+                    name: "Arjun Nair",
+                    salutation: "Mr.",
+                    role: "Backend Developer Intern",
+                    department: "Core Engineering",
+                    function: "API Development",
+                    duration: "3 months — May to August 2026",
+                    startDate: "2026-05-01",
+                    endDate: "2026-08-31",
+                    mentor: "Amey Lole (Program Lead & Founder)",
+                    letterUrl: "https://ap.wps.com/cms/module/common/loadPlatform/?sid=cbCaegIKNFwkUJgB&v=v2",
+                    documentType: "Internship Experience Letter",
+                    issueDate: "2026-09-01",
+                    internshipStatus: "Completed",
+                    stipendStatus: "Unpaid — no stipend or monetary remuneration provided",
+                    workSummary: "REST API development, database optimization.",
+                    verificationStatus: "Record matched",
+                    issuer: "Tec_With_Amey — Independent Skill-Development Platform",
+                    internalRecordId: "TWA-16604"
+                },
+                "INTERN-2026-MAY-AUG-16605": {
+                    name: "Saanvi Joshi",
+                    salutation: "Ms.",
+                    role: "Product Management Intern",
+                    department: "Product",
+                    function: "Strategy & Ops",
+                    duration: "3 months — May to August 2026",
+                    startDate: "2026-05-01",
+                    endDate: "2026-08-31",
+                    mentor: "Amey Lole (Program Lead & Founder)",
+                    letterUrl: "https://ap.wps.com/cms/module/common/loadPlatform/?sid=cbCaegIKNFwkUJgB&v=v2",
+                    documentType: "Internship Experience Letter",
+                    issueDate: "2026-09-01",
+                    internshipStatus: "Completed",
+                    stipendStatus: "Unpaid — no stipend or monetary remuneration provided",
+                    workSummary: "Product roadmap support, user story mapping.",
+                    verificationStatus: "Record matched",
+                    issuer: "Tec_With_Amey — Independent Skill-Development Platform",
+                    internalRecordId: "TWA-16605"
+                },
+                "INTERN-2026-MAY-AUG-16606": {
+                    name: "Reyansh Gupta",
+                    salutation: "Mr.",
+                    role: "Machine Learning Intern",
+                    department: "AI Research",
+                    function: "Model Development",
+                    duration: "3 months — May to August 2026",
+                    startDate: "2026-05-01",
+                    endDate: "2026-08-31",
+                    mentor: "Amey Lole (Program Lead & Founder)",
+                    letterUrl: "https://ap.wps.com/cms/module/common/loadPlatform/?sid=cbCaegIKNFwkUJgB&v=v2",
+                    documentType: "Internship Experience Letter",
+                    issueDate: "2026-09-01",
+                    internshipStatus: "Completed",
+                    stipendStatus: "Unpaid — no stipend or monetary remuneration provided",
+                    workSummary: "Model training, evaluation, and data preprocessing.",
+                    verificationStatus: "Record matched",
+                    issuer: "Tec_With_Amey — Independent Skill-Development Platform",
+                    internalRecordId: "TWA-16606"
+                },
+                "INTERN-2026-MAY-AUG-16607": {
+                    name: "Myra Kaur",
+                    salutation: "Ms.",
+                    role: "Security Analyst Intern",
+                    department: "InfoSec",
+                    function: "Threat Analysis",
+                    duration: "3 months — May to August 2026",
+                    startDate: "2026-05-01",
+                    endDate: "2026-08-31",
+                    mentor: "Amey Lole (Program Lead & Founder)",
+                    letterUrl: "https://ap.wps.com/cms/module/common/loadPlatform/?sid=cbCaegIKNFwkUJgB&v=v2",
+                    documentType: "Internship Experience Letter",
+                    issueDate: "2026-09-01",
+                    internshipStatus: "Completed",
+                    stipendStatus: "Unpaid — no stipend or monetary remuneration provided",
+                    workSummary: "Vulnerability assessment, security audits.",
+                    verificationStatus: "Record matched",
+                    issuer: "Tec_With_Amey — Independent Skill-Development Platform",
+                    internalRecordId: "TWA-16607"
+                },
+                "INTERN-2026-MAY-AUG-16608": {
+                    name: "Advait Chatterjee",
+                    salutation: "Mr.",
+                    role: "Mobile Developer Intern",
+                    department: "Mobile Engineering",
+                    function: "App Development",
+                    duration: "3 months — May to August 2026",
+                    startDate: "2026-05-01",
+                    endDate: "2026-08-31",
+                    mentor: "Amey Lole (Program Lead & Founder)",
+                    letterUrl: "https://ap.wps.com/cms/module/common/loadPlatform/?sid=cbCaegIKNFwkUJgB&v=v2",
+                    documentType: "Internship Experience Letter",
+                    issueDate: "2026-09-01",
+                    internshipStatus: "Completed",
+                    stipendStatus: "Unpaid — no stipend or monetary remuneration provided",
+                    workSummary: "Cross-platform mobile app development, testing.",
+                    verificationStatus: "Record matched",
+                    issuer: "Tec_With_Amey — Independent Skill-Development Platform",
+                    internalRecordId: "TWA-16608"
+                }
+            };
+
+            // Masked / hidden references (no data)
+            const MASKED_REFS = [
+                "INTERN-2026-MAX-XXX-16XXX",
+                "INTERN-2026-MAX-XXX-16XXY",
+                "INTERN-2026-JUN-SEP-17XXX"
+            ];
+
+            // ---------- DOM refs ----------
+            const refGrid = document.getElementById('refGrid');
+            const refInput = document.getElementById('refInput');
+            const searchBtn = document.getElementById('searchBtn');
+            const resultContainer = document.getElementById('resultContainer');
+
+            // ---------- render reference list ----------
+            function renderRefList() {
+                const allRefs = Object.keys(internDB);
+                const displayRefs = [...allRefs, ...MASKED_REFS];
+
+                refGrid.innerHTML = displayRefs.map(ref => {
+                    const isReal = internDB.hasOwnProperty(ref);
+                    const maskClass = isReal ? '' : 'hidden-mask';
+                    const icon = isReal ? 'fa-hashtag' : 'fa-eye-slash';
+                    return `<div class="ref-item ${maskClass}"><i class="fas ${icon}"></i>${ref}</div>`;
+                }).join('');
+            }
+
+            // ---------- show no result ----------
+            function showNoResult(message = '🔒 Enter a valid reference number to unlock intern details.') {
+                resultContainer.innerHTML = `
+                    <div class="no-result" id="noResultPlaceholder">
+                        <i class="fas fa-user-shield"></i>
+                        <span>${message}</span>
+                    </div>
+                `;
+            }
+
+            // ---------- display intern details (with founder signature) ----------
+            function displayInternDetails(refNumber) {
+                const intern = internDB[refNumber];
+                if (!intern) return;
+
+                const fullName = `${intern.salutation || ''} ${intern.name}`.trim();
+                const internData = internDB[refNumber];
+
+                // Build additional info items
+                const extraItems = [];
+
+                if (internData.documentType) {
+                    extraItems.push(`<div class="info-item"><span class="info-label">Document Type</span><span class="info-value">${internData.documentType}</span></div>`);
+                }
+                if (internData.issueDate) {
+                    extraItems.push(`<div class="info-item"><span class="info-label">Issue Date</span><span class="info-value">${internData.issueDate}</span></div>`);
+                }
+                if (internData.internshipStatus) {
+                    extraItems.push(`<div class="info-item"><span class="info-label">Internship Status</span><span class="info-value">${internData.internshipStatus}</span></div>`);
+                }
+                if (internData.stipendStatus) {
+                    const stipendHtml = internData.stipendStatus.toLowerCase().includes('unpaid') 
+                        ? `<span class="unpaid-badge"><i class="fas fa-hand-holding-usd"></i> ${internData.stipendStatus}</span>`
+                        : `<span class="info-value">${internData.stipendStatus}</span>`;
+                    extraItems.push(`<div class="info-item"><span class="info-label">Internship Arrangement</span>${stipendHtml}</div>`);
+                }
+                if (internData.workSummary) {
+                    extraItems.push(`<div class="info-item" style="grid-column: 1 / -1;"><span class="info-label">Work Summary</span><span class="info-value" style="font-size:0.95rem; font-weight:400; color:#2d4a6a;">${internData.workSummary}</span></div>`);
+                }
+                if (internData.verificationStatus) {
+                    extraItems.push(`<div class="info-item"><span class="info-label">Verification Status</span><span class="info-value" style="color:#1d6f42; font-weight:600;">${internData.verificationStatus}</span></div>`);
+                }
+                if (internData.issuer) {
+                    extraItems.push(`<div class="info-item" style="grid-column: 1 / -1;"><span class="info-label">Issuer</span><span class="info-value" style="font-size:0.95rem;">${internData.issuer}</span></div>`);
+                }
+
+                const detailsHTML = `
+                    <div class="intern-details">
+                        <div class="details-header">
+                            <h2><i class="fas fa-check-circle" style="color:#1d6f42;"></i> Verification Result</h2>
+                            <div style="display:flex; gap:0.8rem; flex-wrap:wrap;">
+                                <span class="verification-badge"><i class="fas fa-check-circle"></i> Valid — Record matched</span>
+                                <span class="sample-note"><i class="fas fa-flask"></i> SAMPLE RECORD — NOT AN ACTUAL VERIFICATION</span>
+                            </div>
+                        </div>
+                        <div style="margin-bottom:1.2rem;">
+                            <div class="ref-badge" style="display:inline-block;"><i class="fas fa-id-badge"></i> ${refNumber}</div>
+                        </div>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">Intern's Full Name</span>
+                                <span class="info-value" style="font-weight:600;">${fullName}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Internship Role</span>
+                                <span class="info-value">${internData.role || 'Intern'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Department / Function</span>
+                                <span class="info-value">${internData.department || '—'} <small>${internData.function ? '/ ' + internData.function : ''}</small></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Internship Duration</span>
+                                <span class="info-value">${internData.duration || '3 months — May to August 2026'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Mentor / Supervisor</span>
+                                <span class="info-value">${internData.mentor || 'Amey Lole (Program Lead & Founder)'}</span>
+                            </div>
+                            ${extraItems.join('')}
+                        </div>
+                        <div class="letter-section">
+                            <div class="letter-info">
+                                <i class="fas fa-file-signature"></i>
+                                <div>
+                                    <span>Experience Letter</span>
+                                    <small>Official document · Tec_With_Amey</small>
+                                </div>
+                            </div>
+                            <a href="${internData.letterUrl}" target="_blank" rel="noopener noreferrer" class="letter-btn">
+                                <i class="fas fa-download"></i> View / Download
+                            </a>
+                        </div>
+                        <!-- Founder signature -->
+                        <div class="founder-strip">
+                            <div class="stamp">
+                                <i class="fas fa-certificate"></i> Tec_With_Amey
+                            </div>
+                            <div class="sig">
+                                <div class="name"><i class="fas fa-pen-fancy"></i> Amey Lole</div>
+                                <div class="role">Program Lead &amp; Founder</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                resultContainer.innerHTML = detailsHTML;
+            }
+
+            // ---------- search handler ----------
+            function handleSearch() {
+                const inputVal = refInput.value.trim();
+                if (!inputVal) {
+                    showNoResult('⚠️ Please enter a reference number.');
+                    return;
+                }
+
+                const upperInput = inputVal.toUpperCase();
+                let foundKey = null;
+
+                if (internDB.hasOwnProperty(inputVal)) {
+                    foundKey = inputVal;
+                } else if (internDB.hasOwnProperty(upperInput)) {
+                    foundKey = upperInput;
+                } else {
+                    const keys = Object.keys(internDB);
+                    const match = keys.find(k => k.toUpperCase() === upperInput);
+                    if (match) foundKey = match;
+                }
+
+                if (foundKey) {
+                    displayInternDetails(foundKey);
+                } else {
+                    showNoResult('❌ Invalid reference number. Please check and try again.');
+                }
+            }
+
+            // ---------- event listeners ----------
+            searchBtn.addEventListener('click', handleSearch);
+
+            refInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    handleSearch();
+                }
+            });
+
+            refGrid.addEventListener('click', (e) => {
+                const item = e.target.closest('.ref-item');
+                if (!item) return;
+                const refText = item.textContent.trim();
+                if (refText) {
+                    refInput.value = refText;
+                }
+            });
+
+            refInput.addEventListener('input', () => {
+                const currentInput = refInput.value.trim();
+                if (currentInput === '') {
+                    showNoResult();
+                } else {
+                    if (document.querySelector('.intern-details')) {
+                        showNoResult('🔎 Press "Verify" to confirm reference.');
+                    } else {
+                        if (!document.querySelector('.no-result')) {
+                            showNoResult();
+                        }
+                    }
+                }
+            });
+
+            // ---------- initialize ----------
+            renderRefList();
+            showNoResult();
+        })();
+    </script>
+</body>
+</html>

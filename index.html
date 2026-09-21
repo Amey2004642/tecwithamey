@@ -100,6 +100,35 @@
       color: var(--accent-cool);
     }
 
+    /* === NEW: Verify Intern link in top banner === */
+    .usa-banner__verify {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 700;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-cool));
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      text-decoration: none;
+      border: 1px solid rgba(0, 94, 162, 0.4);
+      box-shadow: 0 2px 8px rgba(0, 94, 162, 0.25);
+      transition: var(--transition-smooth);
+    }
+    .usa-banner__verify:hover {
+      color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0, 94, 162, 0.4);
+    }
+    .usa-banner__right {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    /* === END NEW === */
+
     @keyframes pulse-glow {
       0%, 100% { transform: scale(1); opacity: 1; }
       50% { transform: scale(1.15); opacity: 0.8; color: var(--accent-cool); }
@@ -180,6 +209,22 @@
       color: var(--accent-cool);
       text-decoration: none;
     }
+
+    /* === NEW: Highlight the Verify Intern nav item === */
+    .usa-nav-links .nav-verify a {
+      color: var(--accent-cool);
+      border: 1px solid var(--accent-cool);
+      padding: 0.35rem 0.9rem;
+      border-radius: 4px;
+    }
+    .usa-nav-links .nav-verify a:hover {
+      background-color: var(--accent-cool);
+      color: var(--primary-dark);
+    }
+    .usa-nav-links .nav-verify a::after {
+      display: none;
+    }
+    /* === END NEW === */
 
     /* ----- HERO SECTION WITH ANIMATED BG ACCENTS ----- */
     .usa-hero {
@@ -509,8 +554,15 @@
         <i class="fas fa-laptop-code" style="color: #005ea2;"></i>
         <span>Independent Learning &amp; Tech Initiative by Tech With Amey</span>
       </div>
-      <div class="usa-banner__views">
-        <i class="fas fa-eye"></i> 289+ Views
+      <div class="usa-banner__right">
+        <!-- === NEW: Verify Intern link in top banner === -->
+        <a href="verify.html" class="usa-banner__verify">
+          <i class="fas fa-shield-halved"></i> Verify Intern
+        </a>
+        <!-- === END NEW === -->
+        <div class="usa-banner__views">
+          <i class="fas fa-eye"></i> 289+ Views
+        </div>
       </div>
     </div>
   </div>
@@ -535,6 +587,11 @@
           <li><a href="#blog">Blog</a></li>
           <li><a href="#techx">TECHX 2026</a></li>
           <li><a href="#contact">Contact</a></li>
+          <!-- === NEW: Verify Intern link in main nav === -->
+          <li class="nav-verify">
+            <a href="verify.html"><i class="fas fa-shield-halved"></i> Verify Intern</a>
+          </li>
+          <!-- === END NEW === -->
         </ul>
       </nav>
     </div>
@@ -734,6 +791,9 @@
           <li><a href="#">Privacy Policy</a></li>
           <li><a href="#">Terms of Service</a></li>
           <li><a href="#contact">Contact</a></li>
+          <!-- === NEW: Verify Intern in footer as well === -->
+          <li><a href="verify.html">Verify Intern</a></li>
+          <!-- === END NEW === -->
         </ul>
       </div>
       <div style="text-align: center; color: #adadad; font-size: 0.85rem;">

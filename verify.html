@@ -310,8 +310,9 @@
       </form>
 
       <!-- ============================================================
-           VERIFIED RECORD — hidden by default, revealed when the
-           correct Intern ID is typed and Verify is clicked.
+           VERIFIED RECORD — hidden by default, revealed when a
+           valid Intern ID is typed and Verify is clicked.
+           Supports multiple verified records dynamically.
            ============================================================ -->
       <div id="verifiedRecord" style="display:none;">
         <div class="result-card ok">
@@ -319,51 +320,12 @@
             <span class="badge"><i class="fa-solid fa-circle-check"></i></span>
             Verified Intern Record
           </div>
-          <div class="detail-grid">
-            <div class="detail-row">
-              <span class="k">Intern ID</span>
-              <span class="v">INTERN-2026-MAY-AUG-16598</span>
-            </div>
-            <div class="detail-row">
-              <span class="k">Full Name</span>
-              <span class="v">Kalpit Chaudhari</span>
-            </div>
-            <div class="detail-row">
-              <span class="k">Role / Domain</span>
-              <span class="v">Intern</span>
-            </div>
-            <div class="detail-row">
-              <span class="k">Program</span>
-              <span class="v">TECHX 2026</span>
-            </div>
-            <div class="detail-row">
-              <span class="k">Duration</span>
-              <span class="v">May – August 2026</span>
-            </div>
-            <div class="detail-row">
-              <span class="k">Start Date</span>
-              <span class="v">2026-05-01</span>
-            </div>
-            <div class="detail-row">
-              <span class="k">End Date</span>
-              <span class="v">2026-08-31</span>
-            </div>
-            <div class="detail-row">
-              <span class="k">Status</span>
-              <span class="v">Completed</span>
-            </div>
-            <div class="detail-row">
-              <span class="k">Issued On</span>
-              <span class="v">2026-09-01</span>
-            </div>
-            <div class="detail-row">
-              <span class="k">Certificate ID</span>
-              <span class="v">INTERN-2026-MAY-AUG-16598</span>
-            </div>
+          <div class="detail-grid" id="verifiedDetails">
+            <!-- filled by JavaScript -->
           </div>
 
-          <div class="letter-wrap">
-            <a href="https://ap.wps.com/cms/docs/d/cbCaegIKNFwkUJgB"
+          <div class="letter-wrap" id="letterWrap" style="display:none;">
+            <a href="#" id="letterLink"
                target="_blank"
                rel="noopener noreferrer"
                class="letter-btn">
@@ -406,20 +368,98 @@
     const verified = document.getElementById("verifiedRecord");
     const invalid = document.getElementById("invalidRecord");
     const searchedId = document.getElementById("searchedId");
+    const verifiedDetails = document.getElementById("verifiedDetails");
+    const letterWrap = document.getElementById("letterWrap");
+    const letterLink = document.getElementById("letterLink");
 
-    // The one valid Intern ID (case-insensitive comparison)
-    const VALID_ID = "INTERN-2026-MAY-AUG-16598";
+    // ----------------------------------------------------------------
+    // VERIFIED RECORDS DATABASE
+    // ----------------------------------------------------------------
+    const RECORDS = {
+      "INTERN-2026-MAY-AUG-16598": {
+        internId: "INTERN-2026-MAY-AUG-16598",
+        fullName: "Kalpit Chaudhari",
+        role: "Intern",
+        program: "TECHX 2026",
+        duration: "May – August 2026",
+        startDate: "2026-05-01",
+        endDate: "2026-08-31",
+        status: "Completed",
+        issuedOn: "2026-09-01",
+        certificateId: "INTERN-2026-MAY-AUG-16598",
+        letterUrl: "https://ap.wps.com/cms/docs/d/cbCaegIKNFwkUJgB"
+      },
+      "INTERN-2026-MAY-OCT-16599": {
+        internId: "INTERN-2026-MAY-OCT-16599",
+        fullName: "Govind Agrawal",
+        role: "Intern",
+        program: "TECHX 2026",
+        duration: "May – October 2026",
+        startDate: "2026-05-01",
+        endDate: "2026-10-31",
+        status: "Verified",
+        issuedOn: "2026-11-01",
+        certificateId: "INTERN-2026-MAY-OCT-16599",
+        letterUrl: ""  // no experience letter link provided
+      }
+    };
 
+    // ----------------------------------------------------------------
+    // Helper: build detail rows
+    // ----------------------------------------------------------------
+    function buildDetailRows(record) {
+      const rows = [
+        { k: "Intern ID",      v: record.internId },
+        { k: "Full Name",      v: record.fullName },
+        { k: "Role / Domain",  v: record.role },
+        { k: "Program",        v: record.program },
+        { k: "Duration",       v: record.duration },
+        { k: "Start Date",     v: record.startDate },
+        { k: "End Date",       v: record.endDate },
+        { k: "Status",         v: record.status },
+        { k: "Issued On",      v: record.issuedOn },
+        { k: "Certificate ID", v: record.certificateId }
+      ];
+
+      let html = "";
+      rows.forEach(function (row) {
+        html += `
+          <div class="detail-row">
+            <span class="k">${row.k}</span>
+            <span class="v">${row.v}</span>
+          </div>
+        `;
+      });
+      return html;
+    }
+
+    // ----------------------------------------------------------------
+    // Form submit handler
+    // ----------------------------------------------------------------
     form.addEventListener("submit", function (e) {
       e.preventDefault();
 
       const entered = input.value.trim().toUpperCase();
 
-      // Reset both panels
+      // Reset panels
       verified.style.display = "none";
       invalid.style.display = "none";
+      letterWrap.style.display = "none";
 
-      if (entered === VALID_ID) {
+      const record = RECORDS[entered];
+
+      if (record) {
+        // Populate verified details
+        verifiedDetails.innerHTML = buildDetailRows(record);
+
+        // Show letter button only if a letter URL exists
+        if (record.letterUrl && record.letterUrl.trim() !== "") {
+          letterLink.href = record.letterUrl;
+          letterWrap.style.display = "block";
+        } else {
+          letterWrap.style.display = "none";
+        }
+
         verified.style.display = "block";
         verified.scrollIntoView({ behavior: "smooth", block: "nearest" });
       } else {

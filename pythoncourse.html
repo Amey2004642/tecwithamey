@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TecwithAmey — Python Crash Course LMS</title>
+<style>
+  :root{
+    --bg:#0f1220; --card:#1a1f36; --card2:#232946; --text:#e8eaf6;
+    --muted:#9aa0c0; --accent:#5b8cff; --accent2:#7c5cff;
+    --green:#2ecc71; --red:#ff5c5c; --gold:#ffc93c;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+  a{color:var(--accent);text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;border-radius:10px;padding:10px 18px;font-size:15px;font-weight:600;transition:.2s}
+  button:disabled{opacity:.4;cursor:not-allowed}
+  .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+  .btn-primary:hover:not(:disabled){filter:brightness(1.15)}
+  .btn-ghost{background:var(--card2);color:var(--text)}
+  .btn-ghost:hover{background:#2e3560}
+  .btn-gold{background:linear-gradient(135deg,#ffc93c,#ff9f1c);color:#1a1a1a}
+  .btn-gold:hover:not(:disabled){filter:brightness(1.1)}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(15,18,32,.92);backdrop-filter:blur(10px);border-bottom:1px solid #2a3057;padding:14px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .logo{font-size:20px;font-weight:800;background:linear-gradient(90deg,#5b8cff,#b06cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .header-progress{flex:1;min-width:160px;max-width:420px}
+  .bar{height:10px;background:#2a3057;border-radius:99px;overflow:hidden}
+  .bar>div{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--green));border-radius:99px;transition:width .5s}
+  .pct-label{font-size:12px;color:var(--muted);margin-top:4px}
+  main{max-width:1080px;margin:0 auto;padding:26px 20px 80px}
+  .screen{display:none;animation:fade .3s}
+  .screen.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  .card{background:var(--card);border:1px solid #2a3057;border-radius:var(--radius);padding:22px;margin-bottom:18px}
+  .hero{text-align:center;padding:40px 22px}
+  .hero h1{font-size:34px;margin-bottom:10px;background:linear-gradient(90deg,#5b8cff,#b06cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{color:var(--muted);max-width:640px;margin:0 auto 22px}
+  .badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+  .badge{background:var(--card2);border:1px solid #2a3057;border-radius:99px;padding:6px 14px;font-size:13px;color:var(--muted)}
+
+  .module-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+  .module-card{background:var(--card);border:1px solid #2a3057;border-radius:var(--radius);padding:18px;cursor:pointer;transition:.2s;position:relative}
+  .module-card:hover{transform:translateY(-3px);border-color:var(--accent)}
+  .module-card h3{font-size:17px;margin-bottom:6px}
+  .module-card p{font-size:13px;color:var(--muted);margin-bottom:12px}
+  .module-card .mini-bar{height:7px;background:#2a3057;border-radius:99px;overflow:hidden;margin-bottom:8px}
+  .module-card .mini-bar>div{height:100%;background:linear-gradient(90deg,var(--accent),var(--green));transition:width .4s}
+  .module-card .status{font-size:12px;color:var(--muted)}
+  .module-card .lock{position:absolute;top:14px;right:14px;font-size:16px}
+
+  .lesson-row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;background:var(--card2);margin-bottom:8px;cursor:pointer;transition:.15s}
+  .lesson-row:hover{background:#2e3560}
+  .lesson-row .tick{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;background:#2a3057;color:transparent;flex-shrink:0}
+  .lesson-row.done .tick{background:var(--green);color:#fff}
+  .lesson-row .lr-title{flex:1;font-size:15px}
+  .lesson-row .lr-badge{font-size:11px;color:var(--muted);background:#151a30;padding:3px 8px;border-radius:99px}
+
+  .lesson-content h2{margin-bottom:12px}
+  .lesson-content h3{margin:18px 0 8px;color:var(--accent)}
+  .lesson-content p{margin-bottom:10px;color:#cdd2ee}
+  .lesson-content ul{margin-left:20px;color:#cdd2ee;margin-bottom:10px}
+  .lesson-content code{background:#151a30;padding:2px 6px;border-radius:5px;font-family:'Consolas',monospace;font-size:14px;color:#ffd479}
+  .lesson-content pre{background:#151a30;border:1px solid #2a3057;border-radius:10px;padding:16px;overflow-x:auto;margin:10px 0}
+  .lesson-content pre code{background:none;padding:0;color:#b8f0c8}
+  .note-box{background:#1e2540;border-left:4px solid var(--accent);padding:12px 16px;border-radius:8px;margin:12px 0;font-size:14px}
+  .warn-box{background:#2e1f1f;border-left:4px solid var(--red);padding:12px 16px;border-radius:8px;margin:12px 0;font-size:14px}
+
+  .mcq{padding:16px;background:var(--card2);border-radius:10px;margin-bottom:12px}
+  .mcq .q{font-weight:600;margin-bottom:10px}
+  .opt{display:block;padding:10px 14px;border:1px solid #2a3057;border-radius:8px;margin-bottom:8px;cursor:pointer;transition:.15s;background:#151a30;font-size:14px}
+  .opt:hover{border-color:var(--accent)}
+  .opt.correct{border-color:var(--green);background:#15351f}
+  .opt.wrong{border-color:var(--red);background:#351515}
+  .mcq-feedback{font-size:13px;margin-top:6px;color:var(--muted)}
+  .mcq-feedback.ok{color:var(--green)}
+  .mcq-feedback.no{color:var(--red)}
+
+  .quiz-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+  .score-pill{background:var(--card2);padding:6px 14px;border-radius:99px;font-size:14px}
+
+  .project-card{background:var(--card);border:1px solid #2a3057;border-radius:var(--radius);padding:20px;margin-bottom:16px}
+  .project-card h3{margin-bottom:6px}
+  .project-card .proj-desc{color:var(--muted);font-size:14px;margin-bottom:12px}
+  .proj-area{width:100%;min-height:120px;background:#151a30;border:1px solid #2a3057;border-radius:10px;color:var(--text);font-family:'Consolas',monospace;font-size:13px;padding:12px;resize:vertical}
+  .proj-status{font-size:13px;margin-top:8px;font-weight:600}
+  .proj-status.pass{color:var(--green)}
+  .proj-status.pending{color:var(--gold)}
+
+  .cert-lock{text-align:center;padding:50px 20px}
+  .cert-lock .big{font-size:52px;margin-bottom:12px}
+  .cert{background:linear-gradient(135deg,#fffdf5,#fff7e0);color:#1a1a1a;border-radius:16px;padding:44px 32px;text-align:center;border:6px double #c9a227;position:relative;font-family:Georgia,serif}
+  .cert h2{font-size:14px;letter-spacing:3px;color:#8a6d1b;margin-bottom:6px;font-weight:700;font-family:'Segoe UI',Arial,sans-serif}
+  .cert h1{font-size:32px;color:#1a1a1a;margin:10px 0}
+  .cert .who{font-size:26px;font-weight:800;color:#5b3fa8;margin:14px 0;border-bottom:2px solid #c9a227;display:inline-block;padding-bottom:4px}
+  .cert .txt{font-size:15px;color:#444;max-width:520px;margin:0 auto}
+  .cert .serial{position:absolute;bottom:16px;right:20px;font-size:11px;color:#8a6d1b;letter-spacing:1px;font-family:'Segoe UI',Arial,sans-serif}
+  .cert .seal{font-size:40px;margin-top:14px}
+  .cert-actions{display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+
+  .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:#cdd2ee}
+  .field input{width:100%;padding:12px;background:#151a30;border:1px solid #2a3057;border-radius:10px;color:#e8eaf6;font-size:15px;font-family:inherit;outline:none}
+  .field input:focus{border-color:var(--accent)}
+
+  .back-link{display:inline-block;margin-bottom:16px;font-size:14px;color:var(--muted);cursor:pointer}
+  .back-link:hover{color:var(--accent)}
+  .flex-between{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+  .spacer{height:18px}
+  @media(max-width:600px){.hero h1{font-size:26px}.cert h1{font-size:24px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🐍 TecwithAmey Python LMS</div>
+  <div class="header-progress">
+    <div class="bar"><div id="hdrBar"></div></div>
+    <div class="pct-label" id="hdrPct">0% complete</div>
+  </div>
+  <button class="btn-ghost" onclick="go('home')">Home</button>
+  <button class="btn-ghost" onclick="go('projects')">Projects</button>
+  <button class="btn-ghost" onclick="resetAll()" title="Clear all progress">Reset</button>
+</header>
+
+<main>
+
+<!-- ============ HOME ============ -->
+<section id="home" class="screen active">
+  <div class="card hero">
+    <h1>Python Programming — Complete Beginner's Guide</h1>
+    <p>6 modules • syntax • examples • MCQs • quizzes • 5 mini-projects. Learn, practise, then unlock your batch number & certificate.</p>
+    <div class="badges">
+      <span class="badge">📘 Modules 1–6</span>
+      <span class="badge">✅ MCQs & Quizzes</span>
+      <span class="badge">🛠 5 Mini-Projects</span>
+      <span class="badge">🎓 Batch Number + Certificate</span>
+    </div>
+    <button class="btn-primary" onclick="go('modules')">Start Learning →</button>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-bottom:14px">Your Modules</h2>
+    <div class="module-grid" id="moduleGrid"></div>
+  </div>
+
+  <div class="card">
+    <div class="flex-between">
+      <div>
+        <h2>🎓 Batch Number & Certificate</h2>
+        <p style="color:var(--muted);font-size:14px;margin-top:4px" id="certHint">Complete all modules, quizzes and at least 2 projects to unlock.</p>
+      </div>
+      <button class="btn-gold" id="certBtn" onclick="go('certificate')" disabled>🔒 Locked</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MODULES ============ -->
+<section id="modules" class="screen">
+  <a class="back-link" onclick="go('home')">← Back to Home</a>
+  <div class="card">
+    <h1 style="margin-bottom:6px">Course Modules</h1>
+    <p style="color:var(--muted);font-size:14px">Open a module, complete each lesson's reading, demo and MCQs, then take the module quiz.</p>
+  </div>
+  <div class="module-grid" id="moduleGridFull"></div>
+</section>
+
+<!-- ============ MODULE DETAIL ============ -->
+<section id="module" class="screen">
+  <a class="back-link" onclick="go('modules')">← All Modules</a>
+  <div class="card">
+    <h1 id="modTitle" style="margin-bottom:4px"></h1>
+    <p id="modDesc" style="color:var(--muted);font-size:14px"></p>
+  </div>
+  <div id="lessonList"></div>
+  <div class="card" style="margin-top:16px">
+    <div class="flex-between">
+      <div>
+        <h3>📝 Module Quiz</h3>
+        <p style="color:var(--muted);font-size:13px;margin-top:4px">10 questions • pass mark 70% • retake anytime</p>
+      </div>
+      <button class="btn-primary" id="quizBtn" onclick="startModuleQuiz()">Start Quiz</button>
+    </div>
+    <div id="quizResult" style="margin-top:12px"></div>
+  </div>
+</section>
+
+<!-- ============ LESSON ============ -->
+<section id="lesson" class="screen">
+  <a class="back-link" onclick="backToModule()">← Back to Module</a>
+  <div class="card lesson-content" id="lessonBody"></div>
+  <div class="card">
+    <h3 style="margin-bottom:12px">✅ Check Your Understanding</h3>
+    <div id="lessonMcqs"></div>
+    <div style="margin-top:14px;text-align:right">
+      <button class="btn-primary" id="lessonDoneBtn" onclick="completeLesson()" disabled>Mark Lesson Complete →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects" class="screen">
+  <a class="back-link" onclick="go('home')">← Back to Home</a>
+  <div class="card">
+    <h1>🛠 Mini-Projects</h1>
+    <p style="color:var(--muted);font-size:14px">Submit at least 2 projects to help unlock your batch number & certificate. Paste your Python code below each project.</p>
+  </div>
+  <div id="projectList"></div>
+</section>
+
+<!-- ============ CERTIFICATE ============ -->
+<section id="certificate" class="screen">
+  <a class="back-link" onclick="go('home')">← Back to Home</a>
+
+  <!-- LOCKED -->
+  <div id="certLocked" class="card cert-lock" style="display:none">
+    <div class="big">🔒</div>
+    <h2>Batch Number & Certificate Locked</h2>
+    <p style="color:var(--muted);margin-top:8px" id="certLockMsg"></p>
+    <div class="spacer"></div>
+    <button class="btn-primary" onclick="go('modules')">Continue Learning</button>
+  </div>
+
+  <!-- UNLOCKED -->
+  <div id="certUnlocked" style="display:none">
+
+    <!-- BATCH NUMBER BANNER -->
+    <div class="card" style="background:linear-gradient(135deg,#1e2540,#232946);border:1px solid #5b8cff">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        <div style="font-size:38px">🎓</div>
+        <div style="flex:1;min-width:220px">
+          <h2 style="margin-bottom:4px">Congratulations — you finished the crash course!</h2>
+          <p style="color:var(--muted);font-size:14px">Your unique <strong>Batch Number</strong> is shown below. This is your proof of completion.</p>
+        </div>
+      </div>
+      <div style="margin-top:18px;background:#0f1220;border:2px dashed #5b8cff;border-radius:12px;padding:16px;text-align:center">
+        <div style="font-size:12px;letter-spacing:2px;color:var(--muted);margin-bottom:6px">YOUR BATCH NUMBER</div>
+        <div id="batchNumberDisplay" style="font-size:24px;font-weight:800;letter-spacing:2px;color:#ffc93c;font-family:Consolas,monospace;word-break:break-all">—</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:8px">Keep this safe. You need it to claim your official certificate.</div>
+      </div>
+    </div>
+
+    <!-- INSTRUCTIONS -->
+    <div class="card" style="border-left:4px solid #ffc93c">
+      <h3 style="margin-bottom:10px">📤 How to claim your official certificate</h3>
+      <ol style="margin-left:20px;color:#cdd2ee;line-height:1.9">
+        <li>Enter your details in the form below</li>
+        <li>Click <strong>Generate Certificate Preview</strong></li>
+        <li><strong>Send your Batch Number + Name</strong> to <strong>TecwithAmey</strong> (WhatsApp / Email / website contact form)</li>
+        <li>TecwithAmey verifies your batch number against their records</li>
+        <li>You receive the <strong>officially sealed certificate</strong> 🏅</li>
+      </ol>
+      <div style="margin-top:12px;padding:10px 14px;background:#2e1f1f;border-radius:8px;font-size:13px;color:#ffb3b3">
+        ⚠️ The certificate preview below is a <strong>draft only</strong>. The final official certificate is issued personally by TecwithAmey after verifying your batch number.
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div class="card">
+      <h3 style="margin-bottom:14px">✍️ Enter your details</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div class="field">
+          <label>Full Name *</label>
+          <input type="text" id="cfName" placeholder="e.g. Amey Kulkarni" maxlength="60">
+        </div>
+        <div class="field">
+          <label>Email *</label>
+          <input type="email" id="cfEmail" placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label>Phone / WhatsApp</label>
+          <input type="text" id="cfPhone" placeholder="+91 ...">
+        </div>
+        <div class="field">
+          <label>City</label>
+          <input type="text" id="cfCity" placeholder="e.g. Pune">
+        </div>
+      </div>
+      <div style="margin-top:16px;text-align:right">
+        <button class="btn-gold" onclick="generateCertPreview()">Generate Certificate Preview →</button>
+      </div>
+    </div>
+
+    <!-- PREVIEW -->
+    <div id="certPreviewWrap" style="display:none">
+      <div class="cert" id="certCard">
+        <h2>CERTIFICATE OF COMPLETION</h2>
+        <div style="font-size:13px;color:#8a6d1b;letter-spacing:2px">TECWITHAMEY • PYTHON CRASH COURSE</div>
+        <h1>This certifies that</h1>
+        <div class="who" id="certName">Learner</div>
+        <p class="txt">has successfully completed the <strong>Python Programming — Complete Beginner's Guide</strong> covering fundamentals, operators, loops, strings, data structures, functions, exception handling, file handling, OOP and five mini-projects.</p>
+        <div class="seal">🏅</div>
+        <div class="serial" id="certSerial"></div>
+      </div>
+      <div class="cert-actions">
+        <button class="btn-gold" onclick="window.print()">⬇ Download Preview (PDF)</button>
+        <button class="btn-ghost" onclick="copyClaimMessage()">📋 Copy Claim Message</button>
+      </div>
+      <div class="card" style="margin-top:16px;background:#1e2540;border:1px solid #ffc93c">
+        <h3 style="margin-bottom:8px">📨 Send this to TecwithAmey</h3>
+        <pre id="claimMessage" style="background:#0f1220;padding:14px;border-radius:10px;white-space:pre-wrap;font-size:13px;color:#b8f0c8;font-family:Consolas,monospace"></pre>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<script>
+/* =========================================================
+   COURSE DATA (6 modules, all lessons + MCQs)
+   ========================================================= */
+
+const COURSE = [
+  {
+    id: "m1", title: "Module 1 — Python Fundamentals",
+    desc: "What Python is, installation, first program, syntax, variables, data types, type conversion, input/output.",
+    lessons: [
+      {
+        id: "l1-1", title: "What is Python?",
+        content: `<h2>1.1 What is Python?</h2>
+          <p>Python is a <strong>high-level, general-purpose programming language</strong> with readable syntax. It is used for web development, automation, data analysis, artificial intelligence, scientific work, testing and education.</p>
+          <div class="note-box">💡 Python is case-sensitive: <code>name</code>, <code>Name</code> and <code>NAME</code> are different. Python files end with <code>.py</code>.</div>`,
+        mcqs: [
+          {q:"Python is a …", opts:["Low-level language","High-level general-purpose language","Markup language","Database"], a:1},
+          {q:"Python is case-sensitive. This means …", opts:["name and Name are the same","name and Name are different","Only uppercase works","None of these"], a:1}
+        ]
+      },
+      {
+        id: "l1-2", title: "Installation & Editors",
+        content: `<h2>1.2 Installation and Editors</h2>
+          <p>1. Visit <a href="https://www.python.org/downloads/" target="_blank">python.org/downloads</a> and install a current Python 3 release.</p>
+          <p>2. On Windows, select <strong>"Add Python to PATH"</strong> if offered.</p>
+          <p>3. Open Command Prompt or Terminal and try <code>python --version</code> or <code>py --version</code>.</p>
+          <p>4. Choose an editor: IDLE, Visual Studio Code, PyCharm or an online Python editor.</p>`,
+        mcqs: [
+          {q:"Which command checks the installed Python version?", opts:["python --version","python version()","py check","python info"], a:0},
+          {q:"Which is NOT a Python editor/IDE?", opts:["IDLE","VS Code","PyCharm","Photoshop"], a:3}
+        ]
+      },
+      {
+        id: "l1-3", title: "First Program",
+        content: `<h2>1.3 First Program</h2>
+          <pre><code>print("Hello, World!")</code></pre>
+          <p><strong>Expected output:</strong> <code>Hello, World!</code></p>
+          <p><code>print()</code> displays information on the screen. Text is placed inside quotation marks.</p>`,
+        mcqs: [
+          {q:"Which function displays text on screen?", opts:["echo()","print()","show()","display()"], a:1},
+          {q:'What is the output of <code>print(2 + 3)</code>?', opts:["2 + 3","5","23","Error"], a:1}
+        ]
+      },
+      {
+        id: "l1-4", title: "Syntax, Comments & Indentation",
+        content: `<h2>1.4 Syntax, Comments and Indentation</h2>
+          <p><strong>Syntax</strong> means the rules for writing valid code. A <strong>comment</strong> starts with <code>#</code>. <strong>Indentation</strong> groups statements into blocks; four spaces per level is the usual convention.</p>
+          <pre><code># This is a comment
+age = 18
+if age >= 18:
+    print("Adult")</code></pre>
+          <p><strong>Expected output:</strong> <code>Adult</code></p>
+          <div class="warn-box">⚠️ Never mix tabs and spaces — always use 4 spaces.</div>`,
+        mcqs: [
+          {q:"A comment in Python starts with …", opts:["//","#","/*","--"], a:1},
+          {q:"Indentation in Python is used to …", opts:["Style only","Group statements into blocks","Speed up code","Add comments"], a:1}
+        ]
+      },
+      {
+        id: "l1-5", title: "Variables & Naming Rules",
+        content: `<h2>1.5 Variables and Naming Rules</h2>
+          <p>A <strong>variable</strong> is a name that refers to a value. Use <code>=</code> to assign a value; Python infers the type.</p>
+          <pre><code>student_name = "Riya"
+age = 17
+percentage = 86.5
+print(student_name, age, percentage)</code></pre>
+          <p><strong>Expected output:</strong> <code>Riya 17 86.5</code></p>
+          <div class="note-box">✅ Valid: <code>student_name</code>, <code>_count</code>, <code>age2</code> &nbsp;|&nbsp; ❌ Invalid: <code>2name</code>, <code>class</code>, <code>my-var</code></div>`,
+        mcqs: [
+          {q:"Which is a valid variable name?", opts:["2name","student_name","class","my-var"], a:1},
+          {q:"Variables are case-sensitive in Python.", opts:["True","False"], a:0}
+        ]
+      },
+      {
+        id: "l1-6", title: "Basic Data Types",
+        content: `<h2>1.6 Basic Data Types</h2>
+          <ul><li><code>str</code> — text, e.g. "Python"</li><li><code>int</code> — whole number, e.g. 25</li><li><code>float</code> — decimal number, e.g. 92.5</li><li><code>bool</code> — True or False</li><li><code>NoneType</code> — the value None</li></ul>
+          <pre><code>name = "Asha"
+marks = 91
+average = 91.5
+present = True
+print(type(name))
+print(type(marks))
+print(type(average))
+print(type(present))</code></pre>`,
+        mcqs: [
+          {q:"What does type(91.5) return?", opts:["int","float","str","bool"], a:1},
+          {q:"Which type stores True or False?", opts:["str","int","bool","NoneType"], a:2}
+        ]
+      },
+      {
+        id: "l1-7", title: "Type Conversion",
+        content: `<h2>1.7 Type Conversion</h2>
+          <pre><code>age = int("18")
+price = float("49.50")
+print(age + 2)
+print(price)
+print("Age: " + str(age))</code></pre>
+          <div class="warn-box">⚠️ <code>int("hello")</code> raises <code>ValueError</code>.</div>`,
+        mcqs: [
+          {q:'What does <code>int("hello")</code> do?', opts:["Returns 0","Raises ValueError","Returns None","Converts to 5"], a:1},
+          {q:"input() always returns which type?", opts:["int","float","str","bool"], a:2}
+        ]
+      },
+      {
+        id: "l1-8", title: "Input & Output",
+        content: `<h2>1.8 Input and Output</h2>
+          <pre><code>name = input("Enter your name: ")
+print("Hello,", name)
+
+first = int(input("First number: "))
+second = int(input("Second number: "))
+print("Sum =", first + second)</code></pre>
+          <div class="note-box">💡 Always wrap numeric input with <code>int()</code> or <code>float()</code>.</div>`,
+        mcqs: [
+          {q:"To add two numbers entered by the user, you must …", opts:["Use input() directly","Convert input to int/float","Print input twice","None"], a:1},
+          {q:'What does <code>print("Hello,", "Amey")</code> output?', opts:["Hello,Amey","Hello, Amey","HelloAmey","Error"], a:1}
+        ]
+      }
+    ]
+  },
+  {
+    id: "m2", title: "Module 2 — Operators & Decision-Making",
+    desc: "Arithmetic, comparison, logical and assignment operators, if/elif/else, nested conditions, even/odd and discount calculator.",
+    lessons: [
+      {
+        id: "l2-1", title: "Arithmetic Operators",
+        content: `<h2>2.1 Arithmetic Operators</h2>
+          <pre><code>a = 10
+b = 3
+print(a + b)   # 13
+print(a - b)   # 7
+print(a * b)   # 30
+print(a / b)   # 3.333...
+print(a // b)  # 3
+print(a % b)   # 1
+print(a ** b)  # 1000</code></pre>`,
+        mcqs: [
+          {q:"What is 10 // 3?", opts:["3.33","3","4","1"], a:1},
+          {q:"What is 10 % 3?", opts:["3","1","0","10"], a:1},
+          {q:"What is 10 ** 3?", opts:["30","100","1000","13"], a:2}
+        ]
+      },
+      {
+        id: "l2-2", title: "Comparison Operators",
+        content: `<h2>2.2 Comparison Operators</h2>
+          <pre><code>x = 10
+y = 20
+print(x == y)   # False
+print(x != y)   # True
+print(x < y)    # True
+print(x >= y)   # False</code></pre>
+          <div class="warn-box">⚠️ Do not confuse <code>=</code> (assignment) with <code>==</code> (equality comparison).</div>`,
+        mcqs: [
+          {q:"Which operator checks equality?", opts:["=","==","!=","=>"], a:1},
+          {q:"What is 10 >= 20?", opts:["True","False","10","Error"], a:1}
+        ]
+      },
+      {
+        id: "l2-3", title: "Logical & Assignment Operators",
+        content: `<h2>2.3 Logical and Assignment Operators</h2>
+          <pre><code>age = 20
+has_id = True
+print(age >= 18 and has_id)   # True
+print(age < 18 or has_id)     # True
+print(not has_id)             # False
+
+score = 10
+score += 5
+score *= 2
+print(score)  # 30</code></pre>`,
+        mcqs: [
+          {q:"What does <code>not True</code> evaluate to?", opts:["True","False","1","0"], a:1},
+          {q:"<code>True and False</code> is …", opts:["True","False","Error","None"], a:1},
+          {q:"After <code>x = 5; x += 3</code>, x is …", opts:["5","3","8","53"], a:2}
+        ]
+      },
+      {
+        id: "l2-4", title: "if, elif and else",
+        content: `<h2>2.4 if, elif and else</h2>
+          <pre><code>marks = 76
+if marks >= 90:
+    print("Grade A")
+elif marks >= 75:
+    print("Grade B")
+elif marks >= 50:
+    print("Grade C")
+else:
+    print("Needs improvement")</code></pre>
+          <p><strong>Expected output:</strong> <code>Grade B</code></p>`,
+        mcqs: [
+          {q:"What does the code print for marks = 76?", opts:["Grade A","Grade B","Grade C","Needs improvement"], a:1},
+          {q:"<code>elif</code> is used to …", opts:["End a program","Check another condition if previous is false","Loop","Define a function"], a:1}
+        ]
+      },
+      {
+        id: "l2-5", title: "Nested Conditions",
+        content: `<h2>2.5 Nested Conditions</h2>
+          <pre><code>age = 21
+has_ticket = True
+if age >= 18:
+    if has_ticket:
+        print("Entry allowed")
+    else:
+        print("Ticket required")
+else:
+    print("Age requirement not met")</code></pre>`,
+        mcqs: [
+          {q:"Nested conditions mean …", opts:["if inside if","Two else blocks","Using and only","None"], a:0}
+        ]
+      },
+      {
+        id: "l2-6", title: "Even or Odd",
+        content: `<h2>2.6 Example: Even or Odd</h2>
+          <pre><code>number = int(input("Enter an integer: "))
+if number % 2 == 0:
+    print("Even")
+else:
+    print("Odd")</code></pre>`,
+        mcqs: [
+          {q:"What is 7 % 2?", opts:["0","1","2","3"], a:1}
+        ]
+      },
+      {
+        id: "l2-7", title: "Discount Calculator",
+        content: `<h2>2.7 Example: Discount Calculator</h2>
+          <pre><code>amount = float(input("Bill amount: "))
+if amount >= 2000:
+    discount = amount * 0.10
+else:
+    discount = amount * 0.05
+print("Discount:", discount)
+print("Pay:", amount - discount)</code></pre>`,
+        mcqs: [
+          {q:"For a bill of 1000, what discount % applies?", opts:["10%","5%","0%","15%"], a:1}
+        ]
+      }
+    ]
+  },
+  {
+    id: "m3", title: "Module 3 — Loops & Strings",
+    desc: "for, while, break/continue, string indexing, slicing, string methods and f-strings.",
+    lessons: [
+      {
+        id: "l3-1", title: "for loop and range()",
+        content: `<h2>3.1 for loop and range()</h2>
+          <p><code>range(start, stop, step)</code> generates integers; the <strong>stop value is excluded</strong>.</p>
+          <pre><code>for number in range(1, 6):
+    print(number)
+
+for number in range(2, 11, 2):
+    print(number, end=" ")</code></pre>`,
+        mcqs: [
+          {q:"range(1,6) generates …", opts:["1 to 6","1 to 5","0 to 6","1 to 7"], a:1},
+          {q:"range(2,11,2) generates …", opts:["2 4 6 8 10","2 4 6 8","0 2 4 6 8 10","2 3 4 5"], a:0}
+        ]
+      },
+      {
+        id: "l3-2", title: "while loop",
+        content: `<h2>3.2 while loop</h2>
+          <pre><code>count = 1
+while count <= 3:
+    print("Count:", count)
+    count += 1</code></pre>
+          <div class="warn-box">⚠️ Always update the loop variable, otherwise you get an infinite loop.</div>`,
+        mcqs: [
+          {q:"A while loop runs as long as its condition is …", opts:["False","True","0","None"], a:1}
+        ]
+      },
+      {
+        id: "l3-3", title: "break and continue",
+        content: `<h2>3.3 break and continue</h2>
+          <p><code>break</code> exits a loop immediately. <code>continue</code> skips the rest of the current iteration.</p>
+          <pre><code>for n in range(1, 6):
+    if n == 4:
+        break
+    print(n)
+# Output: 1 2 3
+
+for n in range(1, 6):
+    if n == 3:
+        continue
+    print(n)
+# Output: 1 2 4 5</code></pre>`,
+        mcqs: [
+          {q:"break does what?", opts:["Skips current iteration","Exits loop immediately","Restarts loop","Pauses"], a:1},
+          {q:"continue does what?", opts:["Exits loop","Skips rest of iteration","Ends program","Nothing"], a:1}
+        ]
+      },
+      {
+        id: "l3-4", title: "Strings & Indexing",
+        content: `<h2>3.4 Strings and Indexing</h2>
+          <p>Indexing begins at <strong>0</strong>; negative indexes count from the end. Strings are <strong>immutable</strong>.</p>
+          <pre><code>word = "Python"
+print(word[0])   # P
+print(word[-1])  # n
+print(len(word)) # 6</code></pre>`,
+        mcqs: [
+          {q:'What is "Python"[0]?', opts:["P","y","n","Python"], a:0},
+          {q:'What is "Python"[-1]?', opts:["P","y","n","o"], a:2},
+          {q:"Strings are …", opts:["mutable","immutable","numbers","lists"], a:1}
+        ]
+      },
+      {
+        id: "l3-5", title: "Slicing",
+        content: `<h2>3.5 Slicing</h2>
+          <pre><code>word = "Programming"
+print(word[0:7])   # Program
+print(word[3:])    # gramming
+print(word[:4])    # Prog
+print(word[::-1])  # gnimmargorP</code></pre>`,
+        mcqs: [
+          {q:'"Programming"[0:7] is …', opts:["Program","Programming","Prog","gram"], a:0},
+          {q:'"Programming"[::-1] is …', opts:["Programming","gnimmargorP","Prog","gramming"], a:1}
+        ]
+      },
+      {
+        id: "l3-6", title: "String Methods & f-strings",
+        content: `<h2>3.6 String Methods and Formatting</h2>
+          <pre><code>message = "Learn Python Today "
+print(message.strip())
+print("PYTHON".lower())
+print("python".upper())
+print("red,blue,green".split(","))
+
+name = "Asha"
+marks = 87.5
+print(f"{name} scored {marks:.2f}")</code></pre>`,
+        mcqs: [
+          {q:'"PYTHON".lower() returns …', opts:["PYTHON","python","Python","error"], a:1},
+          {q:'f"{87.5:.2f}" produces …', opts:["87.5","87.50","88","8750"], a:1}
+        ]
+      }
+    ]
+  },
+  {
+    id: "m4", title: "Module 4 — Data Structures & Functions",
+    desc: "Lists, tuples, sets, dictionaries, comparison table, functions, default parameters and importing modules.",
+    lessons: [
+      {
+        id: "l4-1", title: "Lists",
+        content: `<h2>4.1 Lists</h2>
+          <p>A list is <strong>ordered, changeable and allows duplicates</strong>.</p>
+          <pre><code>fruits = ["apple", "banana", "mango"]
+print(fruits[1])          # banana
+fruits.append("orange")
+fruits[0] = "grapes"
+fruits.remove("banana")
+print(fruits)  # ['grapes', 'mango', 'orange']</code></pre>`,
+        mcqs: [
+          {q:"Lists are …", opts:["immutable","mutable","unordered","unique"], a:1},
+          {q:"Which method adds an item to the end of a list?", opts:["add()","append()","push()","insertLast()"], a:1}
+        ]
+      },
+      {
+        id: "l4-2", title: "Tuples",
+        content: `<h2>4.2 Tuples</h2>
+          <p>A tuple is <strong>ordered but cannot be changed</strong>.</p>
+          <pre><code>coordinates = (18.52, 73.85)
+print(coordinates[0])   # 18.52
+print(len(coordinates)) # 2
+single_item = (5,)      # trailing comma needed!</code></pre>
+          <div class="note-box">💡 A one-item tuple needs a trailing comma: <code>(5,)</code>. Without it, <code>(5)</code> is just the integer 5.</div>`,
+        mcqs: [
+          {q:"Tuples are …", opts:["mutable","immutable","unordered","duplicates not allowed"], a:1},
+          {q:"(5) is a …", opts:["tuple","int","list","set"], a:1}
+        ]
+      },
+      {
+        id: "l4-3", title: "Sets",
+        content: `<h2>4.3 Sets</h2>
+          <p>A set stores <strong>unique values</strong> and does not support positional indexing.</p>
+          <pre><code>a = {1, 2, 3}
+b = {3, 4, 5}
+print(a | b)  # union: {1,2,3,4,5}
+print(a & b)  # intersection: {3}
+print(a - b)  # difference: {1,2}</code></pre>`,
+        mcqs: [
+          {q:"Sets allow duplicates.", opts:["True","False"], a:1},
+          {q:"{1,2,3} & {3,4} is …", opts:["{1,2,3,4}","{3}","{1,2}","{}"], a:1}
+        ]
+      },
+      {
+        id: "l4-4", title: "Dictionaries",
+        content: `<h2>4.4 Dictionaries</h2>
+          <p>A dictionary stores <strong>key-value</strong> pairs. Keys are unique.</p>
+          <pre><code>student = {"name": "Ravi", "roll": 12, "marks": 88}
+print(student["name"])              # Ravi
+student["marks"] = 91
+student["grade"] = "A"
+print(student.get("email", "Not provided"))  # Not provided</code></pre>`,
+        mcqs: [
+          {q:"Dictionary keys must be …", opts:["unique","duplicates allowed","numbers only","strings only"], a:0},
+          {q:'<code>student.get("email","Not provided")</code> returns the default when …', opts:["key exists","key is missing","value is empty","always"], a:1}
+        ]
+      },
+      {
+        id: "l4-5", title: "Collection Comparison",
+        content: `<h2>4.5 Collection Comparison</h2>
+          <table style="width:100%;border-collapse:collapse;margin:12px 0;font-size:14px">
+            <tr style="background:#2a3057"><th style="padding:10px;text-align:left">Type</th><th>Ordered?</th><th>Changeable?</th><th>Duplicates?</th></tr>
+            <tr><td style="padding:10px">List</td><td>Yes</td><td>Yes</td><td>Allowed</td></tr>
+            <tr style="background:#1e2540"><td style="padding:10px">Tuple</td><td>Yes</td><td>No</td><td>Allowed</td></tr>
+            <tr><td style="padding:10px">Set</td><td>No positional</td><td>Yes</td><td>Not allowed</td></tr>
+            <tr style="background:#1e2540"><td style="padding:10px">Dictionary</td><td>Insertion</td><td>Yes</td><td>Keys unique; values repeat</td></tr>
+          </table>`,
+        mcqs: [
+          {q:"Which allows duplicates?", opts:["Set","Dictionary","List","None"], a:2},
+          {q:"Which is immutable?", opts:["List","Tuple","Set","Dictionary"], a:1}
+        ]
+      },
+      {
+        id: "l4-6", title: "Functions",
+        content: `<h2>4.6 Functions</h2>
+          <p>Define with <code>def</code>. Parameters receive values; <code>return</code> sends a result back.</p>
+          <pre><code>def greet(name):
+    print("Hello,", name)
+
+def add(a, b):
+    return a + b
+
+greet("Amey")
+print(add(12, 8))</code></pre>`,
+        mcqs: [
+          {q:"Which keyword defines a function?", opts:["func","def","function","lambda"], a:1},
+          {q:"Which keyword sends a value back from a function?", opts:["print","return","yield","send"], a:1}
+        ]
+      },
+      {
+        id: "l4-7", title: "Default Parameters & Scope",
+        content: `<h2>4.7 Default Parameters and Scope</h2>
+          <pre><code>def welcome(name, course="Python"):
+    return f"Welcome {name} to {course}"
+
+print(welcome("Riya"))
+print(welcome("Aman", "Web Development"))</code></pre>`,
+        mcqs: [
+          {q:'<code>welcome("Riya")</code> uses which value for course?', opts:["Empty","Python (default)","Web Development","Error"], a:1}
+        ]
+      },
+      {
+        id: "l4-8", title: "Importing Modules",
+        content: `<h2>4.8 Importing Modules</h2>
+          <pre><code>import math
+import random
+
+print(math.sqrt(81))          # 9.0
+print(random.randint(1, 6))   # random 1–6</code></pre>`,
+        mcqs: [
+          {q:"math.sqrt(81) returns …", opts:["8","9.0","81","Error"], a:1},
+          {q:"Which module gives random numbers?", opts:["math","random","statistics","os"], a:1}
+        ]
+      }
+    ]
+  },
+  {
+    id: "m5", title: "Module 5 — Practical Python",
+    desc: "Exception handling, try/except/else/finally, file handling, basic OOP, standard-library modules and debugging.",
+    lessons: [
+      {
+        id: "l5-1", title: "Exception Handling",
+        content: `<h2>5.1 Exception Handling</h2>
+          <p><code>try</code> and <code>except</code> let you handle expected problems.</p>
+          <pre><code>try:
+    number = int(input("Enter a whole number: "))
+    print("Double =", number * 2)
+except ValueError:
+    print("Please enter a valid whole number.")</code></pre>`,
+        mcqs: [
+          {q:"Which pair handles exceptions?", opts:["if/else","try/except","for/while","def/return"], a:1},
+          {q:'<code>int("abc")</code> raises …', opts:["TypeError","ValueError","NameError","ZeroDivisionError"], a:1}
+        ]
+      },
+      {
+        id: "l5-2", title: "else and finally",
+        content: `<h2>5.2 else and finally</h2>
+          <pre><code>try:
+    result = 10 / 2
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+else:
+    print("Result =", result)
+finally:
+    print("Program finished")</code></pre>
+          <p><code>else</code> runs when no exception occurs. <code>finally</code> always runs.</p>`,
+        mcqs: [
+          {q:"<code>finally</code> runs …", opts:["Only on error","Only on success","Always","Never"], a:2}
+        ]
+      },
+      {
+        id: "l5-3", title: "File Handling",
+        content: `<h2>5.3 File Handling</h2>
+          <p>Use <code>with open(...)</code> so Python closes the file automatically.</p>
+          <pre><code>with open("notes.txt", "w", encoding="utf-8") as file:
+    file.write("Learning Python is useful.\\n")
+
+with open("notes.txt", "r", encoding="utf-8") as file:
+    content = file.read()
+print(content)</code></pre>
+          <p>Modes: <code>"r"</code> reads; <code>"w"</code> writes and replaces; <code>"a"</code> appends; <code>"x"</code> creates new.</p>`,
+        mcqs: [
+          {q:'Which file mode overwrites existing content?', opts:['"r"','"a"','"w"','"x"'], a:2},
+          {q:'Why use <code>with open()</code>?', opts:["Faster","Auto-closes file","No difference","Fixes errors"], a:1}
+        ]
+      },
+      {
+        id: "l5-4", title: "Basic OOP",
+        content: `<h2>5.4 Basic OOP</h2>
+          <pre><code>class Student:
+    def __init__(self, name, marks):
+        self.name = name
+        self.marks = marks
+    def display(self):
+        print(f"{self.name} scored {self.marks}")
+
+student1 = Student("Asha", 92)
+student1.display()   # Asha scored 92</code></pre>
+          <p><code>__init__</code> runs when an object is created. <code>self</code> refers to the current object.</p>`,
+        mcqs: [
+          {q:"Which method runs when an object is created?", opts:["__new__","__init__","__start__","__main__"], a:1},
+          {q:"<code>self</code> refers to …", opts:["The class","The current object","The module","Nothing"], a:1}
+        ]
+      },
+      {
+        id: "l5-5", title: "Useful Standard-Library Modules",
+        content: `<h2>5.5 Useful Standard-Library Modules</h2>
+          <ul><li><code>math</code>: sqrt(), ceil(), floor()</li><li><code>random</code>: random values</li><li><code>statistics</code>: mean(), median()</li><li><code>datetime</code>: date and time</li><li><code>pathlib</code>: file paths</li><li><code>json</code>: JSON read/write</li></ul>
+          <pre><code>import statistics
+marks = [70, 80, 90]
+print(statistics.mean(marks))    # 80
+print(statistics.median(marks))  # 80</code></pre>`,
+        mcqs: [
+          {q:"statistics.mean([70,80,90]) is …", opts:["70","80","90","240"], a:1}
+        ]
+      },
+      {
+        id: "l5-6", title: "Debugging & Common Errors",
+        content: `<h2>5.6 Debugging and Common Errors</h2>
+          <ul><li><strong>SyntaxError</strong> — grammar error</li><li><strong>IndentationError</strong> — misaligned block</li><li><strong>NameError</strong> — undefined name</li><li><strong>TypeError</strong> — wrong type in operation</li><li><strong>ValueError</strong> — invalid value for type</li><li><strong>ZeroDivisionError</strong> — divide by zero</li><li><strong>IndexError</strong> — index out of range</li><li><strong>KeyError</strong> — missing dictionary key</li></ul>`,
+        mcqs: [
+          {q:"10/0 raises …", opts:["ValueError","ZeroDivisionError","NameError","TypeError"], a:1},
+          {q:"Using an undefined variable raises …", opts:["NameError","ValueError","SyntaxError","KeyError"], a:0},
+          {q:"Accessing a missing dict key raises …", opts:["IndexError","KeyError","NameError","TypeError"], a:1}
+        ]
+      }
+    ]
+  },
+  {
+    id: "m6", title: "Module 6 — Mini-Projects",
+    desc: "Basic calculator, guessing game, quiz app, student marks calculator and contact book.",
+    lessons: [
+      {
+        id: "l6-1", title: "Project 1 — Basic Calculator",
+        content: `<h2>Project 1: Basic Calculator</h2>
+          <pre><code>a = float(input("First number: "))
+operator = input("Choose + - * / : ")
+b = float(input("Second number: "))
+
+if operator == "+":
+    answer = a + b
+elif operator == "-":
+    answer = a - b
+elif operator == "*":
+    answer = a * b
+elif operator == "/":
+    if b == 0:
+        answer = None
+        print("Error: division by zero.")
+    else:
+        answer = a / b
+else:
+    answer = None
+    print("Invalid operator.")
+
+if answer is not None:
+    print("Answer =", answer)</code></pre>`,
+        mcqs: [
+          {q:"In Project 1, division by zero is handled by …", opts:["try/except","if b == 0 check","finally","not handled"], a:1}
+        ]
+      },
+      {
+        id: "l6-2", title: "Project 2 — Number Guessing Game",
+        content: `<h2>Project 2: Number-Guessing Game</h2>
+          <pre><code>import random
+secret = random.randint(1, 20)
+attempts = 0
+print("Guess a number from 1 to 20.")
+while True:
+    try:
+        guess = int(input("Your guess: "))
+    except ValueError:
+        print("Enter a whole number.")
+        continue
+    attempts += 1
+    if guess < secret:
+        print("Too low!")
+    elif guess > secret:
+        print("Too high!")
+    else:
+        print(f"Correct! You took {attempts} attempts.")
+        break</code></pre>`,
+        mcqs: [
+          {q:"random.randint(1,20) returns an integer from …", opts:["1 to 19","1 to 20","0 to 20","2 to 20"], a:1}
+        ]
+      },
+      {
+        id: "l6-3", title: "Project 3 — Quiz Application",
+        content: `<h2>Project 3: Quiz Application</h2>
+          <pre><code>questions = [
+    {"question": "Which keyword defines a function?", "answer": "def"},
+    {"question": "Which type stores True or False?", "answer": "bool"},
+    {"question": "What does len() return?", "answer": "length"}
+]
+score = 0
+for item in questions:
+    print(item["question"])
+    answer = input("Your answer: ").strip().lower()
+    if answer == item["answer"]:
+        print("Correct!")
+        score += 1
+    else:
+        print("Correct answer:", item["answer"])
+print(f"Final score: {score} / {len(questions)}")</code></pre>`,
+        mcqs: [
+          {q:"Project 3 stores each question in a …", opts:["list of strings","dictionary","tuple","set"], a:1}
+        ]
+      },
+      {
+        id: "l6-4", title: "Project 4 — Student Marks Calculator",
+        content: `<h2>Project 4: Student Marks Calculator</h2>
+          <pre><code>name = input("Student name: ")
+marks = []
+for subject in ["English", "Accounts", "Economics", "Computer"]:
+    score = float(input(f"Marks in {subject} (out of 100): "))
+    marks.append(score)
+
+total = sum(marks)
+average = total / len(marks)
+print("\\n--- MARKS REPORT ---")
+print("Student:", name)
+print("Total:", total, "out of", len(marks) * 100)
+print(f"Average: {average:.2f}")
+if all(mark >= 35 for mark in marks):
+    print("Result: Pass")
+else:
+    print("Result: Needs improvement")</code></pre>`,
+        mcqs: [
+          {q:"Which function checks that every mark is at least 35?", opts:["any()","all()","sum()","len()"], a:1}
+        ]
+      },
+      {
+        id: "l6-5", title: "Project 5 — Contact Book",
+        content: `<h2>Project 5: Simple Contact Book</h2>
+          <pre><code>contacts = {}
+while True:
+    print("\\n1. Add/update 2. Search 3. View all 4. Exit")
+    choice = input("Choose: ").strip()
+    if choice == "1":
+        name = input("Name: ").strip()
+        phone = input("Phone: ").strip()
+        if name and phone:
+            contacts[name] = phone
+            print("Contact saved.")
+        else:
+            print("Name and phone cannot be empty.")
+    elif choice == "2":
+        name = input("Name to search: ").strip()
+        print(contacts.get(name, "Contact not found."))
+    elif choice == "3":
+        if not contacts:
+            print("No contacts saved.")
+        else:
+            for name, phone in contacts.items():
+                print(name, ":", phone)
+    elif choice == "4":
+        print("Goodbye!")
+        break
+    else:
+        print("Invalid option.")</code></pre>`,
+        mcqs: [
+          {q:"The contact book stores contacts in a …", opts:["list","tuple","dictionary","set"], a:2}
+        ]
+      }
+    ]
+  }
+];
+
+/* =========================================================
+   HALLMARK — secret salt for batch number verification
+   ========================================================= */
+// 🔒 CHANGE THIS to something only you know before deploying.
+const HALLMARK_SALT = "amey-python-2026-X9k2!@#";
+
+function computeHallmark(name, rand, ts){
+  const payload = HALLMARK_SALT + "|" + name + "|" + rand + "|" + ts;
+  let hash = 0;
+  for(let i = 0; i < payload.length; i++){
+    hash = ((hash << 5) - hash) + payload.charCodeAt(i);
+    hash |= 0;
+  }
+  return Math.abs(hash).toString(36).toUpperCase().padStart(4, '0').slice(0, 4);
+}
+
+function generateBatchNumber(learnerName){
+  const rand = Math.random().toString(36).substring(2, 8).toUpperCase();
+  const ts = Date.now().toString(36).toUpperCase().slice(-4);
+  const hallMark = computeHallmark(learnerName, rand, ts);
+  return `TWA-PY-2026-${rand}-${ts}-${hallMark}`;
+}
+
+function verifyBatchNumber(batchNumber, learnerName){
+  const parts = batchNumber.split('-');
+  if(parts.length !== 6 || parts[0] !== 'TWA' || parts[1] !== 'PY' || parts[2] !== '2026') return false;
+  const rand = parts[3], ts = parts[4], givenHall = parts[5];
+  return givenHall === computeHallmark(learnerName, rand, ts);
+}
+
+/* =========================================================
+   STATE & STORAGE
+   ========================================================= */
+const STORE_KEY = "tecwithamey_python_lms_v2";
+
+function defaultState(){
+  return {
+    lessonsDone: {},
+    mcqScores: {},
+    quizScores: {},
+    projects: {},
+    learnerName: "",
+    learnerEmail: "",
+    learnerPhone: "",
+    learnerCity: "",
+    batchNumber: null,
+    batchIssuedAt: null
+  };
+}
+
+let state = loadState();
+let currentModuleId = null;
+let currentLesson = null;
+let quizState = null;
+
+function loadState(){
+  try{ return {...defaultState(), ...JSON.parse(localStorage.getItem(STORE_KEY)||"{}")}; }
+  catch(e){ return defaultState(); }
+}
+function saveState(){ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+function go(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='home') renderHome();
+  if(id==='modules') renderModulesPage();
+  if(id==='certificate') renderCertificate();
+  if(id==='projects') renderProjects();
+}
+
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function getLesson(mid, lid){
+  const m = COURSE.find(x=>x.id===mid);
+  return m ? m.lessons.find(l=>l.id===lid) : null;
+}
+
+/* =========================================================
+   PROGRESS
+   ========================================================= */
+function lessonComplete(lid){ return !!state.lessonsDone[lid]; }
+function mcqComplete(lid){ return !!state.mcqScores[lid]; }
+function lessonFullyDone(lid){ return lessonComplete(lid) && mcqComplete(lid); }
+
+function moduleProgress(m){
+  const total = m.lessons.length;
+  let done = 0;
+  m.lessons.forEach(l=>{ if(lessonFullyDone(l.id)) done++; });
+  const quiz = state.quizScores[m.id] !== undefined && state.quizScores[m.id] >= 70;
+  return { done, total, quiz, pct: Math.round((done/total)*100) };
+}
+
+function courseProgress(){
+  let totalLessons=0, doneLessons=0, quizzesPassed=0, totalQuizzes=COURSE.length;
+  COURSE.forEach(m=>{
+    totalLessons += m.lessons.length;
+    m.lessons.forEach(l=>{ if(lessonFullyDone(l.id)) doneLessons++; });
+    if(state.quizScores[m.id] !== undefined && state.quizScores[m.id] >= 70) quizzesPassed++;
+  });
+  const projectsPassed = Object.values(state.projects).filter(p=>p.status==='pass').length;
+  const allLessons = doneLessons === totalLessons;
+  const allQuizzes = quizzesPassed === totalQuizzes;
+  const enoughProjects = projectsPassed >= 2;
+  const eligible = allLessons && allQuizzes && enoughProjects;
+  const pct = Math.round(((doneLessons + quizzesPassed + Math.min(projectsPassed,2)) / (totalLessons + totalQuizzes + 2)) * 100);
+  return { totalLessons, doneLessons, quizzesPassed, totalQuizzes, projectsPassed, allLessons, allQuizzes, enoughProjects, eligible, pct: Math.min(100,pct) };
+}
+
+function updateHeader(){
+  const p = courseProgress();
+  document.getElementById('hdrBar').style.width = p.pct + "%";
+  document.getElementById('hdrPct').textContent = p.pct + "% complete";
+}
+
+/* =========================================================
+   HOME
+   ========================================================= */
+function renderHome(){
+  updateHeader();
+  const p = courseProgress();
+  const btn = document.getElementById('certBtn');
+  const hint = document.getElementById('certHint');
+  if(p.eligible){
+    btn.disabled = false;
+    btn.textContent = "🎓 View Batch Number";
+    hint.textContent = "All requirements met — your batch number is ready!";
+  } else {
+    btn.disabled = true;
+    btn.textContent = "🔒 Locked";
+    const parts = [];
+    if(!p.allLessons) parts.push(`${p.totalLessons - p.doneLessons} lesson(s) left`);
+    if(!p.allQuizzes) parts.push(`${p.totalQuizzes - p.quizzesPassed} quiz(es) to pass`);
+    if(!p.enoughProjects) parts.push(`submit ${2 - p.projectsPassed} more project(s)`);
+    hint.textContent = "To unlock: " + parts.join(" • ");
+  }
+
+  const grid = document.getElementById('moduleGrid');
+  grid.innerHTML = COURSE.map(m=>{
+    const pr = moduleProgress(m);
+    const done = pr.done === pr.total && pr.quiz;
+    return `<div class="module-card" onclick="openModule('${m.id}')">
+      <div class="lock">${done?'✅':'📘'}</div>
+      <h3>${esc(m.title)}</h3>
+      <p>${esc(m.desc)}</p>
+      <div class="mini-bar"><div style="width:${pr.pct}%"></div></div>
+      <div class="status">${pr.done}/${pr.total} lessons ${pr.quiz?'• quiz ✓':'• quiz pending'}</div>
+    </div>`;
+  }).join('');
+}
+
+/* =========================================================
+   MODULES PAGE
+   ========================================================= */
+function renderModulesPage(){
+  updateHeader();
+  const grid = document.getElementById('moduleGridFull');
+  grid.innerHTML = COURSE.map(m=>{
+    const pr = moduleProgress(m);
+    return `<div class="module-card" onclick="openModule('${m.id}')">
+      <h3>${esc(m.title)}</h3>
+      <p>${esc(m.desc)}</p>
+      <div class="mini-bar"><div style="width:${pr.pct}%"></div></div>
+      <div class="status">${pr.done}/${pr.total} lessons ${pr.quiz?'• quiz ✓ '+state.quizScores[m.id]+'%':'• quiz pending'}</div>
+    </div>`;
+  }).join('');
+}
+
+function openModule(mid){
+  currentModuleId = mid;
+  const m = COURSE.find(x=>x.id===mid);
+  document.getElementById('modTitle').textContent = m.title;
+  document.getElementById('modDesc').textContent = m.desc;
+
+  const list = document.getElementById('lessonList');
+  list.innerHTML = m.lessons.map((l,i)=>{
+    const done = lessonFullyDone(l.id);
+    return `<div class="lesson-row ${done?'done':''}" onclick="openLesson('${m.id}','${l.id}')">
+      <div class="tick">✓</div>
+      <div class="lr-title">${i+1}. ${esc(l.title)}</div>
+      <div class="lr-badge">${done?'Complete':'MCQs pending'}</div>
+    </div>`;
+  }).join('');
+
+  const quizBtn = document.getElementById('quizBtn');
+  const result = document.getElementById('quizResult');
+  const sc = state.quizScores[m.id];
+  if(sc !== undefined){
+    result.innerHTML = `<div class="score-pill">Last score: <strong>${sc}%</strong> — ${sc>=70?'✅ Passed':'❌ Retake needed'}</div>`;
+    quizBtn.textContent = sc>=70 ? "Retake Quiz" : "Retry Quiz";
+  } else {
+    result.innerHTML = "";
+    quizBtn.textContent = "Start Quiz";
+  }
+  go('module');
+}
+
+/* =========================================================
+   LESSON
+   ========================================================= */
+function openLesson(mid, lid){
+  const l = getLesson(mid, lid);
+  currentLesson = {mid, lid, mcqsAnswered: {}};
+  document.getElementById('lessonBody').innerHTML = l.content;
+
+  const box = document.getElementById('lessonMcqs');
+  box.innerHTML = l.mcqs.map((q,qi)=>`
+    <div class="mcq" id="mcq-${qi}">
+      <div class="q">${qi+1}. ${q.q}</div>
+      <div class="opts">
+        ${q.opts.map((o,oi)=>`<div class="opt" data-qi="${qi}" data-oi="${oi}" onclick="answerMcq(${qi},${oi})">${esc(o)}</div>`).join('')}
+      </div>
+      <div class="mcq-feedback" id="fb-${qi}"></div>
+    </div>
+  `).join('');
+
+  const doneBtn = document.getElementById('lessonDoneBtn');
+  doneBtn.disabled = true;
+  doneBtn.textContent = "Mark Lesson Complete →";
+  if(lessonComplete(l.id)){
+    doneBtn.disabled = false;
+    doneBtn.textContent = "✔ Lesson Complete (Review)";
+  }
+  go('lesson');
+}
+
+function answerMcq(qi, oi){
+  const l = getLesson(currentLesson.mid, currentLesson.lid);
+  const q = l.mcqs[qi];
+  const mcqEl = document.getElementById('mcq-'+qi);
+  if(mcqEl.dataset.answered) return;
+  mcqEl.dataset.answered = "1";
+
+  const opts = mcqEl.querySelectorAll('.opt');
+  opts.forEach((el,idx)=>{
+    if(idx === q.a) el.classList.add('correct');
+    else if(idx === oi) el.classList.add('wrong');
+  });
+  const fb = document.getElementById('fb-'+qi);
+  if(oi === q.a){
+    fb.textContent = "✅ Correct!";
+    fb.className = "mcq-feedback ok";
+    currentLesson.mcqsAnswered[qi] = true;
+  } else {
+    fb.textContent = "❌ Not quite. Correct answer is highlighted.";
+    fb.className = "mcq-feedback no";
+  }
+
+  if(Object.keys(currentLesson.mcqsAnswered).length === l.mcqs.length){
+    const allRight = l.mcqs.every((_,i)=> currentLesson.mcqsAnswered[i]);
+    if(allRight){
+      state.mcqScores[l.id] = true;
+      saveState();
+      document.getElementById('lessonDoneBtn').disabled = false;
+    } else {
+      document.getElementById('lessonDoneBtn').disabled = true;
+    }
+  }
+}
+
+function completeLesson(){
+  if(!currentLesson) return;
+  const l = getLesson(currentLesson.mid, currentLesson.lid);
+  if(!state.mcqScores[l.id]){
+    alert("Please answer all MCQs correctly first.");
+    return;
+  }
+  state.lessonsDone[l.id] = true;
+  saveState();
+  updateHeader();
+  backToModule();
+}
+
+function backToModule(){
+  if(currentModuleId) openModule(currentModuleId);
+  else go('modules');
+}
+
+/* =========================================================
+   MODULE QUIZ
+   ========================================================= */
+function startModuleQuiz(){
+  const m = COURSE.find(x=>x.id===currentModuleId);
+  let pool = [];
+  m.lessons.forEach(l=> l.mcqs.forEach(q=> pool.push(q)));
+  pool = pool.sort(()=>Math.random()-0.5);
+  const chosen = pool.slice(0, Math.min(10, pool.length));
+  quizState = { mid: m.id, questions: chosen, answers: Array(chosen.length).fill(null), submitted: false };
+
+  const result = document.getElementById('quizResult');
+  result.innerHTML = `
+    <div class="quiz-head">
+      <span class="score-pill">📝 ${chosen.length} questions • pass 70%</span>
+      <span class="score-pill" id="quizProgress">Answered: 0/${chosen.length}</span>
+    </div>
+    <div id="quizBody">
+      ${chosen.map((q,qi)=>`
+        <div class="mcq" id="qmcq-${qi}">
+          <div class="q">${qi+1}. ${q.q}</div>
+          <div class="opts">
+            ${q.opts.map((o,oi)=>`<div class="opt" data-qi="${qi}" data-oi="${oi}" onclick="answerQuiz(${qi},${oi})">${esc(o)}</div>`).join('')}
+          </div>
+        </div>
+      `).join('')}
+    </div>
+    <div style="margin-top:14px;text-align:right">
+      <button class="btn-primary" id="submitQuizBtn" onclick="submitQuiz()" disabled>Submit Quiz</button>
+    </div>
+  `;
+}
+
+function answerQuiz(qi, oi){
+  if(!quizState || quizState.submitted) return;
+  quizState.answers[qi] = oi;
+  const el = document.getElementById('qmcq-'+qi);
+  el.querySelectorAll('.opt').forEach((o,idx)=>{
+    o.style.borderColor = idx===oi ? 'var(--accent)' : '#2a3057';
+    o.style.background = idx===oi ? '#232f5c' : '#151a30';
+  });
+  const answered = quizState.answers.filter(x=>x!==null).length;
+  document.getElementById('quizProgress').textContent = `Answered: ${answered}/${quizState.questions.length}`;
+  document.getElementById('submitQuizBtn').disabled = answered !== quizState.questions.length;
+}
+
+function submitQuiz(){
+  if(!quizState) return;
+  quizState.submitted = true;
+  let correct = 0;
+  quizState.questions.forEach((q,qi)=>{
+    const chosen = quizState.answers[qi];
+    const el = document.getElementById('qmcq-'+qi);
+    el.querySelectorAll('.opt').forEach((o,idx)=>{
+      if(idx === q.a){ o.classList.add('correct'); o.style.background='#15351f'; o.style.borderColor='var(--green)'; }
+      else if(idx === chosen){ o.classList.add('wrong'); o.style.background='#351515'; o.style.borderColor='var(--red)'; }
+    });
+    if(chosen === q.a) correct++;
+  });
+  const pct = Math.round((correct/quizState.questions.length)*100);
+  state.quizScores[quizState.mid] = Math.max(state.quizScores[quizState.mid]||0, pct);
+  saveState();
+  updateHeader();
+
+  const passed = pct >= 70;
+  document.getElementById('quizResult').insertAdjacentHTML('beforeend', `
+    <div class="card" style="margin-top:14px;text-align:center;background:${passed?'#15351f':'#351515'}">
+      <h3>${passed?'✅ Passed!':'❌ Not passed'}</h3>
+      <p style="font-size:22px;font-weight:800;margin:8px 0">${pct}%</p>
+      <p style="color:var(--muted);font-size:14px">${correct} of ${quizState.questions.length} correct • ${passed?'Great job!':'You need 70%. Retake anytime.'}</p>
+      <div style="margin-top:14px">
+        <button class="btn-ghost" onclick="backToModule()">← Back to Module</button>
+        ${passed?'':'<button class="btn-primary" onclick="startModuleQuiz()" style="margin-left:8px">Retake</button>'}
+      </div>
+    </div>
+  `);
+  document.getElementById('submitQuizBtn').disabled = true;
+}
+
+/* =========================================================
+   PROJECTS
+   ========================================================= */
+const PROJECTS = [
+  {no:1, title:"Basic Calculator", desc:"Build a calculator for + - * / and prevent division by zero. Paste your full code."},
+  {no:2, title:"Number Guessing Game", desc:"Random number 1–20 with too low/too high hints and attempt count."},
+  {no:3, title:"Quiz Application", desc:"List of dict questions, score tracker and final score."},
+  {no:4, title:"Student Marks Calculator", desc:"4 subjects, total, average and pass/needs-improvement result."},
+  {no:5, title:"Simple Contact Book", desc:"Add/update, search and view contacts using a dictionary."}
+];
+
+function renderProjects(){
+  updateHeader();
+  const box = document.getElementById('projectList');
+  box.innerHTML = PROJECTS.map(p=>{
+    const saved = state.projects[p.no] || {code:"", status:null};
+    const badge = saved.status === 'pass' ? '<span class="proj-status pass">✅ Passed</span>' :
+                  saved.status === 'pending' ? '<span class="proj-status pending">⏳ Submitted — pending review</span>' : '';
+    return `<div class="project-card">
+      <h3>Project ${p.no}: ${esc(p.title)}</h3>
+      <div class="proj-desc">${esc(p.desc)}</div>
+      <textarea class="proj-area" id="proj-${p.no}" placeholder="# Paste your Python code here...">${esc(saved.code)}</textarea>
+      <div style="margin-top:10px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <button class="btn-primary" onclick="submitProject(${p.no})">Submit Project</button>
+        ${badge}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function submitProject(no){
+  const ta = document.getElementById('proj-'+no);
+  const code = ta.value.trim();
+  if(code.length < 20){
+    alert("Please paste a meaningful amount of code (at least 20 characters).");
+    return;
+  }
+  const checks = {
+    1: [/if\b/, /input\(/, /==|print\(/],
+    2: [/random/, /while/, /if\b/],
+    3: [/questions|quiz/i, /for\b|while\b/, /score|answer/i],
+    4: [/sum\(|average/i, /for\b|len\(/, /print\(/],
+    5: [/contacts|dict|\{\}/i, /while\b|def\b/, /print\(/]
+  };
+  const pats = checks[no] || [/print\(/];
+  const hits = pats.filter(p=>p.test(code)).length;
+  if(hits < Math.min(2, pats.length)){
+    alert("Your code doesn't seem to match the project requirements. Make sure you use the concepts mentioned.");
+    return;
+  }
+  state.projects[no] = {code, status:'pass'};
+  saveState();
+  updateHeader();
+  renderProjects();
+  alert("✅ Project " + no + " submitted and marked complete!");
+}
+
+/* =========================================================
+   CERTIFICATE
+   ========================================================= */
+function renderCertificate(){
+  updateHeader();
+  const p = courseProgress();
+  const locked = document.getElementById('certLocked');
+  const unlocked = document.getElementById('certUnlocked');
+
+  if(!p.eligible){
+    locked.style.display = 'block';
+    unlocked.style.display = 'none';
+    const parts = [];
+    if(!p.allLessons) parts.push(`${p.totalLessons - p.doneLessons} lesson(s) remaining`);
+    if(!p.allQuizzes) parts.push(`${p.totalQuizzes - p.quizzesPassed} quiz(es) to pass (≥70%)`);
+    if(!p.enoughProjects) parts.push(`submit ${2 - p.projectsPassed} more project(s)`);
+    document.getElementById('certLockMsg').textContent =
+      "Complete the following to unlock your batch number: " + parts.join(", ") + ".";
+    return;
+  }
+
+  locked.style.display = 'none';
+  unlocked.style.display = 'block';
+
+  if(!state.batchNumber){
+    state.batchNumber = generateBatchNumber(state.learnerName || "LEARNER");
+    state.batchIssuedAt = Date.now();
+    saveState();
+  }
+  document.getElementById('batchNumberDisplay').textContent = state.batchNumber;
+
+  if(state.learnerName){
+    document.getElementById('cfName').value = state.learnerName;
+    document.getElementById('cfEmail').value = state.learnerEmail || '';
+    document.getElementById('cfPhone').value = state.learnerPhone || '';
+    document.getElementById('cfCity').value = state.learnerCity || '';
+  }
+}
+
+function generateCertPreview(){
+  const name  = document.getElementById('cfName').value.trim();
+  const email = document.getElementById('cfEmail').value.trim();
+  const phone = document.getElementById('cfPhone').value.trim();
+  const city  = document.getElementById('cfCity').value.trim();
+
+  if(!name){ alert("Please enter your full name."); return; }
+  if(!email){ alert("Please enter your email."); return; }
+  if(!/^\S+@\S+\.\S+$/.test(email)){ alert("Please enter a valid email."); return; }
+
+  state.learnerName = name;
+  state.learnerEmail = email;
+  state.learnerPhone = phone;
+  state.learnerCity = city;
+
+  state.batchNumber = generateBatchNumber(name);
+  state.batchIssuedAt = Date.now();
+  saveState();
+
+  document.getElementById('batchNumberDisplay').textContent = state.batchNumber;
+  document.getElementById('certName').textContent = name;
+
+  const dateStr = new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
+  document.getElementById('certSerial').textContent =
+    "Batch: " + state.batchNumber + "  •  Issued: " + dateStr;
+
+  const msg =
+`Hello TecwithAmey,
+
+I have completed the Python Crash Course.
+
+Batch Number : ${state.batchNumber}
+Full Name    : ${name}
+Email        : ${email}
+Phone        : ${phone || "(not provided)"}
+City         : ${city || "(not provided)"}
+Date         : ${dateStr}
+
+Please verify my batch number and issue my official certificate.
+
+Thank you!`;
+
+  document.getElementById('claimMessage').textContent = msg;
+  document.getElementById('certPreviewWrap').style.display = 'block';
+  document.getElementById('certPreviewWrap').scrollIntoView({behavior:'smooth'});
+}
+
+function copyClaimMessage(){
+  const msg = document.getElementById('claimMessage').textContent;
+  navigator.clipboard.writeText(msg).then(()=>{
+    alert("✅ Claim message copied! Now send it to TecwithAmey on WhatsApp / Email.");
+  }).catch(()=>{
+    const ta = document.createElement('textarea');
+    ta.value = msg; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    alert("✅ Claim message copied!");
+  });
+}
+
+/* =========================================================
+   RESET
+   ========================================================= */
+function resetAll(){
+  if(!confirm("This will clear ALL your progress (lessons, quizzes, projects, batch number). Continue?")) return;
+  state = defaultState();
+  saveState();
+  updateHeader();
+  go('home');
+  alert("Progress reset.");
+}
+
+/* =========================================================
+   INIT
+   ========================================================= */
+updateHeader();
+renderHome();
+</script>
+</body>
+</html>

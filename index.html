@@ -209,6 +209,29 @@
       text-decoration: none;
     }
 
+    /* === Register nav item (top of menu) === */
+    .usa-nav-links .nav-register a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--primary-color), #0076a3);
+      padding: 0.35rem 0.9rem;
+      border-radius: 4px;
+      font-weight: 700;
+      box-shadow: 0 2px 10px rgba(0, 94, 162, 0.45);
+      transition: var(--transition-smooth);
+    }
+    .usa-nav-links .nav-register a:hover {
+      color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 94, 162, 0.6);
+      background: linear-gradient(135deg, #003865, var(--accent-cool));
+    }
+    .usa-nav-links .nav-register a::after {
+      display: none;
+    }
+
     /* === Highlight the Verify Intern nav item === */
     .usa-nav-links .nav-verify a {
       color: var(--accent-cool);
@@ -722,6 +745,10 @@
       </div>
       <nav aria-label="Primary navigation">
         <ul class="usa-nav-links">
+          <!-- === Register tab (top of menu) === -->
+          <li class="nav-register">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeXYpfVaZqPm_qVEgOQZTUlp4O7q51lX4x7i-oRDaqJ5JNgWA/viewform" target="_blank" rel="noopener"><i class="fas fa-user-plus"></i> Register</a>
+          </li>
           <!-- === Python Course LIVE link (top of menu) === -->
           <li class="nav-python-live">
             <a href="pythoncourse.html"><i class="fas fa-bolt"></i> Python Course <span class="live-dot">LIVE</span></a>

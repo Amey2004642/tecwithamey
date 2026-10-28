@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TecwithAmey · SQL Learning Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background: #f8f9fc;
+            color: #1e2a3a;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            height: 70px;
+            border-bottom: 1px solid #e2e8f0;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            background: #1e3c72;
+            color: white;
+            font-weight: 700;
+            font-size: 1.6rem;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #0b2b4a;
+            letter-spacing: -0.3px;
+        }
+
+        .logo-text span {
+            color: #2a7faa;
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: inherit;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #2a7faa;
+            color: #1a5a7a;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: #f0f4f8;
+            border-radius: 30px;
+            padding: 0.4rem 1rem;
+            gap: 0.5rem;
+            border: 1px solid #d0dde9;
+        }
+
+        .search-box i {
+            color: #5e7a9a;
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            font-size: 0.95rem;
+            padding: 0.3rem 0;
+            width: 200px;
+        }
+
+        .main-container {
+            display: flex;
+            flex: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 1.5rem;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .sidebar {
+            width: 260px;
+            flex-shrink: 0;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.5rem 0.8rem;
+            margin: 1.8rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e9eef3;
+            position: sticky;
+            top: 90px;
+            max-height: calc(100vh - 110px);
+            overflow-y: auto;
+        }
+
+        .sidebar h3 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #5b6f84;
+            padding: 0 0.8rem 0.8rem 0.8rem;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 0.8rem;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            padding: 0.5rem 0.8rem;
+            font-size: 0.92rem;
+            font-weight: 500;
+            color: #1f3a5e;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.15s;
+            margin-bottom: 2px;
+        }
+
+        .sidebar li i {
+            color: #5f8bb3;
+            width: 18px;
+            font-size: 0.85rem;
+        }
+
+        .sidebar li:hover {
+            background: #eef6fe;
+            color: #0d4c7c;
+        }
+
+        .sidebar li.active {
+            background: #e3f0fa;
+            color: #0a3e62;
+            font-weight: 600;
+            border-left: 3px solid #2a7faa;
+        }
+
+        .content {
+            flex: 1;
+            margin: 1.8rem 0;
+            min-width: 0;
+        }
+
+        .lesson-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 2.2rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.02);
+            border: 1px solid #eef2f6;
+        }
+
+        .lesson-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .lesson-header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #0b2b4a;
+            letter-spacing: -0.3px;
+        }
+
+        .badge {
+            background: #d9eaf7;
+            color: #1a5a7a;
+            font-weight: 500;
+            font-size: 0.8rem;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+        }
+
+        .meta-info {
+            display: flex;
+            gap: 1.5rem;
+            color: #5f7d9c;
+            font-size: 0.9rem;
+            margin-bottom: 1.8rem;
+            border-bottom: 1px solid #e9eef3;
+            padding-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-info i {
+            margin-right: 0.3rem;
+            width: 1rem;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1e3b5c;
+            margin: 1.8rem 0 1rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid #d9e6f2;
+        }
+
+        .code-block {
+            background: #0d1c2b;
+            color: #e4edf5;
+            padding: 1.3rem 1.6rem;
+            border-radius: 14px;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            overflow-x: auto;
+            margin: 1rem 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border-left: 5px solid #2a7faa;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+        }
+
+        .code-inline {
+            background: #eef3f9;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: #1a4d6e;
+        }
+
+        .note-box {
+            background: #f2f9ff;
+            border-left: 4px solid #2a7faa;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            color: #1a4466;
+            font-size: 0.98rem;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            margin: 1.4rem 0;
+            border-radius: 14px;
+            border: 1px solid #e3eaf1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: #eef4fa;
+            color: #143c5c;
+            font-weight: 600;
+            padding: 0.9rem 1rem;
+            text-align: left;
+            border-bottom: 2px solid #cbddee;
+        }
+
+        td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid #e9eef3;
+            color: #1e364b;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: #f9fcff;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #1e3c72;
+            color: white;
+            padding: 0.7rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            background: #0f2a4a;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #1e3c72;
+            border: 1.5px solid #b8cfe0;
+            margin-left: 0.8rem;
+        }
+
+        .btn-outline:hover {
+            background: #e8f0f8;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2.5rem;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1.8rem;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            color: #1e3c72;
+            font-weight: 500;
+            background: #ffffff;
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            border: 1px solid #d0deea;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .pagination a:hover {
+            background: #e8f0f8;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 1.5rem 2rem;
+            color: #6b7f94;
+            font-size: 0.9rem;
+            border-top: 1px solid #e2e8f0;
+            background: white;
+            margin-top: 1.5rem;
+        }
+
+        .module-content {
+            display: none;
+        }
+
+        .module-content.active {
+            display: block;
+        }
+
+        @media (max-width: 900px) {
+            .main-container {
+                flex-direction: column;
+                padding: 0 1rem;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: static;
+                max-height: none;
+                margin: 1rem 0 0;
+            }
+
+            .top-bar {
+                padding: 0 1rem;
+                height: auto;
+                padding: 0.8rem 1rem;
+                gap: 0.8rem;
+            }
+
+            .search-box input {
+                width: 140px;
+            }
+
+            .lesson-card {
+                padding: 1.5rem;
+            }
+
+            .lesson-header h1 {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .nav-links {
+                display: none;
+            }
+
+            .search-box {
+                display: none;
+            }
+
+            .lesson-card {
+                padding: 1rem;
+            }
+
+            .code-block {
+                padding: 1rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="top-bar">
+        <div class="logo-area">
+            <div class="logo-icon">T</div>
+            <div class="logo-text">Tecwith<span>Amey</span></div>
+        </div>
+        <div class="nav-links">
+            <a href="#">Tutorials</a>
+            <a href="#">References</a>
+            <a href="#">Exercises</a>
+            <a href="#">Certificates</a>
+        </div>
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search SQL topics...">
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <h3><i class="fas fa-book-open" style="margin-right: 6px;"></i> SQL Modules</h3>
+            <ul id="moduleList">
+                <li data-module="intro" class="active"><i class="fas fa-database"></i> Intro to SQL</li>
+                <li data-module="syntax"><i class="fas fa-code"></i> Syntax & Queries</li>
+                <li data-module="dml"><i class="fas fa-pen"></i> Insert, Update, Delete</li>
+                <li data-module="aggregate"><i class="fas fa-calculator"></i> Aggregate Functions</li>
+                <li data-module="filtering"><i class="fas fa-filter"></i> Pattern & Filtering</li>
+                <li data-module="joins"><i class="fas fa-link"></i> SQL Joins</li>
+                <li data-module="grouping"><i class="fas fa-layer-group"></i> Grouping & Union</li>
+                <li data-module="subqueries"><i class="fas fa-project-diagram"></i> Subqueries & CASE</li>
+                <li data-module="procedures"><i class="fas fa-cogs"></i> Procedures & NULL</li>
+                <li data-module="databases"><i class="fas fa-server"></i> Databases & Tables</li>
+                <li data-module="constraints"><i class="fas fa-key"></i> Constraints & Indexes</li>
+                <li data-module="security"><i class="fas fa-shield-alt"></i> Security & Views</li>
+                <li data-module="project"><i class="fas fa-graduation-cap"></i> Practical Project</li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <!-- Module 1: Intro -->
+            <div id="intro" class="module-content active">
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <h1>SQL Fundamentals</h1>
+                        <span class="badge"><i class="fas fa-graduation-cap"></i> Beginner to Advanced</span>
+                    </div>
+                    <div class="meta-info">
+                        <span><i class="far fa-clock"></i> 12 modules</span>
+                        <span><i class="fas fa-list-check"></i> 68 lessons</span>
+                        <span><i class="fas fa-flask"></i> 10 practice exercises</span>
+                    </div>
+                    <p style="font-size: 1.05rem; line-height: 1.7; color: #24425f;">
+                        <strong>SQL (Structured Query Language)</strong> is the standard language for communicating with relational databases.
+                        These notes cover everything from basic <span class="code-inline">SELECT</span> statements to
+                        <span class="code-inline">JOINs</span>, constraints, and security — arranged logically for practical learning.
+                    </p>
+
+                    <h2 class="section-title"><i class="fas fa-database" style="margin-right: 10px; color: #2a7faa;"></i> Module 1: Introduction to SQL</h2>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">1. What is SQL?</h3>
+                    <p style="line-height: 1.7;">SQL allows us to create databases, store records, retrieve information, modify data, delete records, filter, sort, summarize, and connect related tables. Example: a college can use SQL to store student details and query students with marks above 80.</p>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">2. What is a database & table?</h3>
+                    <p style="line-height: 1.7;">A database is an organized collection of data. A table stores related information in rows and columns. Below is a sample <span class="code-inline">Students</span> table:</p>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr><th>StudentID</th><th>Name</th><th>Age</th><th>Marks</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>101</td><td>Amit</td><td>17</td><td>85</td></tr>
+                                <tr><td>102</td><td>Priya</td><td>18</td><td>92</td></tr>
+                                <tr><td>103</td><td>Rahul</td><td>17</td><td>76</td></tr>
+                                <tr><td>104</td><td>Neha</td><td>18</td><td>88</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">3. Types of SQL commands</h3>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Category</th><th>Purpose</th><th>Common commands</th></tr></thead>
+                            <tbody>
+                                <tr><td>DDL</td><td>Defines database structures</td><td><span class="code-inline">CREATE</span>, <span class="code-inline">ALTER</span>, <span class="code-inline">DROP</span></td></tr>
+                                <tr><td>DML</td><td>Adds and modifies data</td><td><span class="code-inline">INSERT</span>, <span class="code-inline">UPDATE</span>, <span class="code-inline">DELETE</span></td></tr>
+                                <tr><td>DQL</td><td>Retrieves data</td><td><span class="code-inline">SELECT</span></td></tr>
+                                <tr><td>DCL</td><td>Controls permissions</td><td><span class="code-inline">GRANT</span>, <span class="code-inline">REVOKE</span></td></tr>
+                                <tr><td>TCL</td><td>Manages transactions</td><td><span class="code-inline">COMMIT</span>, <span class="code-inline">ROLLBACK</span>, <span class="code-inline">SAVEPOINT</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="note-box">
+                        <i class="fas fa-lightbulb" style="margin-right: 8px; color: #1a5a7a;"></i>
+                        <strong>Tip:</strong> SQL keywords are case-insensitive, but writing them in uppercase improves readability.
+                    </div>
+
+                    <div class="pagination">
+                        <a href="#" onclick="showModule('syntax'); return false;">Next: Syntax & Queries <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 2: Syntax & Queries -->
+            <div id="syntax" class="module-content">
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <h1>SQL Syntax & Basic Queries</h1>
+                        <span class="badge"><i class="fas fa-code"></i> Core</span>
+                    </div>
+                    <div class="meta-info">
+                        <span><i class="fas fa-list-check"></i> 10 lessons</span>
+                        <span><i class="fas fa-flask"></i> 5 exercises</span>
+                    </div>
+
+                    <h2 class="section-title"><i class="fas fa-code" style="margin-right: 10px; color: #2a7faa;"></i> SELECT, WHERE, ORDER BY</h2>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">SELECT Statement</h3>
+                    <p>Retrieves data from a table:</p>
+                    <div class="code-block">
+SELECT Name, Marks
+FROM Students;
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">WHERE Clause</h3>
+                    <p>Filters records based on a condition:</p>
+                    <div class="code-block">
+SELECT *
+FROM Students
+WHERE Marks > 80;
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">ORDER BY</h3>
+                    <p>Sorts results ascending (ASC) or descending (DESC):</p>
+                    <div class="code-block">
+SELECT Name, Marks
+FROM Students
+ORDER BY Marks DESC;
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">Logical Operators (AND, OR, NOT)</h3>
+                    <div class="code-block">
+SELECT *
+FROM Students
+WHERE Age = 17 AND Marks > 80;
+                    </div>
+
+                    <div class="note-box">
+                        <i class="fas fa-lightbulb" style="margin-right: 8px; color: #1a5a7a;"></i>
+                        Use parentheses to make complex conditions clear.
+                    </div>
+
+                    <div class="pagination">
+                        <a href="#" onclick="showModule('intro'); return false;"><i class="fas fa-arrow-left"></i> Previous</a>
+                        <a href="#" onclick="showModule('dml'); return false;">Next: Insert, Update, Delete <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 3: Insert, Update, Delete -->
+            <div id="dml" class="module-content">
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <h1>Insert, Update & Delete</h1>
+                        <span class="badge"><i class="fas fa-pen"></i> DML</span>
+                    </div>
+                    <div class="meta-info">
+                        <span><i class="fas fa-list-check"></i> 8 lessons</span>
+                        <span><i class="fas fa-flask"></i> 4 exercises</span>
+                    </div>
+
+                    <h2 class="section-title"><i class="fas fa-pen" style="margin-right: 10px; color: #2a7faa;"></i> Data Manipulation</h2>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">INSERT INTO</h3>
+                    <p>Adds new records:</p>
+                    <div class="code-block">
+INSERT INTO Students (StudentID, Name, Age, Marks)
+VALUES (105, 'Karan', 17, 81);
+                    </div>
+                    <p>Insert multiple rows:</p>
+                    <div class="code-block">
+INSERT INTO Students (StudentID, Name, Age, Marks)
+VALUES
+(106, 'Riya', 18, 95),
+(107, 'Arjun', 17, 79);
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">UPDATE</h3>
+                    <p>Modifies existing records:</p>
+                    <div class="code-block">
+UPDATE Students
+SET Marks = 90
+WHERE StudentID = 101;
+                    </div>
+                    <div class="note-box">
+                        <i class="fas fa-exclamation-triangle" style="margin-right: 8px; color: #c44545;"></i>
+                        <strong>Warning:</strong> Always use a WHERE clause. Without it, all rows will be updated.
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">DELETE</h3>
+                    <p>Removes records:</p>
+                    <div class="code-block">
+DELETE FROM Students
+WHERE StudentID = 105;
+                    </div>
+                    <p>Delete all rows (structure remains):</p>
+                    <div class="code-block">
+DELETE FROM Students;
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">NULL Values</h3>
+                    <p>Find records with missing marks:</p>
+                    <div class="code-block">
+SELECT *
+FROM Students
+WHERE Marks IS NULL;
+                    </div>
+                    <div class="note-box">
+                        <i class="fas fa-lightbulb" style="margin-right: 8px; color: #1a5a7a;"></i>
+                        Use <span class="code-inline">IS NULL</span> or <span class="code-inline">IS NOT NULL</span>, never <span class="code-inline">= NULL</span>.
+                    </div>
+
+                    <div class="pagination">
+                        <a href="#" onclick="showModule('syntax'); return false;"><i class="fas fa-arrow-left"></i> Previous</a>
+                        <a href="#" onclick="showModule('aggregate'); return false;">Next: Aggregate Functions <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 4: Aggregate Functions -->
+            <div id="aggregate" class="module-content">
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <h1>Aggregate Functions</h1>
+                        <span class="badge"><i class="fas fa-calculator"></i> Calculations</span>
+                    </div>
+                    <div class="meta-info">
+                        <span><i class="fas fa-list-check"></i> 6 lessons</span>
+                        <span><i class="fas fa-flask"></i> 3 exercises</span>
+                    </div>
+
+                    <h2 class="section-title"><i class="fas fa-calculator" style="margin-right: 10px; color: #2a7faa;"></i> MIN, MAX, COUNT, SUM, AVG</h2>
+                    <p>Aggregate functions compute a single result from multiple rows.</p>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Function</th><th>Purpose</th><th>Example Result</th></tr></thead>
+                            <tbody>
+                                <tr><td><span class="code-inline">MIN()</span></td><td>Lowest value</td><td>76</td></tr>
+                                <tr><td><span class="code-inline">MAX()</span></td><td>Highest value</td><td>92</td></tr>
+                                <tr><td><span class="code-inline">COUNT()</span></td><td>Number of rows</td><td>4</td></tr>
+                                <tr><td><span class="code-inline">SUM()</span></td><td>Total sum</td><td>341</td></tr>
+                                <tr><td><span class="code-inline">AVG()</span></td><td>Average value</td><td>85.25</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">Examples</h3>
+                    <div class="code-block">
+SELECT MIN(Marks) AS LowestMarks,
+       MAX(Marks) AS HighestMarks,
+       AVG(Marks) AS AverageMarks
+FROM Students;
+                    </div>
+
+                    <div class="note-box">
+                        <i class="fas fa-lightbulb" style="margin-right: 8px; color: #1a5a7a;"></i>
+                        <strong>Note:</strong> <span class="code-inline">COUNT(*)</span> counts all rows, while <span class="code-inline">COUNT(column)</span> ignores NULL values.
+                    </div>
+
+                    <div class="pagination">
+                        <a href="#" onclick="showModule('dml'); return false;"><i class="fas fa-arrow-left"></i> Previous</a>
+                        <a href="#" onclick="showModule('filtering'); return false;">Next: Pattern & Filtering <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 5: Pattern & Filtering -->
+            <div id="filtering" class="module-content">
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <h1>Pattern Matching & Advanced Filtering</h1>
+                        <span class="badge"><i class="fas fa-filter"></i> Filtering</span>
+                    </div>
+                    <div class="meta-info">
+                        <span><i class="fas fa-list-check"></i> 6 lessons</span>
+                        <span><i class="fas fa-flask"></i> 3 exercises</span>
+                    </div>
+
+                    <h2 class="section-title"><i class="fas fa-filter" style="margin-right: 10px; color: #2a7faa;"></i> LIKE, IN, BETWEEN</h2>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">LIKE Operator</h3>
+                    <p>Pattern matching with wildcards:</p>
+                    <div class="code-block">
+SELECT *
+FROM Students
+WHERE Name LIKE 'A%';   -- Starts with A
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Pattern</th><th>Meaning</th></tr></thead>
+                            <tbody>
+                                <tr><td><span class="code-inline">'A%'</span></td><td>Starts with A</td></tr>
+                                <tr><td><span class="code-inline">'%a'</span></td><td>Ends with a</td></tr>
+                                <tr><td><span class="code-inline">'%mit%'</span></td><td>Contains "mit"</td></tr>
+                                <tr><td><span class="code-inline">'_m%'</span></td><td>Second character is m</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">IN Operator</h3>
+                    <div class="code-block">
+SELECT *
+FROM Students
+WHERE Age IN (17, 18);
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">BETWEEN Operator</h3>
+                    <div class="code-block">
+SELECT *
+FROM Students
+WHERE Marks BETWEEN 80 AND 90;
+                    </div>
+
+                    <div class="note-box">
+                        <i class="fas fa-lightbulb" style="margin-right: 8px; color: #1a5a7a;"></i>
+                        <strong>Tip:</strong> <span class="code-inline">BETWEEN</span> is inclusive of both boundary values.
+                    </div>
+
+                    <div class="pagination">
+                        <a href="#" onclick="showModule('aggregate'); return false;"><i class="fas fa-arrow-left"></i> Previous</a>
+                        <a href="#" onclick="showModule('joins'); return false;">Next: SQL Joins <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 6: SQL Joins -->
+            <div id="joins" class="module-content">
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <h1>SQL Joins</h1>
+                        <span class="badge"><i class="fas fa-link"></i> Relationships</span>
+                    </div>
+                    <div class="meta-info">
+                        <span><i class="fas fa-list-check"></i> 6 lessons</span>
+                        <span><i class="fas fa-flask"></i> 3 exercises</span>
+                    </div>
+
+                    <h2 class="section-title"><i class="fas fa-link" style="margin-right: 10px; color: #2a7faa;"></i> Combining Tables</h2>
+                    <p>A JOIN combines information from two or more tables using related columns.</p>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th colspan="3">Students</th></tr>
+                                <tr><th>StudentID</th><th>Name</th><th>DeptID</th></tr></thead>
+                            <tbody>
+                                <tr><td>101</td><td>Amit</td><td>1</td></tr>
+                                <tr><td>102</td><td>Priya</td><td>2</td></tr>
+                                <tr><td>103</td><td>Rahul</td><td>1</td></tr>
+                                <tr><td>104</td><td>Neha</td><td>3</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th colspan="2">Departments</th></tr>
+                                <tr><th>DeptID</th><th>DeptName</th></tr></thead>
+                            <tbody>
+                                <tr><td>1</td><td>Commerce</td></tr>
+                                <tr><td>2</td><td>Science</td></tr>
+                                <tr><td>4</td><td>Arts</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">INNER JOIN</h3>
+                    <p>Returns only records with matching values in both tables:</p>
+                    <div class="code-block">
+SELECT s.Name, d.DeptName
+FROM Students AS s
+INNER JOIN Departments AS d
+ON s.DeptID = d.DeptID;
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Name</th><th>DeptName</th></tr></thead>
+                            <tbody>
+                                <tr><td>Amit</td><td>Commerce</td></tr>
+                                <tr><td>Priya</td><td>Science</td></tr>
+                                <tr><td>Rahul</td><td>Commerce</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">LEFT JOIN</h3>
+                    <p>Returns all records from the left table, and matching records from the right table. If no match, right-table columns are NULL:</p>
+                    <div class="code-block">
+SELECT s.Name, d.DeptName
+FROM Students AS s
+LEFT JOIN Departments AS d
+ON s.DeptID = d.DeptID;
+                    </div>
+                    <p>Result includes Neha with a NULL department name.</p>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">RIGHT JOIN</h3>
+                    <p>Returns all records from the right table, and matching records from the left table:</p>
+                    <div class="code-block">
+SELECT s.Name, d.DeptName
+FROM Students AS s
+RIGHT JOIN Departments AS d
+ON s.DeptID = d.DeptID;
+                    </div>
+                    <p>Result includes Arts (DeptID 4) even though no student belongs to it.</p>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">FULL OUTER JOIN</h3>
+                    <p>Returns matching records and unmatched records from both tables:</p>
+                    <div class="code-block">
+SELECT s.Name, d.DeptName
+FROM Students AS s
+FULL OUTER JOIN Departments AS d
+ON s.DeptID = d.DeptID;
+                    </div>
+                    <div class="note-box">
+                        <i class="fas fa-lightbulb" style="margin-right: 8px; color: #1a5a7a;"></i>
+                        <strong>Note:</strong> MySQL does not support <span class="code-inline">FULL OUTER JOIN</span> directly; use a combination of LEFT and RIGHT joins.
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">SELF JOIN</h3>
+                    <p>Joins a table to itself. Useful for hierarchical data like employees and managers:</p>
+                    <div class="code-block">
+SELECT e.EmployeeName AS Employee,
+       m.EmployeeName AS Manager
+FROM Employees AS e
+LEFT JOIN Employees AS m
+ON e.ManagerID = m.EmployeeID;
+                    </div>
+
+                    <div class="pagination">
+                        <a href="#" onclick="showModule('filtering'); return false;"><i class="fas fa-arrow-left"></i> Previous</a>
+                        <a href="#" onclick="showModule('grouping'); return false;">Next: Grouping & Union <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 7: Grouping & Union -->
+            <div id="grouping" class="module-content">
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <h1>Grouping & Union</h1>
+                        <span class="badge"><i class="fas fa-layer-group"></i> Combining</span>
+                    </div>
+                    <div class="meta-info">
+                        <span><i class="fas fa-list-check"></i> 5 lessons</span>
+                        <span><i class="fas fa-flask"></i> 3 exercises</span>
+                    </div>
+
+                    <h2 class="section-title"><i class="fas fa-layer-group" style="margin-right: 10px; color: #2a7faa;"></i> GROUP BY, HAVING, UNION</h2>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">GROUP BY</h3>
+                    <p>Groups records with the same values so aggregate functions can summarize each group:</p>
+                    <div class="code-block">
+SELECT Department, SUM(Amount) AS TotalSales
+FROM Sales
+GROUP BY Department;
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">HAVING</h3>
+                    <p>Filters groups after grouping and aggregation:</p>
+                    <div class="code-block">
+SELECT Department, SUM(Amount) AS TotalSales
+FROM Sales
+GROUP BY Department
+HAVING SUM(Amount) > 50000;
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Clause</th><th>Purpose</th><th>Applied</th></tr></thead>
+                            <tbody>
+                                <tr><td><span class="code-inline">WHERE</span></td><td>Filters individual rows</td><td>Before grouping</td></tr>
+                                <tr><td><span class="code-inline">HAVING</span></td><td>Filters groups</td><td>After grouping</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">UNION & UNION ALL</h3>
+                    <div class="code-block">
+-- UNION removes duplicates
+SELECT Name FROM CurrentStudents
+UNION
+SELECT Name FROM FormerStudents;
+                    </div>
+                    <div class="code-block">
+-- UNION ALL retains duplicates
+SELECT Name FROM CurrentStudents
+UNION ALL
+SELECT Name FROM FormerStudents;
+                    </div>
+                    <div class="note-box">
+                        <i class="fas fa-lightbulb" style="margin-right: 8px; color: #1a5a7a;"></i>
+                        <strong>Rules:</strong> Each query must return the same number of columns with compatible data types.
+                    </div>
+
+                    <div class="pagination">
+                        <a href="#" onclick="showModule('joins'); return false;"><i class="fas fa-arrow-left"></i> Previous</a>
+                        <a href="#" onclick="showModule('subqueries'); return false;">Next: Subqueries & CASE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 8: Subqueries & CASE -->
+            <div id="subqueries" class="module-content">
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <h1>Subqueries & Conditional Expressions</h1>
+                        <span class="badge"><i class="fas fa-project-diagram"></i> Advanced</span>
+                    </div>
+                    <div class="meta-info">
+                        <span><i class="fas fa-list-check"></i> 7 lessons</span>
+                        <span><i class="fas fa-flask"></i> 3 exercises</span>
+                    </div>
+
+                    <h2 class="section-title"><i class="fas fa-project-diagram" style="margin-right: 10px; color: #2a7faa;"></i> EXISTS, ANY, ALL, CASE</h2>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">EXISTS</h3>
+                    <p>Checks whether a subquery returns at least one row:</p>
+                    <div class="code-block">
+SELECT c.CustomerID, c.CustomerName
+FROM Customers AS c
+WHERE EXISTS (
+    SELECT 1
+    FROM Orders AS o
+    WHERE o.CustomerID = c.CustomerID
+);
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">ANY & ALL</h3>
+                    <div class="code-block">
+-- Price greater than at least one book price
+SELECT ProductName, Price
+FROM Products
+WHERE Price > ANY (
+    SELECT Price FROM Products WHERE Category = 'Books'
+);
+
+-- Price greater than every book price
+SELECT ProductName, Price
+FROM Products
+WHERE Price > ALL (
+    SELECT Price FROM Products WHERE Category = 'Books'
+);
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">CASE Statement</h3>
+                    <p>Adds conditional logic to a query:</p>
+                    <div class="code-block">
+SELECT Name, Marks,
+       CASE
+           WHEN Marks >= 90 THEN 'Excellent'
+           WHEN Marks >= 75 THEN 'Good'
+           WHEN Marks >= 50 THEN 'Average'
+           ELSE 'Needs Improvement'
+       END AS Grade
+FROM Students;
+                    </div>
+
+                    <div class="pagination">
+                        <a href="#" onclick="showModule('grouping'); return false;"><i class="fas fa-arrow-left"></i> Previous</a>
+                        <a href="#" onclick="showModule('procedures'); return false;">Next: Procedures & NULL <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 9: Procedures & NULL -->
+            <div id="procedures" class="module-content">
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <h1>Stored Procedures & NULL Handling</h1>
+                        <span class="badge"><i class="fas fa-cogs"></i> Advanced</span>
+                    </div>
+                    <div class="meta-info">
+                        <span><i class="fas fa-list-check"></i> 8 lessons</span>
+                        <span><i class="fas fa-flask"></i> 2 exercises</span>
+                    </div>
+
+                    <h2 class="section-title"><i class="fas fa-cogs" style="margin-right: 10px; color: #2a7faa;"></i> Procedures & NULL Functions</h2>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">SQL NULL Functions</h3>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Function</th><th>Database</th><th>Purpose</th></tr></thead>
+                            <tbody>
+                                <tr><td><span class="code-inline">COALESCE()</span></td><td>Most systems</td><td>Returns first non-NULL value</td></tr>
+                                <tr><td><span class="code-inline">ISNULL()</span></td><td>SQL Server</td><td>Replace NULL with value</td></tr>
+                                <tr><td><span class="code-inline">IFNULL()</span></td><td>MySQL, SQLite</td><td>Replace NULL with value</td></tr>
+                                <tr><td><span class="code-inline">NVL()</span></td><td>Oracle</td><td>Replace NULL with value</td></tr>
+                                <tr><td><span class="code-inline">NULLIF()</span></td><td>Many systems</td><td>Returns NULL if equal</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="code-block">
+-- Portable approach
+SELECT COALESCE(Marks, 0) FROM Students;
+
+-- NULLIF example
+SELECT NULLIF(10, 10);  -- Returns NULL
+SELECT NULLIF(10, 5);   -- Returns 10
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">Stored Procedures</h3>
+                    <p>A named set of SQL statements stored in the database:</p>
+                    <div class="code-block">
+-- SQL Server example
+CREATE PROCEDURE GetAllStudents
+AS
+BEGIN
+    SELECT StudentID, Name, Marks
+    FROM Students;
+END;
+
+EXEC GetAllStudents;
+                    </div>
+                    <div class="note-box">
+                        <i class="fas fa-exclamation-triangle" style="margin-right: 8px; color: #c44545;"></i>
+                        <strong>Note:</strong> Procedure syntax varies significantly between database systems (SQL Server, MySQL, PostgreSQL, Oracle).
+                    </div>
+
+                    <div class="pagination">
+                        <a href="#" onclick="showModule('subqueries'); return false;"><i class="fas fa-arrow-left"></i> Previous</a>
+                        <a href="#" onclick="showModule('databases'); return false;">Next: Databases & Tables <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 10: Databases & Tables -->
+            <div id="databases" class="module-content">
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <h1>Creating & Managing Databases</h1>
+                        <span class="badge"><i class="fas fa-server"></i> DDL</span>
+                    </div>
+                    <div class="meta-info">
+                        <span><i class="fas fa-list-check"></i> 8 lessons</span>
+                        <span><i class="fas fa-flask"></i> 3 exercises</span>
+                    </div>
+
+                    <h2 class="section-title"><i class="fas fa-server" style="margin-right: 10px; color: #2a7faa;"></i> Databases & Tables</h2>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">CREATE DATABASE</h3>
+                    <div class="code-block">
+CREATE DATABASE CollegeDB;
+USE CollegeDB;  -- MySQL
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">CREATE TABLE</h3>
+                    <div class="code-block">
+CREATE TABLE Students (
+    StudentID INT,
+    Name VARCHAR(50),
+    Age INT,
+    Marks DECIMAL(5,2)
+);
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">ALTER TABLE</h3>
+                    <div class="code-block">
+-- Add a column
+ALTER TABLE Students
+ADD Email VARCHAR(100);
+
+-- Drop a column (PostgreSQL / MySQL)
+ALTER TABLE Students
+DROP COLUMN Email;
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">DROP TABLE / DATABASE</h3>
+                    <div class="code-block">
+DROP TABLE Students;
+DROP DATABASE CollegeDB;
+                    </div>
+                    <div class="note-box">
+                        <i class="fas fa-exclamation-triangle" style="margin-right: 8px; color: #c44545;"></i>
+                        <strong>Warning:</strong> <span class="code-inline">DROP</span> is destructive and cannot be undone. Always back up important data first.
+                    </div>
+
+                    <div class="pagination">
+                        <a href="#" onclick="showModule('procedures'); return false;"><i class="fas fa-arrow-left"></i> Previous</a>
+                        <a href="#" onclick="showModule('constraints'); return false;">Next: Constraints & Indexes <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 11: Constraints & Indexes -->
+            <div id="constraints" class="module-content">
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <h1>Constraints & Indexes</h1>
+                        <span class="badge"><i class="fas fa-key"></i> Data Integrity</span>
+                    </div>
+                    <div class="meta-info">
+                        <span><i class="fas fa-list-check"></i> 9 lessons</span>
+                        <span><i class="fas fa-flask"></i> 3 exercises</span>
+                    </div>
+
+                    <h2 class="section-title"><i class="fas fa-key" style="margin-right: 10px; color: #2a7faa;"></i> Data Integrity</h2>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">Common Constraints</h3>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Constraint</th><th>Purpose</th></tr></thead>
+                            <tbody>
+                                <tr><td><span class="code-inline">NOT NULL</span></td><td>Prevents missing values</td></tr>
+                                <tr><td><span class="code-inline">UNIQUE</span></td><td>Prevents duplicate values</td></tr>
+                                <tr><td><span class="code-inline">PRIMARY KEY</span></td><td>Uniquely identifies each row</td></tr>
+                                <tr><td><span class="code-inline">FOREIGN KEY</span></td><td>Enforces relationship with another table</td></tr>
+                                <tr><td><span class="code-inline">CHECK</span></td><td>Enforces a condition on values</td></tr>
+                                <tr><td><span class="code-inline">DEFAULT</span></td><td>Supplies a value when none is provided</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="code-block">
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) UNIQUE,
+    Age INT CHECK (Age >= 0),
+    City VARCHAR(50) DEFAULT 'Pune'
+);
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">FOREIGN KEY Example</h3>
+                    <div class="code-block">
+CREATE TABLE Departments (
+    DeptID INT PRIMARY KEY,
+    DeptName VARCHAR(100)
+);
+
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY,
+    EmployeeName VARCHAR(100),
+    DeptID INT,
+    FOREIGN KEY (DeptID) REFERENCES Departments(DeptID)
+);
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">CREATE INDEX</h3>
+                    <div class="code-block">
+CREATE INDEX idx_student_name
+ON Students(Name);
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Advantages</th><th>Disadvantages</th></tr></thead>
+                            <tbody>
+                                <tr><td>Faster searches</td><td>Extra storage</td></tr>
+                                <tr><td>Better join performance</td><td>Slower inserts/updates/deletes</td></tr>
+                                <tr><td>Can enforce uniqueness</td><td>Must be maintained</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="pagination">
+                        <a href="#" onclick="showModule('databases'); return false;"><i class="fas fa-arrow-left"></i> Previous</a>
+                        <a href="#" onclick="showModule('security'); return false;">Next: Security & Views <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 12: Security & Views -->
+            <div id="security" class="module-content">
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <h1>Security, Views & SQL Injection</h1>
+                        <span class="badge"><i class="fas fa-shield-alt"></i> Security</span>
+                    </div>
+                    <div class="meta-info">
+                        <span><i class="fas fa-list-check"></i> 7 lessons</span>
+                        <span><i class="fas fa-flask"></i> 2 exercises</span>
+                    </div>
+
+                    <h2 class="section-title"><i class="fas fa-shield-alt" style="margin-right: 10px; color: #2a7faa;"></i> Views & Security</h2>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">SQL Views</h3>
+                    <p>A view is a named query that acts like a virtual table:</p>
+                    <div class="code-block">
+CREATE VIEW HighScorers AS
+SELECT StudentID, Name, Marks
+FROM Students
+WHERE Marks >= 85;
+
+-- Query the view
+SELECT * FROM HighScorers;
+
+-- Drop the view
+DROP VIEW HighScorers;
+                    </div>
+                    <div class="note-box">
+                        <i class="fas fa-lightbulb" style="margin-right: 8px; color: #1a5a7a;"></i>
+                        <strong>Note:</strong> A view is not automatically a security boundary. Permissions must be configured correctly.
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">SQL Injection Prevention</h3>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Method</th><th>Description</th></tr></thead>
+                            <tbody>
+                                <tr><td>Parameterized queries</td><td>Primary defense; separates SQL from data</td></tr>
+                                <tr><td>Input validation</td><td>Validate according to expected format</td></tr>
+                                <tr><td>Least privilege</td><td>Give accounts only necessary permissions</td></tr>
+                                <tr><td>Avoid concatenation</td><td>Never build SQL with untrusted input</td></tr>
+                                <tr><td>Keep software updated</td><td>Patches fix known vulnerabilities</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">Parameterized Query Example (Python)</h3>
+                    <div class="code-block">
+cursor.execute(
+    "SELECT * FROM Users WHERE username = %s",
+    (username,)
+)
+                    </div>
+                    <div class="note-box">
+                        <i class="fas fa-exclamation-triangle" style="margin-right: 8px; color: #c44545;"></i>
+                        <strong>Important:</strong> SQL parameters represent values, not table names or column names. Validate those against an allowlist.
+                    </div>
+
+                    <div class="pagination">
+                        <a href="#" onclick="showModule('constraints'); return false;"><i class="fas fa-arrow-left"></i> Previous</a>
+                        <a href="#" onclick="showModule('project'); return false;">Next: Practical Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 13: Practical Project -->
+            <div id="project" class="module-content">
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <h1>Practical SQL Project</h1>
+                        <span class="badge"><i class="fas fa-graduation-cap"></i> Hands-on</span>
+                    </div>
+                    <div class="meta-info">
+                        <span><i class="fas fa-list-check"></i> 5 steps</span>
+                        <span><i class="fas fa-flask"></i> 8 practice queries</span>
+                    </div>
+
+                    <h2 class="section-title"><i class="fas fa-graduation-cap" style="margin-right: 10px; color: #2a7faa;"></i> Build a College Database</h2>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">Step 1: Create the database</h3>
+                    <div class="code-block">
+CREATE DATABASE CollegeDB;
+USE CollegeDB;
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">Step 2: Create the Students table</h3>
+                    <div class="code-block">
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL,
+    Age INT,
+    City VARCHAR(50),
+    Marks DECIMAL(5,2)
+);
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">Step 3: Insert sample records</h3>
+                    <div class="code-block">
+INSERT INTO Students
+    (StudentID, Name, Age, City, Marks)
+VALUES
+    (101, 'Amit', 17, 'Pune', 85),
+    (102, 'Priya', 18, 'Mumbai', 92),
+    (103, 'Rahul', 17, 'Pune', 76),
+    (104, 'Neha', 18, 'Satara', 88),
+    (105, 'Karan', 17, 'Mumbai', 64);
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">Step 4: Practice Queries</h3>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>#</th><th>Task</th><th>SQL</th></tr></thead>
+                            <tbody>
+                                <tr><td>1</td><td>Display all students</td><td><span class="code-inline">SELECT * FROM Students;</span></td></tr>
+                                <tr><td>2</td><td>Display only names</td><td><span class="code-inline">SELECT Name FROM Students;</span></td></tr>
+                                <tr><td>3</td><td>Students with marks below 75</td><td><span class="code-inline">SELECT * FROM Students WHERE Marks &lt; 75;</span></td></tr>
+                                <tr><td>4</td><td>Highest marks</td><td><span class="code-inline">SELECT MAX(Marks) FROM Students;</span></td></tr>
+                                <tr><td>5</td><td>Count students from Mumbai</td><td><span class="code-inline">SELECT COUNT(*) FROM Students WHERE City = 'Mumbai';</span></td></tr>
+                                <tr><td>6</td><td>Display unique cities</td><td><span class="code-inline">SELECT DISTINCT City FROM Students;</span></td></tr>
+                                <tr><td>7</td><td>Names starting with N</td><td><span class="code-inline">SELECT * FROM Students WHERE Name LIKE 'N%';</span></td></tr>
+                                <tr><td>8</td><td>Cities with more than one student</td><td><span class="code-inline">SELECT City, COUNT(*) FROM Students GROUP BY City HAVING COUNT(*) &gt; 1;</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 style="margin: 1.2rem 0 0.5rem; font-weight: 600; color: #1a3e60;">Step 5: Revision — Key Differences</h3>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Concept</th><th>Key Difference</th></tr></thead>
+                            <tbody>
+                                <tr><td><span class="code-inline">WHERE</span> vs <span class="code-inline">HAVING</span></td><td>Filters rows vs filters groups</td></tr>
+                                <tr><td><span class="code-inline">UNION</span> vs <span class="code-inline">UNION ALL</span></td><td>Removes duplicates vs retains them</td></tr>
+                                <tr><td><span class="code-inline">PRIMARY KEY</span> vs <span class="code-inline">UNIQUE</span></td><td>Unique and NOT NULL vs allows NULLs (depending on DB)</td></tr>
+                                <tr><td><span class="code-inline">DELETE</span> vs <span class="code-inline">DROP</span></td><td>Removes rows vs removes table structure</td></tr>
+                                <tr><td><span class="code-inline">INNER JOIN</span> vs <span class="code-inline">LEFT JOIN</span></td><td>Only matches vs all left-table records plus matches</td></tr>
+                                <tr><td><span class="code-inline">COUNT(*)</span> vs <span class="code-inline">COUNT(column)</span></td><td>Counts rows vs counts non-NULL values</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="note-box">
+                        <i class="fas fa-lightbulb" style="margin-right: 8px; color: #1a5a7a;"></i>
+                        <strong>Recommended learning order:</strong> SELECT → WHERE → ORDER BY → INSERT/UPDATE/DELETE → Aggregates → Joins → Subqueries → DDL → Security → Project.
+                    </div>
+
+                    <div class="pagination">
+                        <a href="#" onclick="showModule('security'); return false;"><i class="fas fa-arrow-left"></i> Previous</a>
+                        <a href="#" onclick="showModule('intro'); return false;">Back to Start <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>TecwithAmey — Complete SQL Tutorial Notes · Beginner to Advanced · Concepts, Syntax, Examples & Practice</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">© 2026 TecwithAmey Learning Platform · Designed with <i class="fas fa-heart" style="color: #c44545;"></i> for SQL learners</p>
+    </footer>
+
+    <script>
+        // Function to show a specific module
+        function showModule(moduleId) {
+            // Hide all module contents
+            document.querySelectorAll('.module-content').forEach(function(content) {
+                content.classList.remove('active');
+            });
+            
+            // Show the selected module
+            var target = document.getElementById(moduleId);
+            if (target) {
+                target.classList.add('active');
+            }
+            
+            // Update active state in sidebar
+            document.querySelectorAll('#moduleList li').forEach(function(li) {
+                li.classList.remove('active');
+                if (li.getAttribute('data-module') === moduleId) {
+                    li.classList.add('active');
+                }
+            });
+            
+            // Scroll to top of content area
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add click event listeners to all sidebar items
+        document.querySelectorAll('#moduleList li').forEach(function(item) {
+            item.addEventListener('click', function() {
+                var moduleId = this.getAttribute('data-module');
+                showModule(moduleId);
+            });
+        });
+
+        // Also handle any "Previous" / "Next" links with data-module attribute
+        document.querySelectorAll('[data-module-link]').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                var moduleId = this.getAttribute('data-module-link');
+                showModule(moduleId);
+            });
+        });
+    </script>
+</body>
+</html>

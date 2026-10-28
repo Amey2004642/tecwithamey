@@ -1,0 +1,2784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TecWithAmey · Complete HTML Notes</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'Segoe UI', Roboto, system-ui, sans-serif;
+  background:#f9fbfd; color:#1e2a3a; line-height:1.65;
+  display:flex; flex-direction:column; min-height:100vh;
+}
+/* HEADER */
+.top-bar {
+  background:#0a1e2f; color:#fff; padding:.8rem 2rem;
+  display:flex; flex-wrap:wrap; align-items:center;
+  justify-content:space-between; border-bottom:3px solid #2f8fdb;
+}
+.brand { display:flex; align-items:center; gap:10px; font-size:1.6rem; font-weight:700; }
+.brand i { color:#3ea3f0; font-size:1.9rem; }
+.brand span {
+  background:linear-gradient(135deg,#fff 0%,#b5d9ff 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.brand .highlight { color:#ffc107; background:none; -webkit-background-clip:unset; background-clip:unset; }
+.nav-links { display:flex; gap:1.5rem; font-weight:500; }
+.nav-links a { color:#e3f0ff; text-decoration:none; transition:.2s; padding-bottom:4px; border-bottom:2px solid transparent; cursor:pointer; }
+.nav-links a:hover { color:#fff; border-bottom-color:#ffc107; }
+
+/* LAYOUT */
+.app-container { display:flex; flex:1; max-width:1500px; margin:25px auto 0; width:100%; padding:0 20px 40px; gap:28px; }
+.sidebar {
+  width:280px; flex-shrink:0; background:#fff; border-radius:20px;
+  box-shadow:0 8px 20px rgba(0,0,0,.03); padding:1.5rem 1rem;
+  height:fit-content; position:sticky; top:20px; border:1px solid #e9eef3;
+}
+.sidebar h3 { font-size:1rem; padding-left:10px; margin-bottom:14px; color:#0a1e2f;
+  display:flex; align-items:center; gap:8px; border-left:5px solid #2f8fdb; }
+.sidebar ul { list-style:none; max-height:72vh; overflow-y:auto; }
+.sidebar li { margin-bottom:2px; }
+.sidebar li a {
+  display:block; padding:7px 12px; text-decoration:none; color:#2c3e50;
+  font-size:.84rem; border-radius:8px; transition:.2s; font-weight:500;
+  border-left:3px solid transparent; cursor:pointer;
+}
+.sidebar li a:hover { background:#e6f0fa; border-left-color:#2f8fdb; }
+.sidebar li a.active-topic { background:#d9ebff; color:#004b8f; font-weight:700; border-left-color:#ffc107; }
+
+.main-content {
+  flex:1; background:#fff; border-radius:24px;
+  box-shadow:0 8px 30px rgba(0,0,0,.04); padding:2rem 2.5rem;
+  border:1px solid #e2eaf2; overflow-x:auto;
+}
+.main-content h1 { font-size:2rem; font-weight:700; color:#0a1e2f;
+  border-bottom:4px solid #ffc107; display:inline-block; padding-bottom:6px; margin-bottom:22px; }
+.main-content h2 { font-size:1.4rem; margin:1.6rem 0 .7rem; color:#1e3a5f;
+  font-weight:600; border-left:6px solid #2f8fdb; padding-left:14px; }
+.main-content h3 { font-size:1.15rem; margin:1.1rem 0 .5rem; color:#164466; }
+.main-content p, .main-content li { margin-bottom:.6rem; }
+.main-content ul, .main-content ol { margin-left:1.6rem; margin-bottom:1rem; }
+
+/* CODE BLOCK */
+.code-block { position:relative; margin:1.1rem 0; border-radius:14px; overflow:hidden;
+  border-left:6px solid #ffc107; box-shadow:0 4px 12px rgba(0,0,0,.12); }
+.code-header {
+  background:#1b3247; color:#c7d9ec; padding:6px 12px;
+  display:flex; justify-content:space-between; align-items:center;
+  font-size:.78rem; font-family:monospace;
+}
+.code-actions button {
+  background:#2f8fdb; color:#fff; border:none; border-radius:6px;
+  padding:4px 12px; margin-left:6px; font-size:.78rem; cursor:pointer;
+  font-weight:600; transition:.2s;
+}
+.code-actions button:hover { background:#ffc107; color:#0a1e2f; }
+pre {
+  background:#0f1c2b; color:#d6eaff; padding:1.1rem 1.4rem;
+  overflow-x:auto; font-family:'JetBrains Mono', Consolas, monospace;
+  font-size:.86rem; line-height:1.55; margin:0; white-space:pre;
+}
+pre code { background:transparent; padding:0; color:inherit; font-size:.86rem; }
+
+/* INLINE CODE */
+code { background:#eef4fa; padding:.15rem .4rem; border-radius:6px;
+  font-family:'JetBrains Mono', monospace; font-size:.88em; color:#b12f5b; }
+
+/* TABLE */
+table { width:100%; border-collapse:collapse; margin:1.4rem 0; border-radius:12px;
+  overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.04); }
+th { background:#1a344b; color:#fff; font-weight:600; padding:10px 14px; text-align:left; font-size:.88rem; }
+td { padding:9px 14px; border-bottom:1px solid #e0e9f2; background:#fff; font-size:.88rem; }
+tr:last-child td { border-bottom:none; }
+
+.note-box { background:#fef9e7; border-left:6px solid #ffc107; padding:.9rem 1.3rem;
+  border-radius:12px; margin:1.2rem 0; font-weight:500; }
+.warn-box { background:#fdecea; border-left:6px solid #e74c3c; padding:.9rem 1.3rem;
+  border-radius:12px; margin:1.2rem 0; font-weight:500; }
+
+/* TOPIC SECTIONS */
+.topic { display:none; }
+.topic.active { display:block; }
+
+/* QUIZ */
+.quiz-block { background:#f2f7ff; border-radius:18px; padding:1.5rem 2rem;
+  margin:1.8rem 0; border:1px solid #cfe2ff; }
+.mcq-item { margin-bottom:1rem; padding-left:6px; }
+.mcq-item p { font-weight:600; margin-bottom:4px; font-size:.95rem; }
+.mcq-item label { display:block; margin-left:18px; font-weight:400; font-size:.88rem; }
+.quiz-btn { background:#1a344b; color:#fff; border:none; padding:8px 20px;
+  border-radius:30px; margin-top:10px; cursor:pointer; font-weight:600; }
+.quiz-btn:hover { background:#2f8fdb; }
+.progress-text { font-size:.85rem; color:#555; margin-bottom:10px; font-weight:600; }
+
+/* FOOTER */
+.footer { background:#0a1e2f; color:#9bb7d4; text-align:center; padding:1.3rem;
+  font-size:.88rem; margin-top:20px; border-top:3px solid #2f8fdb; }
+
+/* TOAST */
+.toast {
+  position:fixed; bottom:30px; left:50%; transform:translateX(-50%);
+  background:#0a1e2f; color:#fff; padding:10px 22px; border-radius:30px;
+  opacity:0; transition:.3s; pointer-events:none; z-index:9999;
+  border-left:4px solid #ffc107; font-weight:600; font-size:.9rem;
+}
+.toast.show { opacity:1; bottom:40px; }
+
+@media (max-width:900px) {
+  .app-container { flex-direction:column; padding:0 12px 30px; }
+  .sidebar { width:100%; position:static; }
+  .main-content { padding:1.5rem; }
+  .main-content h1 { font-size:1.6rem; }
+  .brand { font-size:1.3rem; }
+  .nav-links { gap:1rem; flex-wrap:wrap; }
+}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="top-bar">
+  <div class="brand">
+    <i class="fas fa-code"></i>
+    <span>tec<span class="highlight">with</span>amey</span>
+  </div>
+  <div class="nav-links">
+    <a onclick="showTopic('ch1');return false;"><i class="fas fa-home"></i> Home</a>
+    <a onclick="showTopic('ch1');return false;"><i class="fas fa-book-open"></i> Tutorials</a>
+    <a onclick="showTopic('ch27');return false;"><i class="fas fa-laptop-code"></i> Practice</a>
+  </div>
+</header>
+
+<div class="app-container">
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="sidebar">
+    <h3><i class="fas fa-list-ul"></i> 27 Chapters</h3>
+    <ul id="topicList">
+      <li><a data-topic="ch1"  class="active-topic"><i class="fas fa-caret-right"></i> 1. Introduction</a></li>
+      <li><a data-topic="ch2"><i class="fas fa-caret-right"></i> 2. HTML Editors</a></li>
+      <li><a data-topic="ch3"><i class="fas fa-caret-right"></i> 3. Basic Structure</a></li>
+      <li><a data-topic="ch4"><i class="fas fa-caret-right"></i> 4. Elements &amp; Tags</a></li>
+      <li><a data-topic="ch5"><i class="fas fa-caret-right"></i> 5. Headings &amp; Paragraphs</a></li>
+      <li><a data-topic="ch6"><i class="fas fa-caret-right"></i> 6. Styles &amp; Formatting</a></li>
+      <li><a data-topic="ch7"><i class="fas fa-caret-right"></i> 7. Colours</a></li>
+      <li><a data-topic="ch8"><i class="fas fa-caret-right"></i> 8. Links</a></li>
+      <li><a data-topic="ch9"><i class="fas fa-caret-right"></i> 9. Images</a></li>
+      <li><a data-topic="ch10"><i class="fas fa-caret-right"></i> 10. Tables</a></li>
+      <li><a data-topic="ch11"><i class="fas fa-caret-right"></i> 11. Lists</a></li>
+      <li><a data-topic="ch12"><i class="fas fa-caret-right"></i> 12. Block &amp; Inline</a></li>
+      <li><a data-topic="ch13"><i class="fas fa-caret-right"></i> 13. Div &amp; Layout</a></li>
+      <li><a data-topic="ch14"><i class="fas fa-caret-right"></i> 14. Classes &amp; IDs</a></li>
+      <li><a data-topic="ch15"><i class="fas fa-caret-right"></i> 15. Buttons</a></li>
+      <li><a data-topic="ch16"><i class="fas fa-caret-right"></i> 16. Iframes</a></li>
+      <li><a data-topic="ch17"><i class="fas fa-caret-right"></i> 17. JavaScript</a></li>
+      <li><a data-topic="ch18"><i class="fas fa-caret-right"></i> 18. File Paths</a></li>
+      <li><a data-topic="ch19"><i class="fas fa-caret-right"></i> 19. Head &amp; Meta</a></li>
+      <li><a data-topic="ch20"><i class="fas fa-caret-right"></i> 20. Responsive</a></li>
+      <li><a data-topic="ch21"><i class="fas fa-caret-right"></i> 21. Code Elements</a></li>
+      <li><a data-topic="ch22"><i class="fas fa-caret-right"></i> 22. Semantic HTML</a></li>
+      <li><a data-topic="ch23"><i class="fas fa-caret-right"></i> 23. Entities &amp; Symbols</a></li>
+      <li><a data-topic="ch24"><i class="fas fa-caret-right"></i> 24. Emojis</a></li>
+      <li><a data-topic="ch25"><i class="fas fa-caret-right"></i> 25. HTML vs CSS vs JS</a></li>
+      <li><a data-topic="ch26"><i class="fas fa-caret-right"></i> 26. Project: Profile</a></li>
+      <li><a data-topic="ch27"><i class="fas fa-caret-right"></i> 27. MCQs &amp; Practice</a></li>
+    </ul>
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="main-content" id="mainContent">
+
+    <!-- ========== CH 1 ========== -->
+    <section id="ch1" class="topic active">
+      <h1>Chapter 1: Introduction to HTML</h1>
+      <h2>1.1 What is HTML?</h2>
+      <p>HTML stands for <strong>HyperText Markup Language</strong>. It is the standard markup language used to create and structure web pages. HTML tells a web browser how the content of a webpage is organized — headings, paragraphs, images, links, lists and tables.</p>
+      <p>For example, when you visit a school website, HTML provides the structure for the school name, logo, admission information, notices and contact details.</p>
+      <h2>1.2 Meaning of HTML</h2>
+      <ul>
+        <li><strong>HyperText:</strong> Text that connects to other documents or web pages through hyperlinks.</li>
+        <li><strong>Markup:</strong> Special tags used to identify and organize different types of content.</li>
+        <li><strong>Language:</strong> A system of rules and instructions used to create documents.</li>
+      </ul>
+      <h2>1.3 Why is HTML used?</h2>
+      <ol>
+        <li>Creating websites and web pages.</li>
+        <li>Displaying text, headings and paragraphs.</li>
+        <li>Adding images, audio and video.</li>
+        <li>Creating hyperlinks between web pages.</li>
+        <li>Organizing information into tables and lists.</li>
+        <li>Creating forms for collecting user information.</li>
+        <li>Providing structure for CSS styling and JavaScript functionality.</li>
+      </ol>
+      <h2>1.4 How does HTML work?</h2>
+      <p>HTML Code → Structure and content → Web Browser reads and renders → Web Page displayed. Browsers such as Chrome, Firefox or Edge read HTML and render the page. Users see the webpage, not the HTML source.</p>
+      <h2>1.5 Advantages of HTML</h2>
+      <ul>
+        <li>Easy to learn and use.</li>
+        <li>Supported by modern web browsers.</li>
+        <li>Works on different operating systems.</li>
+        <li>Can be combined with CSS and JavaScript.</li>
+        <li>Supports hyperlinks and multimedia.</li>
+        <li>No expensive software needed to get started.</li>
+      </ul>
+      <h2>1.6 Limitations of HTML</h2>
+      <ul>
+        <li>HTML alone does not provide advanced visual styling.</li>
+        <li>Cannot perform complex programming tasks by itself.</li>
+        <li>Does not independently store information in a database.</li>
+        <li>Interactive features often require JavaScript.</li>
+        <li>Modern responsive designs generally require CSS.</li>
+      </ul>
+      <h2>1.7 Example: First HTML webpage</h2>
+      <div class="code-block">
+        <div class="code-header"><span>first.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My First Website&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome to HTML&lt;/h1&gt;
+    &lt;p&gt;I am learning web development.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </div>
+      <p><strong>Output:</strong> A webpage displaying the heading “Welcome to HTML” and the paragraph “I am learning web development.”</p>
+    </section>
+
+    <!-- ========== CH 2 ========== -->
+    <section id="ch2" class="topic">
+      <h1>Chapter 2: HTML Editors</h1>
+      <h2>2.1 What is an HTML editor?</h2>
+      <p>An HTML editor is a software application used to write, edit and manage HTML code. HTML files are usually saved with the <code>.html</code> or <code>.htm</code> extension.</p>
+      <h2>2.2 Types of HTML editors</h2>
+      <h3>1. Notepad</h3>
+      <p>A simple text editor available on Windows. Students can use it to write HTML code manually and save it with the <code>.html</code> extension.</p>
+      <h3>2. Visual Studio Code (VS Code)</h3>
+      <p>A popular code editor offering syntax highlighting, code completion, extensions and debugging tools.</p>
+      <h3>3. Notepad++</h3>
+      <p>A lightweight source-code editor with syntax highlighting and useful editing features. Other options include Sublime Text and online editors such as the W3Schools Tryit Editor.</p>
+      <h2>2.3 Steps to create an HTML file using Notepad</h2>
+      <ol>
+        <li>Open Notepad.</li>
+        <li>Type the HTML code.</li>
+        <li>Click File → Save As.</li>
+        <li>Enter the filename <code>index.html</code>.</li>
+        <li>Select <em>All Files</em> as the file type, if required.</li>
+        <li>Save the file in an easily accessible folder.</li>
+        <li>Double-click the saved file or open it in a web browser.</li>
+        <li>Edit the code in Notepad and refresh the browser to view changes.</li>
+      </ol>
+      <div class="warn-box"><i class="fas fa-exclamation-triangle"></i> <strong>Important:</strong> Ensure the file is saved as <code>index.html</code>, not <code>index.html.txt</code>.</div>
+      <h2>2.4 HTML editor versus web browser</h2>
+      <table>
+        <tr><th>HTML editor</th><th>Web browser</th></tr>
+        <tr><td>Used to write and edit code.</td><td>Used to view the rendered webpage.</td></tr>
+        <tr><td>Examples: Notepad, VS Code.</td><td>Examples: Chrome, Firefox, Edge.</td></tr>
+        <tr><td>Saves HTML files.</td><td>Opens and displays HTML files.</td></tr>
+      </table>
+    </section>
+
+    <!-- ========== CH 3 ========== -->
+    <section id="ch3" class="topic">
+      <h1>Chapter 3: Basic Structure of HTML</h1>
+      <h2>3.1 Standard HTML document structure</h2>
+      <div class="code-block">
+        <div class="code-header"><span>structure.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport"
+          content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;My Webpage&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;My First Webpage&lt;/h1&gt;
+    &lt;p&gt;This is my first HTML document.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </div>
+      <h2>3.2 Explanation of the tags</h2>
+      <table>
+        <tr><th>Tag or declaration</th><th>Explanation</th></tr>
+        <tr><td><code>&lt;!DOCTYPE html&gt;</code></td><td>Declares an HTML5 document.</td></tr>
+        <tr><td><code>&lt;html&gt;</code></td><td>Root element containing the entire document.</td></tr>
+        <tr><td><code>lang="en"</code></td><td>Identifies English as the main language.</td></tr>
+        <tr><td><code>&lt;head&gt;</code></td><td>Contains metadata, title and resource links.</td></tr>
+        <tr><td><code>&lt;meta charset="UTF-8"&gt;</code></td><td>Specifies character encoding.</td></tr>
+        <tr><td><code>&lt;meta name="viewport"&gt;</code></td><td>Helps the page adapt to mobile screens.</td></tr>
+        <tr><td><code>&lt;title&gt;</code></td><td>Sets the browser tab title.</td></tr>
+        <tr><td><code>&lt;body&gt;</code></td><td>Main visible content.</td></tr>
+        <tr><td><code>&lt;h1&gt;</code></td><td>Top-level heading.</td></tr>
+        <tr><td><code>&lt;p&gt;</code></td><td>Paragraph.</td></tr>
+      </table>
+      <h2>3.3 Important points</h2>
+      <ul>
+        <li>The <code>&lt;!DOCTYPE html&gt;</code> declaration is not an ordinary HTML element.</li>
+        <li>Most HTML elements have opening and closing tags.</li>
+        <li>Elements should be nested correctly.</li>
+        <li>The page title belongs inside <code>&lt;head&gt;</code>.</li>
+        <li>Visible page content generally belongs inside <code>&lt;body&gt;</code>.</li>
+      </ul>
+      <h3>Correct nesting</h3>
+      <div class="code-block">
+        <div class="code-header"><span>correct.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;p&gt;This is &lt;strong&gt;important&lt;/strong&gt; information.&lt;/p&gt;</code></pre>
+      </div>
+      <h3>Incorrect nesting</h3>
+      <div class="code-block">
+        <div class="code-header"><span>incorrect.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;p&gt;This is &lt;strong&gt;important&lt;/p&gt;&lt;/strong&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- ========== CH 4 ========== -->
+    <section id="ch4" class="topic">
+      <h1>Chapter 4: HTML Elements and Tags</h1>
+      <h2>4.1 What is an HTML tag?</h2>
+      <p>An HTML tag is a markup instruction written within angle brackets. Examples: <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;a&gt;</code>.</p>
+      <h2>4.2 What is an HTML element?</h2>
+      <p>An element usually consists of an opening tag, content and a closing tag.</p>
+      <div class="code-block">
+        <div class="code-header"><span>element.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;p&gt;Welcome to our school.&lt;/p&gt;</code></pre>
+      </div>
+      <ul>
+        <li>Opening tag: <code>&lt;p&gt;</code></li>
+        <li>Content: <code>Welcome to our school.</code></li>
+        <li>Closing tag: <code>&lt;/p&gt;</code></li>
+      </ul>
+      <h2>4.3 Types of HTML elements</h2>
+      <h3>A. Elements with opening and closing tags</h3>
+      <div class="code-block">
+        <div class="code-header"><span>normal-elements.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;h1&gt;My School&lt;/h1&gt;
+&lt;p&gt;Education is important.&lt;/p&gt;</code></pre>
+      </div>
+      <h3>B. Void elements (no closing tag)</h3>
+      <div class="code-block">
+        <div class="code-header"><span>void.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;br&gt;
+&lt;hr&gt;
+&lt;img src="https://picsum.photos/200" alt="School"&gt;
+&lt;input type="text"&gt;</code></pre>
+      </div>
+      <h2>4.4 What are HTML attributes?</h2>
+      <p>Attributes provide additional information about an element and are written inside the opening tag.</p>
+      <div class="code-block">
+        <div class="code-header"><span>attributes.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;a href="https://www.google.com"
+   title="Open Google"&gt;
+    Visit Google
+&lt;/a&gt;</code></pre>
+      </div>
+      <h2>4.5 Common HTML attributes</h2>
+      <table>
+        <tr><th>Attribute</th><th>Purpose</th></tr>
+        <tr><td><code>id</code></td><td>Unique identifier for an element.</td></tr>
+        <tr><td><code>class</code></td><td>Groups elements for styling or scripting.</td></tr>
+        <tr><td><code>style</code></td><td>Applies inline CSS.</td></tr>
+        <tr><td><code>title</code></td><td>Additional advisory information.</td></tr>
+        <tr><td><code>href</code></td><td>Link destination.</td></tr>
+        <tr><td><code>src</code></td><td>Resource location (images).</td></tr>
+        <tr><td><code>alt</code></td><td>Alternative text for an image.</td></tr>
+        <tr><td><code>width</code>, <code>height</code></td><td>Dimensions.</td></tr>
+      </table>
+      <h2>4.6 Difference between tags, elements and attributes</h2>
+      <div class="code-block">
+        <div class="code-header"><span>compare.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;img src="https://picsum.photos/200" alt="Red flower" width="200"&gt;</code></pre>
+      </div>
+      <ul>
+        <li><strong>Tag:</strong> <code>&lt;img&gt;</code></li>
+        <li><strong>Attributes:</strong> <code>src</code>, <code>alt</code>, <code>width</code></li>
+        <li><strong>Values:</strong> <code>"flower.jpg"</code>, <code>"Red flower"</code>, <code>"200"</code></li>
+        <li><strong>Element:</strong> the complete image element.</li>
+      </ul>
+    </section>
+
+    <!-- ========== CH 5 ========== -->
+    <section id="ch5" class="topic">
+      <h1>Chapter 5: HTML Headings and Paragraphs</h1>
+      <h2>5.1 HTML headings</h2>
+      <div class="code-block">
+        <div class="code-header"><span>headings.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;h1&gt;Main Heading&lt;/h1&gt;
+&lt;h2&gt;Subheading&lt;/h2&gt;
+&lt;h3&gt;Section Heading&lt;/h3&gt;
+&lt;h4&gt;Heading Level Four&lt;/h4&gt;
+&lt;h5&gt;Heading Level Five&lt;/h5&gt;
+&lt;h6&gt;Heading Level Six&lt;/h6&gt;</code></pre>
+      </div>
+      <p>Headings have default browser styling but can be changed using CSS.</p>
+      <h2>5.2 HTML paragraphs</h2>
+      <div class="code-block">
+        <div class="code-header"><span>paragraphs.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;p&gt;HTML is used to create web pages.&lt;/p&gt;
+&lt;p&gt;CSS is used to style web pages.&lt;/p&gt;</code></pre>
+      </div>
+      <h2>5.3 HTML line breaks</h2>
+      <div class="code-block">
+        <div class="code-header"><span>br.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;p&gt;
+    My name is Amey.&lt;br&gt;
+    I am learning HTML.&lt;br&gt;
+    I want to create websites.
+&lt;/p&gt;</code></pre>
+      </div>
+      <h2>5.4 HTML horizontal rules</h2>
+      <div class="code-block">
+        <div class="code-header"><span>hr.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;This section introduces HTML.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;HTML is useful for building websites.&lt;/p&gt;</code></pre>
+      </div>
+      <h2>5.5 Complete practical example</h2>
+      <div class="code-block">
+        <div class="code-header"><span>school.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My School&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;My School&lt;/h1&gt;
+    &lt;p&gt;My school provides quality education.&lt;/p&gt;
+
+    &lt;h2&gt;Our Facilities&lt;/h2&gt;
+    &lt;p&gt;We have a library, computer lab and playground.&lt;/p&gt;
+
+    &lt;hr&gt;
+
+    &lt;h2&gt;Contact&lt;/h2&gt;
+    &lt;p&gt;Email: school@example.com&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- ========== CH 6 ========== -->
+    <section id="ch6" class="topic">
+      <h1>Chapter 6: HTML Styles and Formatting</h1>
+      <p>HTML provides elements for indicating meaning or importance of text. CSS controls most visual formatting.</p>
+      <h2>6.1 Text formatting tags</h2>
+      <table>
+        <tr><th>Tag</th><th>Purpose</th><th>Example</th></tr>
+        <tr><td><code>&lt;b&gt;</code></td><td>Bold styling</td><td><code>&lt;b&gt;Welcome&lt;/b&gt;</code></td></tr>
+        <tr><td><code>&lt;strong&gt;</code></td><td>Important text</td><td><code>&lt;strong&gt;Warning&lt;/strong&gt;</code></td></tr>
+        <tr><td><code>&lt;i&gt;</code></td><td>Alternate voice / italic</td><td><code>&lt;i&gt;Scientific name&lt;/i&gt;</code></td></tr>
+        <tr><td><code>&lt;em&gt;</code></td><td>Emphasis</td><td><code>&lt;em&gt;Very important&lt;/em&gt;</code></td></tr>
+        <tr><td><code>&lt;u&gt;</code></td><td>Underline</td><td><code>&lt;u&gt;Underlined&lt;/u&gt;</code></td></tr>
+        <tr><td><code>&lt;mark&gt;</code></td><td>Highlight</td><td><code>&lt;mark&gt;Important&lt;/mark&gt;</code></td></tr>
+        <tr><td><code>&lt;small&gt;</code></td><td>Small print</td><td><code>&lt;small&gt;Terms apply&lt;/small&gt;</code></td></tr>
+        <tr><td><code>&lt;del&gt;</code></td><td>Deleted text</td><td><code>&lt;del&gt;₹500&lt;/del&gt;</code></td></tr>
+        <tr><td><code>&lt;ins&gt;</code></td><td>Inserted text</td><td><code>&lt;ins&gt;₹400&lt;/ins&gt;</code></td></tr>
+        <tr><td><code>&lt;sub&gt;</code></td><td>Subscript</td><td><code>H&lt;sub&gt;2&lt;/sub&gt;O</code></td></tr>
+        <tr><td><code>&lt;sup&gt;</code></td><td>Superscript</td><td><code>x&lt;sup&gt;2&lt;/sup&gt;</code></td></tr>
+      </table>
+      <h2>6.2 Example of text formatting</h2>
+      <div class="code-block">
+        <div class="code-header"><span>formatting.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;h2&gt;Text Formatting Examples&lt;/h2&gt;
+
+&lt;p&gt;&lt;b&gt;Bold text&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Important information&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;i&gt;Italic text&lt;/i&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Emphasized text&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;u&gt;Underlined text&lt;/u&gt;&lt;/p&gt;
+&lt;p&gt;&lt;mark&gt;Highlighted text&lt;/mark&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;Old price: ₹500&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;&lt;ins&gt;New price: ₹400&lt;/ins&gt;&lt;/p&gt;
+&lt;p&gt;Water formula: H&lt;sub&gt;2&lt;/sub&gt;O&lt;/p&gt;
+&lt;p&gt;Square: 5&lt;sup&gt;2&lt;/sup&gt; = 25&lt;/p&gt;</code></pre>
+      </div>
+      <h2>6.3 HTML styles using CSS</h2>
+      <p>Syntax: <code>&lt;tagname style="property: value;"&gt;Content&lt;/tagname&gt;</code></p>
+      <div class="code-block">
+        <div class="code-header"><span>styles.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;h1 style="color: blue;"&gt;My Website&lt;/h1&gt;
+
+&lt;p style="font-size: 20px;"&gt;
+    Welcome to my webpage.
+&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;
+    This paragraph is centered.
+&lt;/p&gt;</code></pre>
+      </div>
+      <h2>6.4 Common CSS properties</h2>
+      <table>
+        <tr><th>Property</th><th>Example</th><th>Purpose</th></tr>
+        <tr><td><code>color</code></td><td><code>color: red;</code></td><td>Text colour</td></tr>
+        <tr><td><code>background-color</code></td><td><code>background-color: yellow;</code></td><td>Background</td></tr>
+        <tr><td><code>font-size</code></td><td><code>font-size: 18px;</code></td><td>Text size</td></tr>
+        <tr><td><code>font-family</code></td><td><code>font-family: Arial;</code></td><td>Font family</td></tr>
+        <tr><td><code>text-align</code></td><td><code>text-align: center;</code></td><td>Alignment</td></tr>
+        <tr><td><code>border</code></td><td><code>border: 1px solid black;</code></td><td>Border</td></tr>
+        <tr><td><code>padding</code></td><td><code>padding: 10px;</code></td><td>Inside space</td></tr>
+        <tr><td><code>margin</code></td><td><code>margin: 20px;</code></td><td>Outside space</td></tr>
+      </table>
+      <h2>6.5 Internal CSS</h2>
+      <div class="code-block">
+        <div class="code-header"><span>internal-css.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;CSS Example&lt;/title&gt;
+
+    &lt;style&gt;
+        body {
+            background-color: lightyellow;
+        }
+
+        h1 {
+            color: navy;
+            text-align: center;
+        }
+
+        p {
+            font-size: 18px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome&lt;/h1&gt;
+    &lt;p&gt;This webpage uses internal CSS.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </div>
+      <h2>6.6 Difference between HTML formatting and CSS</h2>
+      <p>HTML elements such as <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code> provide semantic meaning. CSS controls presentation — colours, fonts, alignment and spacing.</p>
+    </section>
+
+    <!-- ========== CH 7 ========== -->
+    <section id="ch7" class="topic">
+      <h1>Chapter 7: HTML Colours</h1>
+      <h2>7.1 Introduction</h2>
+      <p>Colours make a webpage more attractive. In HTML, colours are applied using CSS to text, backgrounds, borders, buttons, tables and other elements.</p>
+      <h2>7.2 Colour names</h2>
+      <div class="code-block">
+        <div class="code-header"><span>colornames.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;h1 style="color: red;"&gt;Red Heading&lt;/h1&gt;
+&lt;p style="color: blue;"&gt;Blue Paragraph&lt;/p&gt;
+&lt;p style="background-color: yellow;"&gt;
+    Yellow Background
+&lt;/p&gt;</code></pre>
+      </div>
+      <h2>7.3 Hexadecimal colour values</h2>
+      <p>Form: <code>#RRGGBB</code>. Examples:</p>
+      <table>
+        <tr><th>Colour</th><th>Hex code</th></tr>
+        <tr><td>Black</td><td><code>#000000</code></td></tr>
+        <tr><td>White</td><td><code>#FFFFFF</code></td></tr>
+        <tr><td>Red</td><td><code>#FF0000</code></td></tr>
+        <tr><td>Green</td><td><code>#008000</code></td></tr>
+        <tr><td>Blue</td><td><code>#0000FF</code></td></tr>
+        <tr><td>Yellow</td><td><code>#FFFF00</code></td></tr>
+        <tr><td>Purple</td><td><code>#800080</code></td></tr>
+      </table>
+      <div class="code-block">
+        <div class="code-header"><span>hex.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;h1 style="color: #0000FF;"&gt;Blue Heading&lt;/h1&gt;
+&lt;p style="background-color: #FFFF00;"&gt;Yellow Background&lt;/p&gt;</code></pre>
+      </div>
+      <h2>7.4 RGB colours</h2>
+      <div class="code-block">
+        <div class="code-header"><span>rgb.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;p style="color: rgb(255, 0, 0);"&gt;Red Text&lt;/p&gt;
+&lt;p style="color: rgb(0, 0, 255);"&gt;Blue Text&lt;/p&gt;</code></pre>
+      </div>
+      <h2>7.5 RGBA colours</h2>
+      <div class="code-block">
+        <div class="code-header"><span>rgba.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;div style="background-color: rgba(255, 0, 0, 0.5); padding: 10px;"&gt;
+    Partially transparent red background
+&lt;/div&gt;</code></pre>
+      </div>
+      <h2>7.6 HSL colours</h2>
+      <div class="code-block">
+        <div class="code-header"><span>hsl.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;p style="color: hsl(120, 100%, 25%);"&gt;Dark Green Text&lt;/p&gt;</code></pre>
+      </div>
+      <h2>7.7 Practical exercise</h2>
+      <p>Create a webpage containing a red heading, a blue paragraph, a yellow background section and a green border around a text box.</p>
+    </section>
+
+    <!-- ========== CH 8 ========== -->
+    <section id="ch8" class="topic">
+      <h1>Chapter 8: HTML Links</h1>
+      <h2>8.1 What is a hyperlink?</h2>
+      <p>A hyperlink connects one webpage or resource to another. The <code>&lt;a&gt;</code> element creates hyperlinks.</p>
+      <h2>8.2 Syntax</h2>
+      <div class="code-block">
+        <div class="code-header"><span>syntax.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;a href="URL"&gt;Link Text&lt;/a&gt;</code></pre>
+      </div>
+      <h2>8.3 External website link</h2>
+      <div class="code-block">
+        <div class="code-header"><span>external.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;a href="https://www.google.com"&gt;Visit Google&lt;/a&gt;</code></pre>
+      </div>
+      <h2>8.4 Link to another local webpage</h2>
+      <div class="code-block">
+        <div class="code-header"><span>local.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;a href="about.html"&gt;About Us&lt;/a&gt;</code></pre>
+      </div>
+      <h2>8.5 Open a link in a new tab</h2>
+      <div class="code-block">
+        <div class="code-header"><span>newtab.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;a href="https://www.wikipedia.org"
+   target="_blank"
+   rel="noopener"&gt;
+    Visit Wikipedia
+&lt;/a&gt;</code></pre>
+      </div>
+      <h2>8.6 Email link</h2>
+      <div class="code-block">
+        <div class="code-header"><span>email.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;a href="mailto:tecwithamey@gmail.com"&gt;
+    Contact Us
+&lt;/a&gt;</code></pre>
+      </div>
+      <h2>8.7 Link to a section on the same page</h2>
+      <div class="code-block">
+        <div class="code-header"><span>section.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;a href="#contact"&gt;Go to Contact&lt;/a&gt;
+
+&lt;h2 id="contact"&gt;Contact Us&lt;/h2&gt;
+&lt;p&gt;Contact information appears here.&lt;/p&gt;</code></pre>
+      </div>
+      <h2>8.8 Image as a link</h2>
+      <div class="code-block">
+        <div class="code-header"><span>image-link.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;a href="https://www.example.com"&gt;
+    &lt;img src="https://picsum.photos/150"
+         alt="Visit Example Website" width="150"&gt;
+&lt;/a&gt;</code></pre>
+      </div>
+      <h2>8.9 Important link attributes</h2>
+      <ul>
+        <li><code>href</code> — destination.</li>
+        <li><code>target</code> — where the linked content opens.</li>
+        <li><code>title</code> — advisory info.</li>
+        <li><code>rel</code> — relationship with the linked resource.</li>
+      </ul>
+      <p><strong>Practical task:</strong> Create a webpage with links to three educational websites, an email link and a link to a section at the bottom of the page.</p>
+    </section>
+
+    <!-- ========== CH 9 ========== -->
+    <section id="ch9" class="topic">
+      <h1>Chapter 9: HTML Images</h1>
+      <h2>9.1 What is an image in HTML?</h2>
+      <p>The <code>&lt;img&gt;</code> element displays images. It is a void element (no closing tag).</p>
+      <h2>9.2 Basic syntax</h2>
+      <div class="code-block">
+        <div class="code-header"><span>basic-img.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;img src="flower.jpg" alt="A red flower"&gt;</code></pre>
+      </div>
+      <ul>
+        <li><code>src</code> — image file or URL.</li>
+        <li><code>alt</code> — alternative text (also supports accessibility).</li>
+      </ul>
+      <h2>9.3 Setting image width and height</h2>
+      <div class="code-block">
+        <div class="code-header"><span>width-height.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;img src="https://picsum.photos/400/250"
+     alt="School building"
+     width="400"
+     height="250"&gt;</code></pre>
+      </div>
+      <h2>9.4 Using CSS to resize images</h2>
+      <div class="code-block">
+        <div class="code-header"><span>resize.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;img src="https://picsum.photos/300"
+     alt="Flower"
+     style="width: 300px; height: auto;"&gt;
+
+&lt;img src="https://picsum.photos/600/300"
+     alt="School"
+     style="max-width: 100%; height: auto;"&gt;</code></pre>
+      </div>
+      <h2>9.5 Image file formats</h2>
+      <table>
+        <tr><th>Format</th><th>Common use</th></tr>
+        <tr><td>JPEG/JPG</td><td>Photographs and complex images.</td></tr>
+        <tr><td>PNG</td><td>Graphics requiring transparency.</td></tr>
+        <tr><td>GIF</td><td>Simple animations.</td></tr>
+        <tr><td>SVG</td><td>Scalable logos and icons.</td></tr>
+        <tr><td>WebP</td><td>Efficient web compression.</td></tr>
+        <tr><td>AVIF</td><td>Modern efficient compression.</td></tr>
+      </table>
+      <h2>9.6 Using an image from a folder</h2>
+      <p>Folder structure: <code>MyWebsite/index.html</code> + <code>MyWebsite/images/school.jpg</code></p>
+      <div class="code-block">
+        <div class="code-header"><span>folder-img.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;img src="images/school.jpg" alt="School building"&gt;</code></pre>
+      </div>
+      <h2>9.7 Common image mistakes</h2>
+      <ul>
+        <li>Incorrect filename.</li>
+        <li>Incorrect folder path.</li>
+        <li>Missing file extension.</li>
+        <li>Image URL unavailable.</li>
+        <li>Missing alternative text.</li>
+        <li>Image stretched by unsuitable dimensions.</li>
+      </ul>
+      <p><strong>Practical:</strong> Create a webpage with three images, each with a different width, descriptive alt text and a suitable heading.</p>
+    </section>
+
+    <!-- ========== CH 10 ========== -->
+    <section id="ch10" class="topic">
+      <h1>Chapter 10: HTML Tables</h1>
+      <h2>10.1 What is an HTML table?</h2>
+      <p>An HTML table displays information in rows and columns — useful for marksheets, timetables and schedules.</p>
+      <h2>10.2 Basic table tags</h2>
+      <table>
+        <tr><th>Tag</th><th>Meaning</th></tr>
+        <tr><td><code>&lt;table&gt;</code></td><td>Creates the table.</td></tr>
+        <tr><td><code>&lt;tr&gt;</code></td><td>Creates a row.</td></tr>
+        <tr><td><code>&lt;th&gt;</code></td><td>Header cell.</td></tr>
+        <tr><td><code>&lt;td&gt;</code></td><td>Data cell.</td></tr>
+        <tr><td><code>&lt;caption&gt;</code></td><td>Table caption.</td></tr>
+        <tr><td><code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, <code>&lt;tfoot&gt;</code></td><td>Group header, body, footer rows.</td></tr>
+      </table>
+      <h2>10.3 Basic table example</h2>
+      <div class="code-block">
+        <div class="code-header"><span>table.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;table border="1"&gt;
+    &lt;caption&gt;Student Marks&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Name&lt;/th&gt;
+            &lt;th&gt;Class&lt;/th&gt;
+            &lt;th&gt;Marks&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Rahul&lt;/td&gt;
+            &lt;td&gt;10&lt;/td&gt;
+            &lt;td&gt;85&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Priya&lt;/td&gt;
+            &lt;td&gt;10&lt;/td&gt;
+            &lt;td&gt;92&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+      </div>
+      <h2>10.4 Styling a table with CSS</h2>
+      <div class="code-block">
+        <div class="code-header"><span>styled-table.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;style&gt;
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+    }
+
+    th {
+        background-color: lightblue;
+    }
+&lt;/style&gt;
+
+&lt;table&gt;
+    &lt;tr&gt;&lt;th&gt;Subject&lt;/th&gt;&lt;th&gt;Marks&lt;/th&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;English&lt;/td&gt;&lt;td&gt;85&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Computer&lt;/td&gt;&lt;td&gt;92&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+      </div>
+      <h2>10.5 Colspan</h2>
+      <div class="code-block">
+        <div class="code-header"><span>colspan.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;table border="1"&gt;
+    &lt;tr&gt;
+        &lt;th colspan="2"&gt;Student Details&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Name&lt;/td&gt;
+        &lt;td&gt;Rahul&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+      </div>
+      <h2>10.6 Rowspan</h2>
+      <div class="code-block">
+        <div class="code-header"><span>rowspan.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;table border="1"&gt;
+    &lt;tr&gt;
+        &lt;th rowspan="2"&gt;Class&lt;/th&gt;
+        &lt;th&gt;Student&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Rahul&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+      </div>
+      <h2>10.7 Complete marksheet practical</h2>
+      <div class="code-block">
+        <div class="code-header"><span>marksheet.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Student Marksheet&lt;/title&gt;
+    &lt;style&gt;
+        table {
+            border-collapse: collapse;
+            width: 70%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: lightblue;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Student Marksheet&lt;/h1&gt;
+
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Roll No.&lt;/th&gt;
+            &lt;th&gt;Name&lt;/th&gt;
+            &lt;th&gt;English&lt;/th&gt;
+            &lt;th&gt;Computer&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;Rahul&lt;/td&gt;
+            &lt;td&gt;85&lt;/td&gt;
+            &lt;td&gt;92&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;Priya&lt;/td&gt;
+            &lt;td&gt;90&lt;/td&gt;
+            &lt;td&gt;95&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </div>
+      <p><strong>Practical task:</strong> Create a school timetable with five days, four periods and a break row.</p>
+    </section>
+
+    <!-- ========== CH 11 ========== -->
+    <section id="ch11" class="topic">
+      <h1>Chapter 11: HTML Lists</h1>
+      <p>HTML supports three main list types.</p>
+      <h2>11.1 Ordered list</h2>
+      <div class="code-block">
+        <div class="code-header"><span>ol.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;h2&gt;Daily Routine&lt;/h2&gt;
+
+&lt;ol&gt;
+    &lt;li&gt;Wake up&lt;/li&gt;
+    &lt;li&gt;Study&lt;/li&gt;
+    &lt;li&gt;Attend school&lt;/li&gt;
+    &lt;li&gt;Complete homework&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+      </div>
+      <h2>11.2 Ordered list types</h2>
+      <div class="code-block">
+        <div class="code-header"><span>ol-types.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;ol type="A"&gt;
+    &lt;li&gt;English&lt;/li&gt;
+    &lt;li&gt;Mathematics&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ol start="5"&gt;
+    &lt;li&gt;Fifth item&lt;/li&gt;
+    &lt;li&gt;Sixth item&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+      </div>
+      <ul>
+        <li><code>1</code> — Numbers</li>
+        <li><code>A</code> — Uppercase letters</li>
+        <li><code>a</code> — Lowercase letters</li>
+        <li><code>I</code> — Uppercase Roman numerals</li>
+        <li><code>i</code> — Lowercase Roman numerals</li>
+      </ul>
+      <h2>11.3 Unordered list</h2>
+      <div class="code-block">
+        <div class="code-header"><span>ul.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;h2&gt;Computer Equipment&lt;/h2&gt;
+
+&lt;ul&gt;
+    &lt;li&gt;Monitor&lt;/li&gt;
+    &lt;li&gt;Keyboard&lt;/li&gt;
+    &lt;li&gt;Mouse&lt;/li&gt;
+    &lt;li&gt;Printer&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul style="list-style-type: square;"&gt;
+    &lt;li&gt;HTML&lt;/li&gt;
+    &lt;li&gt;CSS&lt;/li&gt;
+    &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+      </div>
+      <h2>11.4 Description list</h2>
+      <div class="code-block">
+        <div class="code-header"><span>dl.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;dl&gt;
+    &lt;dt&gt;HTML&lt;/dt&gt;
+    &lt;dd&gt;Used to structure web pages.&lt;/dd&gt;
+
+    &lt;dt&gt;CSS&lt;/dt&gt;
+    &lt;dd&gt;Used to style web pages.&lt;/dd&gt;
+
+    &lt;dt&gt;JavaScript&lt;/dt&gt;
+    &lt;dd&gt;Used to add interactivity.&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+      </div>
+      <h2>11.5 Nested lists</h2>
+      <div class="code-block">
+        <div class="code-header"><span>nested.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;ul&gt;
+    &lt;li&gt;Languages
+        &lt;ul&gt;
+            &lt;li&gt;HTML&lt;/li&gt;
+            &lt;li&gt;CSS&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Programming
+        &lt;ul&gt;
+            &lt;li&gt;Python&lt;/li&gt;
+            &lt;li&gt;JavaScript&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+      </div>
+      <p><strong>Practical:</strong> Create a webpage with an ordered list of school subjects, an unordered list of hobbies and a description list of three computer terms.</p>
+    </section>
+
+    <!-- ========== CH 12 ========== -->
+    <section id="ch12" class="topic">
+      <h1>Chapter 12: Block and Inline Elements</h1>
+      <h2>12.1 Block-level behaviour</h2>
+      <p>Block elements begin on a new line and take available width. Examples: <code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;h1&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>.</p>
+      <div class="code-block">
+        <div class="code-header"><span>block.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;h1&gt;Welcome&lt;/h1&gt;
+&lt;p&gt;This is the first paragraph.&lt;/p&gt;
+&lt;p&gt;This is the second paragraph.&lt;/p&gt;</code></pre>
+      </div>
+      <h2>12.2 Inline behaviour</h2>
+      <p>Inline elements stay within the current line and occupy only needed space. Examples: <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>.</p>
+      <div class="code-block">
+        <div class="code-header"><span>inline.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;p&gt;
+    Learn &lt;strong&gt;HTML&lt;/strong&gt; and
+    &lt;em&gt;CSS&lt;/em&gt; to create websites.
+&lt;/p&gt;</code></pre>
+      </div>
+      <h2>12.3 Difference between block and inline</h2>
+      <table>
+        <tr><th>Block behaviour</th><th>Inline behaviour</th></tr>
+        <tr><td>Starts on a new line.</td><td>Stays on the same line.</td></tr>
+        <tr><td>Occupies available container width.</td><td>Occupies only necessary width.</td></tr>
+        <tr><td>Examples: <code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>.</td><td>Examples: <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>.</td></tr>
+        <tr><td>Useful for major sections.</td><td>Useful for styling within a line.</td></tr>
+      </table>
+      <h2>12.4 Example using div and span</h2>
+      <div class="code-block">
+        <div class="code-header"><span>div-span.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;div style="background-color: lightblue; padding: 10px;"&gt;
+    This is a block container.
+&lt;/div&gt;
+
+&lt;p&gt;
+    This is a &lt;span style="color: red;"&gt;red word&lt;/span&gt;
+    inside a paragraph.
+&lt;/p&gt;</code></pre>
+      </div>
+      <h2>12.5 Changing display behaviour with CSS</h2>
+      <div class="code-block">
+        <div class="code-header"><span>display.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;style&gt;
+    .inline-example { display: inline; }
+    .block-example  { display: block; }
+&lt;/style&gt;
+
+&lt;div class="inline-example"&gt;Inline div&lt;/div&gt;
+&lt;span class="block-example"&gt;Block span&lt;/span&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- ========== CH 13 ========== -->
+    <section id="ch13" class="topic">
+      <h1>Chapter 13: Div and Layout</h1>
+      <h2>13.1 What is a &lt;div&gt;?</h2>
+      <p>The <code>&lt;div&gt;</code> element is a generic block container used to group related content. It has no special semantic meaning but is very useful with CSS.</p>
+      <h2>13.2 Basic example</h2>
+      <div class="code-block">
+        <div class="code-header"><span>div-basic.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;div&gt;
+    &lt;h2&gt;About Our School&lt;/h2&gt;
+    &lt;p&gt;Our school provides quality education.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+      <h2>13.3 Styling a div</h2>
+      <div class="code-block">
+        <div class="code-header"><span>div-styled.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;div style="
+    background-color: lightyellow;
+    border: 2px solid navy;
+    padding: 20px;
+    margin: 15px;
+"&gt;
+    &lt;h2&gt;Welcome&lt;/h2&gt;
+    &lt;p&gt;This content is inside a styled box.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+      <h2>13.4 CSS Flexbox layout</h2>
+      <div class="code-block">
+        <div class="code-header"><span>flexbox.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;style&gt;
+    .container { display: flex; gap: 10px; }
+    .box { flex: 1; padding: 20px; background-color: lightblue; }
+&lt;/style&gt;
+
+&lt;div class="container"&gt;
+    &lt;div class="box"&gt;Box One&lt;/div&gt;
+    &lt;div class="box"&gt;Box Two&lt;/div&gt;
+    &lt;div class="box"&gt;Box Three&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+      <h2>13.5 Semantic layout elements</h2>
+      <ul>
+        <li><code>&lt;header&gt;</code> — introductory section.</li>
+        <li><code>&lt;nav&gt;</code> — navigation links.</li>
+        <li><code>&lt;main&gt;</code> — main content.</li>
+        <li><code>&lt;section&gt;</code> — thematic section.</li>
+        <li><code>&lt;article&gt;</code> — independent content.</li>
+        <li><code>&lt;aside&gt;</code> — supplementary content.</li>
+        <li><code>&lt;footer&gt;</code> — footer info.</li>
+      </ul>
+      <p><strong>Practical:</strong> Design a webpage with a header, navigation bar, three content boxes and a footer.</p>
+    </section>
+
+    <!-- ========== CH 14 ========== -->
+    <section id="ch14" class="topic">
+      <h1>Chapter 14: HTML Classes and IDs</h1>
+      <h2>14.1 What is a class?</h2>
+      <p>The <code>class</code> attribute groups elements so they can share CSS styling or be selected by JavaScript. A class can be used on multiple elements.</p>
+      <div class="code-block">
+        <div class="code-header"><span>class.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;style&gt;
+    .highlight {
+        color: blue;
+        background-color: yellow;
+    }
+&lt;/style&gt;
+
+&lt;p class="highlight"&gt;First highlighted paragraph.&lt;/p&gt;
+&lt;p class="highlight"&gt;Second highlighted paragraph.&lt;/p&gt;</code></pre>
+      </div>
+      <h2>14.2 What is an ID?</h2>
+      <p>The <code>id</code> attribute identifies a particular element. An ID should be unique within the document.</p>
+      <div class="code-block">
+        <div class="code-header"><span>id.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;style&gt;
+    #main-heading {
+        color: green;
+        text-align: center;
+    }
+&lt;/style&gt;
+
+&lt;h1 id="main-heading"&gt;Welcome to My Website&lt;/h1&gt;</code></pre>
+      </div>
+      <h2>14.3 Difference between class and ID</h2>
+      <table>
+        <tr><th>Class</th><th>ID</th></tr>
+        <tr><td>Can be reused on multiple elements.</td><td>Should uniquely identify one element.</td></tr>
+        <tr><td>CSS selector begins with <code>.</code></td><td>CSS selector begins with <code>#</code></td></tr>
+        <tr><td>Example: <code>.student</code></td><td>Example: <code>#student1</code></td></tr>
+        <tr><td>Useful for shared styling.</td><td>Useful for a specific element or target.</td></tr>
+      </table>
+      <h2>14.4 Using multiple classes</h2>
+      <div class="code-block">
+        <div class="code-header"><span>multi-class.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;style&gt;
+    .text-blue  { color: blue; }
+    .large-text { font-size: 24px; }
+&lt;/style&gt;
+
+&lt;p class="text-blue large-text"&gt;
+    Large blue text.
+&lt;/p&gt;</code></pre>
+      </div>
+      <h2>14.5 Using an ID with a link</h2>
+      <div class="code-block">
+        <div class="code-header"><span>id-link.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;a href="#about"&gt;Go to About Section&lt;/a&gt;
+
+&lt;h2 id="about"&gt;About Us&lt;/h2&gt;
+&lt;p&gt;Welcome to our website.&lt;/p&gt;</code></pre>
+      </div>
+      <p><strong>Practical:</strong> Create three paragraphs with the same class and a separate heading with a unique ID. Style them using CSS.</p>
+    </section>
+
+    <!-- ========== CH 15 ========== -->
+    <section id="ch15" class="topic">
+      <h1>Chapter 15: HTML Buttons</h1>
+      <h2>15.1 What is an HTML button?</h2>
+      <p>The <code>&lt;button&gt;</code> element creates a clickable button used for submitting forms, triggering JavaScript and controlling interactive features.</p>
+      <h2>15.2 Basic button</h2>
+      <div class="code-block">
+        <div class="code-header"><span>button.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;button type="button"&gt;Click Me&lt;/button&gt;</code></pre>
+      </div>
+      <h2>15.3 Button with JavaScript</h2>
+      <div class="code-block">
+        <div class="code-header"><span>button-js.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+    &lt;h2 id="message"&gt;Welcome Students&lt;/h2&gt;
+
+    &lt;button type="button" onclick="showMessage()"&gt;
+        Click Here
+    &lt;/button&gt;
+
+    &lt;script&gt;
+        function showMessage() {
+            document.getElementById("message").textContent =
+                "You clicked the button!";
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </div>
+      <h2>15.4 Styling buttons with CSS</h2>
+      <div class="code-block">
+        <div class="code-header"><span>button-styled.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;style&gt;
+    .my-button {
+        background-color: blue;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+&lt;/style&gt;
+
+&lt;button class="my-button" type="button"&gt;Submit&lt;/button&gt;</code></pre>
+      </div>
+      <h2>15.5 Button types</h2>
+      <ul>
+        <li><code>type="button"</code> — general-purpose button.</li>
+        <li><code>type="submit"</code> — submits a form.</li>
+        <li><code>type="reset"</code> — resets form controls.</li>
+      </ul>
+      <p><strong>Practical:</strong> Create three buttons labelled Red, Green and Blue. Clicking each button changes a heading to the corresponding colour using JavaScript.</p>
+    </section>
+
+    <!-- ========== CH 16 ========== -->
+    <section id="ch16" class="topic">
+      <h1>Chapter 16: HTML Iframes</h1>
+      <h2>16.1 What is an iframe?</h2>
+      <p>An iframe (inline frame) embeds another webpage or supported external content within the current webpage.</p>
+      <h2>16.2 Basic syntax</h2>
+      <div class="code-block">
+        <div class="code-header"><span>iframe.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;iframe
+    src="https://example.com"
+    title="Example Website"
+    width="500"
+    height="300"&gt;
+&lt;/iframe&gt;</code></pre>
+      </div>
+      <h2>16.3 Embedding a YouTube video</h2>
+      <div class="code-block">
+        <div class="code-header"><span>youtube.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;iframe
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/VIDEO_ID"
+    title="Educational Video"
+    allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+      </div>
+      <h2>16.4 Iframe with CSS</h2>
+      <div class="code-block">
+        <div class="code-header"><span>iframe-css.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;style&gt;
+    iframe {
+        width: 100%;
+        max-width: 600px;
+        height: 350px;
+        border: 2px solid navy;
+    }
+&lt;/style&gt;
+
+&lt;iframe
+    src="https://example.com"
+    title="Example Website"&gt;
+&lt;/iframe&gt;</code></pre>
+      </div>
+      <h2>16.5 Advantages and limitations</h2>
+      <p><strong>Advantages:</strong> embeds external content; integrates maps and videos.</p>
+      <p><strong>Limitations:</strong> some websites block embedding; may load slowly; security/privacy considerations apply; responsive behaviour may vary.</p>
+      <p><strong>Practical:</strong> Create a webpage with a heading, a paragraph and an iframe. Use a website that permits embedding.</p>
+    </section>
+
+    <!-- ========== CH 17 ========== -->
+    <section id="ch17" class="topic">
+      <h1>Chapter 17: HTML and JavaScript</h1>
+      <h2>17.1 What is JavaScript?</h2>
+      <p>JavaScript is a programming language used to make webpages interactive — responding to clicks, validating forms, updating content and performing calculations.</p>
+      <h2>17.2 Adding JavaScript to HTML</h2>
+      <div class="code-block">
+        <div class="code-header"><span>alert.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;JavaScript Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello Students&lt;/h1&gt;
+
+    &lt;script&gt;
+        alert("Welcome to HTML and JavaScript!");
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </div>
+      <h2>17.3 Changing webpage content</h2>
+      <div class="code-block">
+        <div class="code-header"><span>change.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;p id="demo"&gt;Original Text&lt;/p&gt;
+
+&lt;button type="button" onclick="changeText()"&gt;
+    Change Text
+&lt;/button&gt;
+
+&lt;script&gt;
+    function changeText() {
+        document.getElementById("demo").textContent =
+            "The text has changed!";
+    }
+&lt;/script&gt;</code></pre>
+      </div>
+      <h2>17.4 Displaying the current date</h2>
+      <div class="code-block">
+        <div class="code-header"><span>date.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;h2 id="date"&gt;&lt;/h2&gt;
+
+&lt;script&gt;
+    document.getElementById("date").textContent =
+        new Date().toLocaleDateString();
+&lt;/script&gt;</code></pre>
+      </div>
+      <h2>17.5 Simple calculator</h2>
+      <div class="code-block">
+        <div class="code-header"><span>calculator.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+    &lt;h2&gt;Add Two Numbers&lt;/h2&gt;
+
+    &lt;input type="number" id="num1" placeholder="First number"&gt;
+    &lt;input type="number" id="num2" placeholder="Second number"&gt;
+
+    &lt;button type="button" onclick="addNumbers()"&gt;Add&lt;/button&gt;
+
+    &lt;p id="result"&gt;Result will appear here.&lt;/p&gt;
+
+    &lt;script&gt;
+        function addNumbers() {
+            const a = Number(document.getElementById("num1").value);
+            const b = Number(document.getElementById("num2").value);
+
+            document.getElementById("result").textContent =
+                "Result: " + (a + b);
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </div>
+      <p><strong>Practical:</strong> Create a button that changes a paragraph, a button that displays a message, and a calculator that adds two numbers.</p>
+    </section>
+
+    <!-- ========== CH 18 ========== -->
+    <section id="ch18" class="topic">
+      <h1>Chapter 18: HTML File Paths</h1>
+      <h2>18.1 What is a file path?</h2>
+      <p>A file path specifies the location of a file. HTML uses paths to locate images, stylesheets, scripts, videos and other resources.</p>
+      <h2>18.2 Absolute URL</h2>
+      <div class="code-block">
+        <div class="code-header"><span>absolute.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;a href="https://www.w3schools.com/html/"&gt;
+    Learn HTML
+&lt;/a&gt;
+
+&lt;img src="https://picsum.photos/200"
+     alt="Flower"&gt;</code></pre>
+      </div>
+      <h2>18.3 Relative path</h2>
+      <p>Example folder structure:</p>
+      <pre style="background:#0f1c2b;color:#d6eaff;padding:1rem;border-radius:12px;font-size:.85rem;">MyWebsite/
+│
+├── index.html
+├── about.html
+│
+├── images/
+│   └── school.jpg
+│
+└── pages/
+    └── contact.html</pre>
+      <div class="code-block">
+        <div class="code-header"><span>relative.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;!-- Same folder --&gt;
+&lt;a href="about.html"&gt;About Us&lt;/a&gt;
+
+&lt;!-- Inside a subfolder --&gt;
+&lt;img src="images/school.jpg" alt="School"&gt;
+
+&lt;!-- File inside another folder --&gt;
+&lt;a href="pages/contact.html"&gt;Contact Us&lt;/a&gt;
+
+&lt;!-- Parent folder --&gt;
+&lt;a href="../index.html"&gt;Home&lt;/a&gt;</code></pre>
+      </div>
+      <h2>18.4 Common file path mistakes</h2>
+      <ul>
+        <li>Wrong filename.</li>
+        <li>Wrong extension.</li>
+        <li>Missing folder name.</li>
+        <li>Incorrect use of <code>/</code> or <code>..</code>.</li>
+        <li>Path works on one computer but not another.</li>
+        <li>Case-sensitivity on web hosting.</li>
+      </ul>
+      <p><strong>Practical:</strong> Create a folder with an HTML file, an images folder and a second HTML page. Link the pages and display an image using a relative path.</p>
+    </section>
+
+    <!-- ========== CH 19 ========== -->
+    <section id="ch19" class="topic">
+      <h1>Chapter 19: HTML Head and Meta Elements</h1>
+      <h2>19.1 What is the &lt;head&gt; element?</h2>
+      <p>The <code>&lt;head&gt;</code> element contains info about the document that is not normally displayed as page content: page title, character encoding, viewport settings, description, CSS links, favicon and other metadata.</p>
+      <h2>19.2 What is metadata?</h2>
+      <p>Metadata means information about the webpage. The <code>&lt;meta&gt;</code> element provides metadata used by browsers, search engines and other services.</p>
+      <h2>19.3 Character encoding</h2>
+      <div class="code-block">
+        <div class="code-header"><span>charset.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;meta charset="UTF-8"&gt;</code></pre>
+      </div>
+      <h2>19.4 Viewport meta tag</h2>
+      <div class="code-block">
+        <div class="code-header"><span>viewport.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;meta name="viewport"
+      content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+      </div>
+      <h2>19.5 Description meta tag</h2>
+      <div class="code-block">
+        <div class="code-header"><span>description.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;meta name="description"
+      content="Learn HTML with simple notes and practical examples."&gt;</code></pre>
+      </div>
+      <h2>19.6 Complete example</h2>
+      <div class="code-block">
+        <div class="code-header"><span>head-complete.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+
+    &lt;meta name="viewport"
+          content="width=device-width, initial-scale=1.0"&gt;
+
+    &lt;meta name="description"
+          content="A website for learning HTML."&gt;
+
+    &lt;title&gt;HTML Learning Website&lt;/title&gt;
+
+    &lt;link rel="icon" href="favicon.png" type="image/png"&gt;
+
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome to HTML Learning&lt;/h1&gt;
+    &lt;p&gt;Learn HTML step by step.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </div>
+      <div class="note-box"><i class="fas fa-info-circle"></i> The <code>&lt;title&gt;</code> appears in the browser tab, whereas the <code>&lt;h1&gt;</code> normally appears within the webpage itself.</div>
+    </section>
+
+    <!-- ========== CH 20 ========== -->
+    <section id="ch20" class="topic">
+      <h1>Chapter 20: Responsive Web Design</h1>
+      <h2>20.1 What is responsive web design?</h2>
+      <p>A responsive website adapts to different screen sizes and devices: desktop computers, laptops, tablets and mobile phones. HTML provides document structure and viewport metadata; CSS is primarily responsible for responsive layouts.</p>
+      <h2>20.2 Viewport meta tag</h2>
+      <div class="code-block">
+        <div class="code-header"><span>viewport.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;meta name="viewport"
+      content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+      </div>
+      <p>Without suitable viewport settings, mobile browsers may render pages too small.</p>
+      <h2>20.3 Responsive images</h2>
+      <div class="code-block">
+        <div class="code-header"><span>responsive-img.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;style&gt;
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+&lt;/style&gt;
+
+&lt;img src="https://picsum.photos/800/400"
+     alt="School building"&gt;</code></pre>
+      </div>
+      <h2>20.4 Media queries</h2>
+      <div class="code-block">
+        <div class="code-header"><span>media-query.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;style&gt;
+    .container {
+        display: flex;
+        gap: 15px;
+    }
+
+    .box {
+        flex: 1;
+        padding: 20px;
+        background-color: lightblue;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            flex-direction: column;
+        }
+    }
+&lt;/style&gt;
+
+&lt;div class="container"&gt;
+    &lt;div class="box"&gt;Section One&lt;/div&gt;
+    &lt;div class="box"&gt;Section Two&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+      <h2>20.5 Benefits of responsive websites</h2>
+      <ol>
+        <li>Improved mobile usability.</li>
+        <li>Better use of available screen space.</li>
+        <li>Reduced need for separate mobile and desktop pages.</li>
+        <li>Easier navigation across devices.</li>
+        <li>Better accessibility.</li>
+      </ol>
+      <p><strong>Practical:</strong> Create a two-column webpage that changes to a single column on mobile.</p>
+    </section>
+
+    <!-- ========== CH 21 ========== -->
+    <section id="ch21" class="topic">
+      <h1>Chapter 21: HTML Code Elements</h1>
+      <h2>21.1 Introduction</h2>
+      <p>HTML provides special elements for representing computer code, keyboard input, variables and sample output — useful for programming tutorials.</p>
+      <h2>21.2 The &lt;code&gt; element</h2>
+      <div class="code-block">
+        <div class="code-header"><span>code.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;p&gt;Use &lt;code&gt;print()&lt;/code&gt; to display output in Python.&lt;/p&gt;</code></pre>
+      </div>
+      <h2>21.3 The &lt;pre&gt; element</h2>
+      <div class="code-block">
+        <div class="code-header"><span>pre.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;pre&gt;
+Name: Rahul
+Class: 10
+Subject: Computer
+&lt;/pre&gt;</code></pre>
+      </div>
+      <h2>21.4 The &lt;kbd&gt; element</h2>
+      <div class="code-block">
+        <div class="code-header"><span>kbd.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;p&gt;Press &lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;S&lt;/kbd&gt; to save a file.&lt;/p&gt;</code></pre>
+      </div>
+      <h2>21.5 The &lt;samp&gt; element</h2>
+      <div class="code-block">
+        <div class="code-header"><span>samp.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;p&gt;Program output: &lt;samp&gt;Hello World&lt;/samp&gt;&lt;/p&gt;</code></pre>
+      </div>
+      <h2>21.6 The &lt;var&gt; element</h2>
+      <div class="code-block">
+        <div class="code-header"><span>var.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;p&gt;Let &lt;var&gt;x&lt;/var&gt; = 10.&lt;/p&gt;
+&lt;p&gt;Let &lt;var&gt;y&lt;/var&gt; = 20.&lt;/p&gt;</code></pre>
+      </div>
+      <h2>21.7 Complete example</h2>
+      <div class="code-block">
+        <div class="code-header"><span>code-complete.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;h2&gt;Python Example&lt;/h2&gt;
+
+&lt;p&gt;Python code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;print("Hello World")
+print(10 + 20)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Expected output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;samp&gt;Hello World
+30&lt;/samp&gt;&lt;/pre&gt;
+
+&lt;p&gt;Press &lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;S&lt;/kbd&gt; to save.&lt;/p&gt;</code></pre>
+      </div>
+      <p><strong>Practical:</strong> Create a webpage showing a Python program, its output, and a keyboard shortcut for saving a file.</p>
+    </section>
+
+    <!-- ========== CH 22 ========== -->
+    <section id="ch22" class="topic">
+      <h1>Chapter 22: Semantic HTML</h1>
+      <h2>22.1 What is semantic HTML?</h2>
+      <p>Semantic HTML means using HTML elements according to their meaning and purpose. For example, <code>&lt;nav&gt;</code> identifies navigation content, while <code>&lt;footer&gt;</code> identifies footer content. Semantic elements help browsers, developers and assistive technologies understand page structure.</p>
+      <h2>22.2 Common semantic elements</h2>
+      <table>
+        <tr><th>Element</th><th>Purpose</th></tr>
+        <tr><td><code>&lt;header&gt;</code></td><td>Introductory content or section header.</td></tr>
+        <tr><td><code>&lt;nav&gt;</code></td><td>Navigation links.</td></tr>
+        <tr><td><code>&lt;main&gt;</code></td><td>Main content of the page.</td></tr>
+        <tr><td><code>&lt;section&gt;</code></td><td>Thematic grouping of content.</td></tr>
+        <tr><td><code>&lt;article&gt;</code></td><td>Independent or self-contained content.</td></tr>
+        <tr><td><code>&lt;aside&gt;</code></td><td>Related supplementary content.</td></tr>
+        <tr><td><code>&lt;footer&gt;</code></td><td>Footer information.</td></tr>
+        <tr><td><code>&lt;figure&gt;</code>, <code>&lt;figcaption&gt;</code></td><td>Illustration with caption.</td></tr>
+        <tr><td><code>&lt;time&gt;</code></td><td>Date or time.</td></tr>
+      </table>
+      <h2>22.3 Semantic HTML example</h2>
+      <div class="code-block">
+        <div class="code-header"><span>semantic.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;School Website&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;ABC School&lt;/h1&gt;
+        &lt;p&gt;Learn, Grow and Succeed&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;nav&gt;
+        &lt;a href="#home"&gt;Home&lt;/a&gt;
+        &lt;a href="#about"&gt;About&lt;/a&gt;
+        &lt;a href="#contact"&gt;Contact&lt;/a&gt;
+    &lt;/nav&gt;
+
+    &lt;main id="home"&gt;
+        &lt;section id="about"&gt;
+            &lt;h2&gt;About Our School&lt;/h2&gt;
+            &lt;p&gt;We provide quality education.&lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;article&gt;
+            &lt;h2&gt;School News&lt;/h2&gt;
+            &lt;p&gt;Admissions are open for the new academic year.&lt;/p&gt;
+        &lt;/article&gt;
+
+        &lt;aside&gt;
+            &lt;h2&gt;Notice&lt;/h2&gt;
+            &lt;p&gt;Please check the school timetable.&lt;/p&gt;
+        &lt;/aside&gt;
+    &lt;/main&gt;
+
+    &lt;footer id="contact"&gt;
+        &lt;p&gt;Contact: school@example.com&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </div>
+      <h2>22.4 Semantic elements versus &lt;div&gt;</h2>
+      <p>A <code>&lt;div&gt;</code> is a generic container with no inherent semantic meaning. A <code>&lt;section&gt;</code> is a thematic section; an <code>&lt;article&gt;</code> is self-contained content. Use semantic elements when their meaning fits the content.</p>
+      <h2>22.5 Advantages of semantic HTML</h2>
+      <ul>
+        <li>Makes code easier to read and maintain.</li>
+        <li>Helps assistive technologies.</li>
+        <li>Improves document organization.</li>
+        <li>Provides meaningful landmarks.</li>
+        <li>Helps search engines interpret content.</li>
+      </ul>
+      <p><strong>Practical:</strong> Create a school website using header, nav, main, section, article and footer.</p>
+    </section>
+
+    <!-- ========== CH 23 ========== -->
+    <section id="ch23" class="topic">
+      <h1>Chapter 23: HTML Entities and Symbols</h1>
+      <h2>23.1 What are HTML entities?</h2>
+      <p>HTML entities are special character references used to display reserved characters and certain symbols. For example, the less-than sign <code>&lt;</code> is used to start HTML tags — to display it as text, use <code>&amp;lt;</code>.</p>
+      <h2>23.2 Common HTML entities</h2>
+      <table>
+        <tr><th>Entity</th><th>Display</th><th>Meaning</th></tr>
+        <tr><td><code>&amp;lt;</code></td><td>&lt;</td><td>Less than</td></tr>
+        <tr><td><code>&amp;gt;</code></td><td>&gt;</td><td>Greater than</td></tr>
+        <tr><td><code>&amp;amp;</code></td><td>&amp;</td><td>Ampersand</td></tr>
+        <tr><td><code>&amp;quot;</code></td><td>"</td><td>Double quote</td></tr>
+        <tr><td><code>&amp;apos;</code></td><td>'</td><td>Apostrophe</td></tr>
+        <tr><td><code>&amp;nbsp;</code></td><td> </td><td>Non-breaking space</td></tr>
+        <tr><td><code>&amp;copy;</code></td><td>©</td><td>Copyright</td></tr>
+        <tr><td><code>&amp;reg;</code></td><td>®</td><td>Registered trademark</td></tr>
+        <tr><td><code>&amp;trade;</code></td><td>™</td><td>Trademark</td></tr>
+        <tr><td><code>&amp;euro;</code></td><td>€</td><td>Euro</td></tr>
+        <tr><td><code>&amp;pound;</code></td><td>£</td><td>Pound</td></tr>
+        <tr><td><code>&amp;hearts;</code></td><td>♥</td><td>Heart</td></tr>
+        <tr><td><code>&amp;infin;</code></td><td>∞</td><td>Infinity</td></tr>
+      </table>
+      <h2>23.3 Displaying reserved characters</h2>
+      <div class="code-block">
+        <div class="code-header"><span>entities.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;p&gt;5 &amp;lt; 10&lt;/p&gt;
+&lt;p&gt;10 &amp;gt; 5&lt;/p&gt;
+&lt;p&gt;Tom &amp;amp; Jerry&lt;/p&gt;
+&lt;p&gt;&amp;quot;Welcome&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;copy; 2026 My Website&lt;/p&gt;</code></pre>
+      </div>
+      <h2>23.4 Numeric character references</h2>
+      <div class="code-block">
+        <div class="code-header"><span>numeric.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;p&gt;&amp;#169; 2026 My Website&lt;/p&gt;
+&lt;p&gt;&amp;#9733; Star Symbol&lt;/p&gt;</code></pre>
+      </div>
+      <h2>23.5 HTML symbols</h2>
+      <div class="code-block">
+        <div class="code-header"><span>symbols.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;p&gt;Multiplication: &amp;times;&lt;/p&gt;
+&lt;p&gt;Division: &amp;divide;&lt;/p&gt;
+&lt;p&gt;Plus or minus: &amp;plusmn;&lt;/p&gt;
+&lt;p&gt;Infinity: &amp;infin;&lt;/p&gt;
+&lt;p&gt;Approximately equal: &amp;asymp;&lt;/p&gt;
+&lt;p&gt;Not equal: &amp;ne;&lt;/p&gt;</code></pre>
+      </div>
+      <p><strong>Practical:</strong> Create a webpage displaying ten special characters, mathematical symbols and currency symbols.</p>
+    </section>
+
+    <!-- ========== CH 24 ========== -->
+    <section id="ch24" class="topic">
+      <h1>Chapter 24: HTML Emojis</h1>
+      <h2>24.1 What are emojis?</h2>
+      <p>Emojis are small digital symbols used to express emotions, objects, activities and ideas. HTML can display emojis directly when the browser, font and character encoding support them.</p>
+      <h2>24.2 Displaying emojis directly</h2>
+      <div class="code-block">
+        <div class="code-header"><span>emojis.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;My Emoji Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome Students 😊&lt;/h1&gt;
+    &lt;p&gt;Learn 💻, read 📚 and succeed 🌟!&lt;/p&gt;
+    &lt;p&gt;Thank you 🙏&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </div>
+      <h2>24.3 Emoji numeric references</h2>
+      <div class="code-block">
+        <div class="code-header"><span>emoji-codes.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;p&gt;&amp;#128512; Smiling Face&lt;/p&gt;
+&lt;p&gt;&amp;#128187; Computer&lt;/p&gt;
+&lt;p&gt;&amp;#127891; Graduation Cap&lt;/p&gt;
+&lt;p&gt;&amp;#127775; Glowing Star&lt;/p&gt;</code></pre>
+      </div>
+      <h2>24.4 Common uses of emojis</h2>
+      <ul>
+        <li>Welcoming visitors.</li>
+        <li>Highlighting information.</li>
+        <li>Educational webpages.</li>
+        <li>Adding visual interest to notices.</li>
+        <li>Improving informal content appearance.</li>
+      </ul>
+      <div class="warn-box"><i class="fas fa-exclamation-triangle"></i> Emoji appearance varies between devices and browsers. Avoid using emojis as the only way to communicate essential information.</div>
+      <p><strong>Practical:</strong> Design a webpage titled “My Hobbies” and use at least five suitable emojis.</p>
+    </section>
+
+    <!-- ========== CH 25 ========== -->
+    <section id="ch25" class="topic">
+      <h1>Chapter 25: HTML vs CSS vs JavaScript</h1>
+      <h2>25.1 HTML — Structure</h2>
+      <div class="code-block">
+        <div class="code-header"><span>html.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;h1&gt;Welcome&lt;/h1&gt;
+&lt;p&gt;This is my website.&lt;/p&gt;
+&lt;button type="button"&gt;Click Me&lt;/button&gt;</code></pre>
+      </div>
+      <h2>25.2 CSS — Presentation</h2>
+      <div class="code-block">
+        <div class="code-header"><span>css.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;style&gt;
+    h1 {
+        color: blue;
+        text-align: center;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    button {
+        background-color: green;
+        color: white;
+    }
+&lt;/style&gt;
+
+&lt;h1&gt;Welcome&lt;/h1&gt;
+&lt;p&gt;This is my website.&lt;/p&gt;
+&lt;button type="button"&gt;Click Me&lt;/button&gt;</code></pre>
+      </div>
+      <h2>25.3 JavaScript — Behaviour</h2>
+      <div class="code-block">
+        <div class="code-header"><span>js.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;button type="button" onclick="alert('Welcome!')"&gt;
+    Click Me
+&lt;/button&gt;</code></pre>
+      </div>
+      <h2>25.4 Comparison table</h2>
+      <table>
+        <tr><th>Feature</th><th>HTML</th><th>CSS</th><th>JavaScript</th></tr>
+        <tr><td>Full name</td><td>HyperText Markup Language</td><td>Cascading Style Sheets</td><td>JavaScript</td></tr>
+        <tr><td>Main purpose</td><td>Structure</td><td>Styling</td><td>Behaviour and interactivity</td></tr>
+        <tr><td>File extension</td><td><code>.html</code></td><td><code>.css</code></td><td><code>.js</code></td></tr>
+        <tr><td>Example</td><td>Heading</td><td>Blue text</td><td>Button click action</td></tr>
+        <tr><td>Type</td><td>Markup language</td><td>Style sheet language</td><td>Programming language</td></tr>
+      </table>
+      <h2>25.5 Complete combined example</h2>
+      <div class="code-block">
+        <div class="code-header"><span>combined.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport"
+          content="width=device-width, initial-scale=1.0"&gt;
+
+    &lt;title&gt;HTML CSS JavaScript&lt;/title&gt;
+
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: lightyellow;
+            padding: 30px;
+        }
+
+        h1 {
+            color: navy;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Learn Web Development&lt;/h1&gt;
+
+    &lt;p id="message"&gt;HTML creates the structure.&lt;/p&gt;
+
+    &lt;button type="button" onclick="changeMessage()"&gt;
+        Click Here
+    &lt;/button&gt;
+
+    &lt;script&gt;
+        function changeMessage() {
+            document.getElementById("message").textContent =
+                "HTML + CSS + JavaScript = Interactive Webpages!";
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- ========== CH 26 ========== -->
+    <section id="ch26" class="topic">
+      <h1>Chapter 26: Practical Project — Student Profile</h1>
+      <h2>26.1 Project objective</h2>
+      <p>Create a student profile webpage with name, class, photograph, school info, hobbies, an educational link and contact info — all styled with CSS.</p>
+      <h2>26.2 Step 1: Project folder</h2>
+      <pre style="background:#0f1c2b;color:#d6eaff;padding:1rem;border-radius:12px;font-size:.85rem;">StudentProfile/
+│
+├── index.html
+├── style.css
+├── script.js
+└── images/
+    └── student.jpg</pre>
+      <h2>26.3 Step 2: HTML code (index.html)</h2>
+      <div class="code-block">
+        <div class="code-header"><span>index.html</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport"
+          content="width=device-width, initial-scale=1.0"&gt;
+
+    &lt;title&gt;Student Profile&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;My Student Profile&lt;/h1&gt;
+        &lt;p&gt;Welcome to my personal webpage!&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;section class="profile"&gt;
+            &lt;img src="https://picsum.photos/150"
+                 alt="Student photograph"
+                 class="profile-image"&gt;
+
+            &lt;h2&gt;Rahul Sharma&lt;/h2&gt;
+            &lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; 10&lt;/p&gt;
+            &lt;p&gt;&lt;strong&gt;School:&lt;/strong&gt; ABC School&lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;section class="details"&gt;
+            &lt;h2&gt;About Me&lt;/h2&gt;
+            &lt;p&gt;I am a student who enjoys learning computers.&lt;/p&gt;
+
+            &lt;h2&gt;My Hobbies&lt;/h2&gt;
+            &lt;ul&gt;
+                &lt;li&gt;Reading books&lt;/li&gt;
+                &lt;li&gt;Playing cricket&lt;/li&gt;
+                &lt;li&gt;Learning HTML&lt;/li&gt;
+            &lt;/ul&gt;
+
+            &lt;p&gt;
+                &lt;a href="https://www.w3schools.com/html/"&gt;
+                    Learn HTML
+                &lt;/a&gt;
+            &lt;/p&gt;
+
+            &lt;button type="button" id="greetButton"&gt;
+                Click for a Greeting
+            &lt;/button&gt;
+
+            &lt;p id="greeting"&gt;&lt;/p&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;p&gt;Student Profile Project | 2026&lt;/p&gt;
+    &lt;/footer&gt;
+
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </div>
+      <h2>26.4 Step 3: CSS code (style.css)</h2>
+      <div class="code-block">
+        <div class="code-header"><span>style.css</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f0f8ff;
+    color: #222;
+}
+
+header {
+    background-color: navy;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 15px;
+}
+
+.profile,
+.details {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #cccccc;
+}
+
+.profile {
+    text-align: center;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+h2 {
+    color: navy;
+}
+
+a {
+    color: blue;
+}
+
+button {
+    background-color: navy;
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    background-color: navy;
+    color: white;
+    padding: 15px;
+}
+
+@media (max-width: 600px) {
+    main {
+        margin: 10px;
+    }
+}</code></pre>
+      </div>
+      <h2>26.5 Step 4: JavaScript code (script.js)</h2>
+      <div class="code-block">
+        <div class="code-header"><span>script.js</span>
+          <div class="code-actions">
+            <button onclick="copyCode(this)"><i class="fas fa-copy"></i> Copy</button>
+            <button onclick="runCode(this)"><i class="fas fa-play"></i> Run</button>
+          </div>
+        </div>
+        <pre><code>const button = document.getElementById("greetButton");
+
+button.addEventListener("click", function () {
+    document.getElementById("greeting").textContent =
+        "Hello! Welcome to my student profile.";
+});</code></pre>
+      </div>
+      <h2>26.6 Step 5: Run the project</h2>
+      <ol>
+        <li>Save all three files in the same folder.</li>
+        <li>Place the photograph inside <code>images/</code>.</li>
+        <li>Ensure the image filename matches the HTML code.</li>
+        <li>Double-click <code>index.html</code>.</li>
+        <li>Click the greeting button to test JavaScript.</li>
+        <li>Resize the browser to check responsive layout.</li>
+      </ol>
+      <h2>26.7 Expected result</h2>
+      <p>A student profile card, photograph, school info, hobbies, educational link, greeting button and footer. The page adjusts to smaller screens.</p>
+      <h2>26.8 Project viva questions</h2>
+      <ol>
+        <li>What is HTML?</li>
+        <li>Why is the <code>&lt;head&gt;</code> element used?</li>
+        <li>What is the purpose of the <code>&lt;title&gt;</code> tag?</li>
+        <li>Why is the <code>alt</code> attribute important?</li>
+        <li>What is the difference between HTML and CSS?</li>
+        <li>How do you connect an external CSS file?</li>
+        <li>How do you connect an external JavaScript file?</li>
+        <li>What is the purpose of a class?</li>
+        <li>Why is a relative file path used?</li>
+        <li>What is responsive web design?</li>
+      </ol>
+    </section>
+
+    <!-- ========== CH 27 ========== -->
+    <section id="ch27" class="topic">
+      <h1>Chapter 27: MCQs and Practice Questions</h1>
+      <h2>Part A: Multiple-choice questions</h2>
+      <div class="quiz-block">
+        <div class="progress-text" id="quizProgress">0 / 20 answered</div>
+
+        <div class="mcq-item">
+          <p>1. What is the full form of HTML?</p>
+          <label><input type="radio" name="q1" value="a" onchange="updateProgress()"> HyperText Markup Language</label>
+          <label><input type="radio" name="q1" value="b" onchange="updateProgress()"> HighText Machine Language</label>
+          <label><input type="radio" name="q1" value="c" onchange="updateProgress()"> Hyper Transfer Markup Language</label>
+          <label><input type="radio" name="q1" value="d" onchange="updateProgress()"> Home Tool Markup Language</label>
+        </div>
+
+        <div class="mcq-item">
+          <p>2. Which tag defines the main heading?</p>
+          <label><input type="radio" name="q2" value="a" onchange="updateProgress()"> &lt;head&gt;</label>
+          <label><input type="radio" name="q2" value="b" onchange="updateProgress()"> &lt;h1&gt;</label>
+          <label><input type="radio" name="q2" value="c" onchange="updateProgress()"> &lt;title&gt;</label>
+          <label><input type="radio" name="q2" value="d" onchange="updateProgress()"> &lt;p&gt;</label>
+        </div>
+
+        <div class="mcq-item">
+          <p>3. Which element contains the visible page content?</p>
+          <label><input type="radio" name="q3" value="a" onchange="updateProgress()"> &lt;head&gt;</label>
+          <label><input type="radio" name="q3" value="b" onchange="updateProgress()"> &lt;title&gt;</label>
+          <label><input type="radio" name="q3" value="c" onchange="updateProgress()"> &lt;body&gt;</label>
+          <label><input type="radio" name="q3" value="d" onchange="updateProgress()"> &lt;meta&gt;</label>
+        </div>
+
+        <div class="mcq-item">
+          <p>4. Which attribute specifies a hyperlink destination?</p>
+          <label><input type="radio" name="q4" value="a" onchange="updateProgress()"> src</label>
+          <label><input type="radio" name="q4" value="b" onchange="updateProgress()"> alt</label>
+          <label><input type="radio" name="q4" value="c" onchange="updateProgress()"> class</label>
+          <label><input type="radio" name="q4" value="d" onchange="updateProgress()"> href</label>
+        </div>
+
+        <div class="mcq-item">
+          <p>5. Which element displays an image?</p>
+          <label><input type="radio" name="q5" value="a" onchange="updateProgress()"> &lt;image&gt;</label>
+          <label><input type="radio" name="q5" value="b" onchange="updateProgress()"> &lt;img&gt;</label>
+          <label><input type="radio" name="q5" value="c" onchange="updateProgress()"> &lt;picturetext&gt;</label>
+          <label><input type="radio" name="q5" value="d" onchange="updateProgress()"> &lt;photo&gt;</label>
+        </div>
+
+        <div class="mcq-item">
+          <p>6. Which element creates a numbered list?</p>
+          <label><input type="radio" name="q6" value="a" onchange="updateProgress()"> &lt;ul&gt;</label>
+          <label><input type="radio" name="q6" value="b" onchange="updateProgress()"> &lt;li&gt;</label>
+          <label><input type="radio" name="q6" value="c" onchange="updateProgress()"> &lt;ol&gt;</label>
+          <label><input type="radio" name="q6" value="d" onchange="updateProgress()"> &lt;dl&gt;</label>
+        </div>
+
+        <div class="mcq-item">
+          <p>7. Which tag creates a table row?</p>
+          <label><input type="radio" name="q7" value="a" onchange="updateProgress()"> &lt;td&gt;</label>
+          <label><input type="radio" name="q7" value="b" onchange="updateProgress()"> &lt;tr&gt;</label>
+          <label><input type="radio" name="q7" value="c" onchange="updateProgress()"> &lt;th&gt;</label>
+          <label><input type="radio" name="q7" value="d" onchange="updateProgress()"> &lt;row&gt;</label>
+        </div>
+
+        <div class="mcq-item">
+          <p>8. Which CSS property changes text colour?</p>
+          <label><input type="radio" name="q8" value="a" onchange="updateProgress()"> font-style</label>
+          <label><input type="radio" name="q8" value="b" onchange="updateProgress()"> background</label>
+          <label><input type="radio" name="q8" value="c" onchange="updateProgress()"> color</label>
+          <label><input type="radio" name="q8" value="d" onchange="updateProgress()"> text-font</label>
+        </div>
+
+        <div class="mcq-item">
+          <p>9. Which selector identifies an HTML class in CSS?</p>
+          <label><input type="radio" name="q9" value="a" onchange="updateProgress()"> #</label>
+          <label><input type="radio" name="q9" value="b" onchange="updateProgress()"> @</label>
+          <label><input type="radio" name="q9" value="c" onchange="updateProgress()"> &amp;</label>
+          <label><input type="radio" name="q9" value="d" onchange="updateProgress()"> .</label>
+        </div>
+
+        <div class="mcq-item">
+          <p>10. Which selector identifies an ID in CSS?</p>
+          <label><input type="radio" name="q10" value="a" onchange="updateProgress()"> .</label>
+          <label><input type="radio" name="q10" value="b" onchange="updateProgress()"> #</label>
+          <label><input type="radio" name="q10" value="c" onchange="updateProgress()"> *</label>
+          <label><input type="radio" name="q10" value="d" onchange="updateProgress()"> +</label>
+        </div>
+
+        <div class="mcq-item">
+          <p>11. Which element is commonly used as a generic block container?</p>
+          <label><input type="radio" name="q11" value="a" onchange="updateProgress()"> &lt;span&gt;</label>
+          <label><input type="radio" name="q11" value="b" onchange="updateProgress()"> &lt;a&gt;</label>
+          <label><input type="radio" name="q11" value="c" onchange="updateProgress()"> &lt;div&gt;</label>
+          <label><input type="radio" name="q11" value="d" onchange="updateProgress()"> &lt;strong&gt;</label>
+        </div>
+
+        <div class="mcq-item">
+          <p>12. Which language adds interactivity to webpages?</p>
+          <label><input type="radio" name="q12" value="a" onchange="updateProgress()"> HTML</label>
+          <label><input type="radio" name="q12" value="b" onchange="updateProgress()"> CSS</label>
+          <label><input type="radio" name="q12" value="c" onchange="updateProgress()"> XML</label>
+          <label><input type="radio" name="q12" value="d" onchange="updateProgress()"> JavaScript</label>
+        </div>
+
+        <div class="mcq-item">
+          <p>13. Which element represents navigation links?</p>
+          <label><input type="radio" name="q13" value="a" onchange="updateProgress()"> &lt;nav&gt;</label>
+          <label><input type="radio" name="q13" value="b" onchange="updateProgress()"> &lt;aside&gt;</label>
+          <label><input type="radio" name="q13" value="c" onchange="updateProgress()"> &lt;footer&gt;</label>
+          <label><input type="radio" name="q13" value="d" onchange="updateProgress()"> &lt;figure&gt;</label>
+        </div>
+
+        <div class="mcq-item">
+          <p>14. Which attribute provides alternative text for an image?</p>
+          <label><input type="radio" name="q14" value="a" onchange="updateProgress()"> href</label>
+          <label><input type="radio" name="q14" value="b" onchange="updateProgress()"> alt</label>
+          <label><input type="radio" name="q14" value="c" onchange="updateProgress()"> target</label>
+          <label><input type="radio" name="q14" value="d" onchange="updateProgress()"> title</label>
+        </div>
+
+        <div class="mcq-item">
+          <p>15. Which meta setting helps a page adapt to mobile viewport width?</p>
+          <label><input type="radio" name="q15" value="a" onchange="updateProgress()"> charset</label>
+          <label><input type="radio" name="q15" value="b" onchange="updateProgress()"> description</label>
+          <label><input type="radio" name="q15" value="c" onchange="updateProgress()"> viewport</label>
+          <label><input type="radio" name="q15" value="d" onchange="updateProgress()"> author</label>
+        </div>
+
+        <div class="mcq-item">
+          <p>16. Which element embeds another webpage?</p>
+          <label><input type="radio" name="q16" value="a" onchange="updateProgress()"> &lt;embedpage&gt;</label>
+          <label><input type="radio" name="q16" value="b" onchange="updateProgress()"> &lt;link&gt;</label>
+          <label><input type="radio" name="q16" value="c" onchange="updateProgress()"> &lt;framepage&gt;</label>
+          <label><input type="radio" name="q16" value="d" onchange="updateProgress()"> &lt;iframe&gt;</label>
+        </div>
+
+        <div class="mcq-item">
+          <p>17. Which element inserts a line break?</p>
+          <label><input type="radio" name="q17" value="a" onchange="updateProgress()"> &lt;br&gt;</label>
+          <label><input type="radio" name="q17" value="b" onchange="updateProgress()"> &lt;lb&gt;</label>
+          <label><input type="radio" name="q17" value="c" onchange="updateProgress()"> &lt;break&gt;</label>
+          <label><input type="radio" name="q17" value="d" onchange="updateProgress()"> &lt;line&gt;</label>
+        </div>
+
+        <div class="mcq-item">
+          <p>18. Which element represents important text?</p>
+          <label><input type="radio" name="q18" value="a" onchange="updateProgress()"> &lt;small&gt;</label>
+          <label><input type="radio" name="q18" value="b" onchange="updateProgress()"> &lt;strong&gt;</label>
+          <label><input type="radio" name="q18" value="c" onchange="updateProgress()"> &lt;sub&gt;</label>
+          <label><input type="radio" name="q18" value="d" onchange="updateProgress()"> &lt;del&gt;</label>
+        </div>
+
+        <div class="mcq-item">
+          <p>19. Which file extension is commonly used for CSS?</p>
+          <label><input type="radio" name="q19" value="a" onchange="updateProgress()"> .html</label>
+          <label><input type="radio" name="q19" value="b" onchange="updateProgress()"> .js</label>
+          <label><input type="radio" name="q19" value="c" onchange="updateProgress()"> .css</label>
+          <label><input type="radio" name="q19" value="d" onchange="updateProgress()"> .docx</label>
+        </div>
+
+        <div class="mcq-item">
+          <p>20. Which declaration identifies an HTML5 document?</p>
+          <label><input type="radio" name="q20" value="a" onchange="updateProgress()"> &lt;html5&gt;</label>
+          <label><input type="radio" name="q20" value="b" onchange="updateProgress()"> &lt;doctype&gt;</label>
+          <label><input type="radio" name="q20" value="c" onchange="updateProgress()"> &lt;html version='5'&gt;</label>
+          <label><input type="radio" name="q20" value="d" onchange="updateProgress()"> &lt;!DOCTYPE html&gt;</label>
+        </div>
+
+        <button class="quiz-btn" onclick="checkQuiz()">Submit Answers</button>
+        <button class="quiz-btn" style="background:#666;" onclick="resetQuiz()">Reset Quiz</button>
+        <p id="quizResult" style="margin-top:12px; font-weight:700;"></p>
+      </div>
+
+      <h2>Part B: Short-answer questions</h2>
+      <ol>
+        <li>Define HTML and explain its uses.</li>
+        <li>What is the difference between an HTML tag and an HTML element?</li>
+        <li>Explain the basic structure of an HTML document.</li>
+        <li>What are HTML attributes? Give four examples.</li>
+        <li>Explain the difference between <code>&lt;h1&gt;</code> and <code>&lt;h6&gt;</code>.</li>
+        <li>Differentiate between <code>&lt;br&gt;</code> and <code>&lt;hr&gt;</code>.</li>
+        <li>What is the difference between ordered and unordered lists?</li>
+        <li>Explain the difference between a class and an ID.</li>
+        <li>What are semantic HTML elements? Give five examples.</li>
+        <li>Explain the purpose of the <code>alt</code> attribute in an image.</li>
+        <li>What is an iframe? Give one use.</li>
+        <li>Explain the purpose of the viewport meta tag.</li>
+        <li>Differentiate between HTML, CSS and JavaScript.</li>
+        <li>What are HTML entities? Give five examples.</li>
+        <li>What is responsive web design?</li>
+      </ol>
+
+      <h2>Part C: HTML practical examination questions</h2>
+      <h3>Practical 1 — Basic webpage</h3>
+      <p>Create a webpage containing a title, an <code>&lt;h1&gt;</code> heading, three paragraphs, a horizontal line and a line break.</p>
+      <h3>Practical 2 — Images and links</h3>
+      <p>Insert two images with alternative text and create hyperlinks to two educational websites.</p>
+      <h3>Practical 3 — Student marksheet</h3>
+      <p>Create a table containing five students, their roll numbers and marks in three subjects. Style the table using CSS.</p>
+      <h3>Practical 4 — Styling</h3>
+      <p>Create a webpage with coloured headings, different font sizes, a background colour, a border and suitable spacing.</p>
+      <h3>Practical 5 — Responsive webpage</h3>
+      <p>Design a webpage with a header, navigation, two content sections and a footer. Use CSS media queries to adapt the layout to mobile screens.</p>
+      <h3>Practical 6 — JavaScript interaction</h3>
+      <p>Create a webpage with a button that changes a paragraph's text when clicked.</p>
+
+      <h2>Final revision checklist</h2>
+      <ul style="list-style-type: none; margin-left: 0;">
+        <li>☐ I can explain HTML and its uses.</li>
+        <li>☐ I can create and save an HTML file.</li>
+        <li>☐ I understand tags, elements and attributes.</li>
+        <li>☐ I can use headings, paragraphs and formatting.</li>
+        <li>☐ I can add colours, images and hyperlinks.</li>
+        <li>☐ I can create tables and lists.</li>
+        <li>☐ I understand block, inline, div, class and ID.</li>
+        <li>☐ I can use buttons, iframes and JavaScript.</li>
+        <li>☐ I understand file paths, head and meta elements.</li>
+        <li>☐ I can create responsive and semantic webpages.</li>
+        <li>☐ I can use entities, symbols and emojis.</li>
+        <li>☐ I can build a complete student profile project.</li>
+      </ul>
+    </section>
+
+  </main>
+</div>
+
+<footer class="footer">
+  <p>© 2026 <strong>tecwithamey</strong> · Complete HTML Notes (27 Chapters) · <a href="#">Privacy</a> · <a href="#">Contact</a></p>
+</footer>
+
+<div class="toast" id="toast">Copied!</div>
+
+<script>
+/* ---------- SIDEBAR TOPIC SWITCHING ---------- */
+function showTopic(id) {
+  document.querySelectorAll('.topic').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById(id);
+  if (target) target.classList.add('active');
+  document.querySelectorAll('#topicList a').forEach(a => a.classList.remove('active-topic'));
+  const link = document.querySelector('#topicList a[data-topic="' + id + '"]');
+  if (link) link.classList.add('active-topic');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.querySelectorAll('#topicList a').forEach(a => {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    showTopic(this.dataset.topic);
+  });
+});
+
+/* ---------- COPY CODE ---------- */
+function copyCode(btn) {
+  const block = btn.closest('.code-block');
+  const code = block.querySelector('pre code').innerText;
+  navigator.clipboard.writeText(code).then(() => {
+    showToast('Code copied to clipboard!');
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = code; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    showToast('Code copied!');
+  });
+}
+
+/* ---------- RUN CODE (opens preview) ---------- */
+function runCode(btn) {
+  const block = btn.closest('.code-block');
+  const code = block.querySelector('pre code').innerText;
+  let full = code.trim();
+  if (!/^\s*<!DOCTYPE/i.test(full) && !/^\s*<html/i.test(full)) {
+    full = '<!DOCTYPE html>\n<html>\n<head><meta charset="UTF-8"><title>Preview</title></head>\n<body>\n' + full + '\n</body>\n</html>';
+  }
+  const win = window.open('', '_blank');
+  if (!win) { showToast('Allow pop-ups to run code'); return; }
+  win.document.open();
+  win.document.write(full);
+  win.document.close();
+}
+
+/* ---------- TOAST ---------- */
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+/* ---------- QUIZ ---------- */
+const quizAnswers = {
+  q1:'a', q2:'b', q3:'c', q4:'d', q5:'b',
+  q6:'c', q7:'b', q8:'c', q9:'d', q10:'b',
+  q11:'c', q12:'d', q13:'a', q14:'b', q15:'c',
+  q16:'d', q17:'a', q18:'b', q19:'c', q20:'d'
+};
+
+function updateProgress() {
+  let answered = 0;
+  for (let i = 1; i <= 20; i++) {
+    if (document.querySelector('input[name="q' + i + '"]:checked')) answered++;
+  }
+  document.getElementById('quizProgress').textContent = answered + ' / 20 answered';
+}
+
+function checkQuiz() {
+  let score = 0;
+  for (const q in quizAnswers) {
+    const sel = document.querySelector('input[name="' + q + '"]:checked');
+    if (sel && sel.value === quizAnswers[q]) score++;
+  }
+  const res = document.getElementById('quizResult');
+  res.textContent = 'You scored ' + score + ' / 20 ' +
+    (score === 20 ? '🎉 Perfect!' : score >= 15 ? '👍 Great job!' : score >= 10 ? '📚 Keep practicing!' : '📖 Review the chapters again.');
+  res.style.color = score >= 15 ? 'green' : score >= 10 ? '#e67e22' : '#c00';
+}
+
+function resetQuiz() {
+  document.querySelectorAll('#ch27 input[type="radio"]').forEach(r => r.checked = false);
+  document.getElementById('quizResult').textContent = '';
+  document.getElementById('quizProgress').textContent = '0 / 20 answered';
+}
+</script>
+</body>
+</html>
